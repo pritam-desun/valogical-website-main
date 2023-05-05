@@ -1,8 +1,8 @@
 <?php include("include/config.php");
 if (isset($_POST['submit'])) {
 
-  $ques = isset($_POST["question"]) ? $_POST["question"] : "";
-  $answ = isset($_POST["answer"]) ? $_POST["answer"] : "";
+  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
+  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
   $err = [];
 
   if ($ques == "") {
@@ -18,7 +18,8 @@ if (isset($_POST['submit'])) {
     //Print_r($query);
     // die;
     if ($result) {
-      $err['message'] = 'New Record Addded successfully';
+      //$err['message'] = 'New Record Addded successfully';
+      header("location:faq.php?add=New Record Addded successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }

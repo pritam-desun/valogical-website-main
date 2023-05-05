@@ -10,30 +10,55 @@ if ($id) {
 if (isset($_POST['update'])) {
   //die("");
   $target_dir = "upload/";
-  $s_desp = isset($_POST["short_desp"]) ? $_POST["short_desp"] : "";
-  $l_desp = isset($_POST["long_desp"]) ? $_POST["long_desp"] : "";
+  $s_desp = isset($_POST["short_desp"]) ? trim($_POST["short_desp"]) : "";
+  $l_desp = isset($_POST["long_desp"]) ? trim($_POST["long_desp"]) : "";
   $status = isset($_POST["status"]) ? $_POST["status"] : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
 
-  $query = "UPDATE `services` SET
+  $err = [];
+
+  if (file_exists($row['icon'])) {
+    $image = $row['icon'];
+    $image_tep_name = $_FILES['image']['tmp_name'];
+    if (!empty($_FILES['image']['name'])) {
+      $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+      $image_tep_name = $_FILES['image']['tmp_name'];
+    }
+  }
+  // else {
+  //   $err['image'] = "Image Not Found ! First You Need To Upload Image ";
+  // }
+
+  if ($s_desp == "") {
+    $err['short_desp'] = "Short description field is Required";
+  }
+  if ($l_desp == "") {
+    $err['long_desp'] = "long description field is Required";
+  }
+
+  if (empty($err)) {
+    print_r($image);
+    print_r($row['icon']);
+
+    $query = "UPDATE `services` SET
   `short_desp`='$s_desp',
   `long_desp`='$l_desp',
   `icon`='$image',
   `status`='$status'
   WHERE service_id = $id";
-  $result = mysqli_query($conn, $query);
-  //Print_r ($_POST);
-  //die;
-  if ($result) {
-    $err['register'] = 'Data Update successfully';
-    header("Location: view_service.php?message=Data Update successfully");
-  } else {
-    $err['register'] = 'Edit Not Worked please check Your code ';
+    $result = mysqli_query($conn, $query);
+    // $rows = mysqli_num_rows($result);
+    // print_r($rows);
+    // die();
+    if ($result) {
+      move_uploaded_file($image_tep_name, $image);
+      header("Location: view_service.php?update=Data Update successfully.");
+    } else {
+      $err['register'] = 'Edit Not Worked please check Your code ';
+    }
   }
 }
-//sprint_r($row['short_desp']);
-//die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -451,15 +476,17 @@ if (isset($_POST['update'])) {
                         <div class="form-group ">
                           <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis ">Short Description:</label>
                           <textarea type="text" name="short_desp" value="" class="form-control" id="exampleFormControlTextarea1" rows="3"><?php echo isset($row['short_desp']) ? $row['short_desp'] : ""; ?></textarea>
+                          <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
                           <textarea type="text" name="long_desp" value="" class="form-control" id="exampleFormControlTextarea1" rows="3"><?php echo isset($row['long_desp']) ? $row['long_desp'] : ""; ?></textarea>
+                          <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-
                           <label for="formFileLg" class="form-label">Upload Icon:</label>
                           <input type="file" class="form-control form-control-lg" value="<?= isset($row['icon']) ? $row['icon'] : ""; ?>" id="formFileLg" name="image">
+                          <?php if (isset($err1['image'])) { ?><div class="small alert-danger"><?= $err1['image']; ?></div> <?php } ?>
                           <?php if (isset($row['icon'])) { ?>
                             <?php print_r($row['icon']); ?>
                           <?php } ?>

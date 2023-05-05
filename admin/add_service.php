@@ -4,8 +4,8 @@ if (isset($_POST['submit'])) {
   // print_r($_POST);
   $target_dir = "upload/";
 
-  $s_desp = isset($_POST["short_desp"]) ? $_POST["short_desp"] : "";
-  $l_desp = isset($_POST["long_desp"]) ? $_POST["long_desp"] : "";
+  $s_desp = isset($_POST["short_desp"]) ? trim($_POST["short_desp"]) : "";
+  $l_desp = isset($_POST["long_desp"]) ? trim($_POST["long_desp"]) : "";
   $status = isset($_POST["status"]) ? $_POST["status"] : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
@@ -34,6 +34,8 @@ if (isset($_POST['submit'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       $err['message'] = 'New Record Addded successfully';
+      //$msg = $err['message'];
+      header("location:view_service.php?add=New Record Addded successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }

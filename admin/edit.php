@@ -10,26 +10,39 @@ if ($id) {
 }
 if (isset($_POST['update'])) {
     $testimonial_id = $_GET["id"];
-    $people_name = isset($_POST["people_name"]) ? $_POST["people_name"] : "";
-    $people_designation = isset($_POST["people_designation"]) ? $_POST["people_designation"] : "";
-    $content = isset($_POST["content"]) ? $_POST["content"] : "";
+    $people_name = isset($_POST["people_name"]) ? trim($_POST["people_name"]) : "";
+    $people_designation = isset($_POST["people_designation"]) ? trim($_POST["people_designation"]) : "";
+    $content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
     $status = isset($_POST["status"]) ? $_POST["status"] : "";
 
+    // print_r($people_name);
+    $err = [];
+    if ($people_name == "") {
+        $err['people_name'] = "Name is Required";
+    }
+    if ($people_designation == "") {
+        $err['people_designation'] = "Name is Required";
+    }
+    if ($content == "") {
+        $err['content'] = "Name is Required";
+    }
+    if (empty($err)) {
 
-    $query = "UPDATE `testimonials` SET
+        $query = "UPDATE `testimonials` SET
       `people_name`='$people_name',
       `people_designation`='$people_designation',
       `content`='$content',
       `status`='$status'
      WHERE testimonial_id = $testimonial_id";
-    $result = mysqli_query($conn, $query);
-    //Print_r ($_POST);
-    //die;
-    if ($result) {
-        $err['register'] = 'Data Update successfully';
-        header("Location: testimonials.php?message=Data Update successfully");
-    } else {
-        $err['register'] = 'Edit Not Worked please check Your code ';
+        $result = mysqli_query($conn, $query);
+        //Print_r ($_POST);
+        //die;
+        if ($result) {
+            //$err['register'] = 'Data Update successfully';
+            header("Location: testimonials.php?update=Data Update successfully");
+        } else {
+            $err['register'] = 'Edit Not Worked please check Your code ';
+        }
     }
 }
 

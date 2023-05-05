@@ -10,11 +10,11 @@ if (isset($_POST['update'])) {
   // print_r($_POST['update']);
   // print_r($_POST);
   // die();
-  $name = isset($_POST["name"]) ? $_POST["name"] : "";
-  $email = isset($_POST["email"]) ? $_POST["email"] : "";
-  $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
+  $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $subject = isset($_POST["subject"]) ? trim($_POST["subject"]) : "";
   $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
-  $message = isset($_POST["message"]) ? $_POST["message"] : "";
+  $message = isset($_POST["message"]) ? trim($_POST["message"]) : "";
   //print_r($status);
   $err = [];
   if ($name == "") {
@@ -38,8 +38,8 @@ if (isset($_POST['update'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      header("location:view_contact.php?message=Form Update Successfully");
-      $err['add'] = 'Form Update Successfully';
+      header("location:view_contact.php?update=Form Update Successfully");
+      //$err['add'] = 'Form Update Successfully';
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

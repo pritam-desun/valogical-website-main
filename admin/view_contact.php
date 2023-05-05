@@ -416,8 +416,14 @@ if (@$_GET['type'] == 'delete') {
           <?php if (isset($err['message'])) { ?>
             <div class="alert alert-success"><?= $err['message']; ?></div>
           <?php } ?>
+          <?php if (isset($_GET['add'])) { ?>
+            <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
+          <?php }  ?>
+          <?php if (isset($_GET['update'])) { ?>
+            <div class="alert alert-success"><?= $_GET['update']; ?></div>
+          <?php }  ?>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Contact View</h1>
+          <h1 class="h3 mb-2 text-gray-800">Contact </h1>
           <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_contact.php">Add Data</a>.</p>
 
           <!-- DataTales Example -->
@@ -464,7 +470,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo $rows['phone'] ?></td>
                           <td><?php echo $rows['message'] ?></td>
 
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_contact.php?id=<?php echo $rows['contact_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="view_contact.php?id=<?php echo $rows['contact_id'] ?>&type=delete">Delete</a>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_contact.php?id=<?php echo $rows['contact_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_contact.php?id=<?php echo $rows['contact_id'] ?>&type=delete">Delete</a>
                           </td>
                         <?php } ?>
                         </tr>
@@ -537,7 +543,11 @@ if (@$_GET['type'] == 'delete') {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
+  <script language="JavaScript" type="text/javascript">
+    function checkDelete() {
+      return confirm('Are you sure?');
+    }
+  </script>
 </body>
 
 </html>

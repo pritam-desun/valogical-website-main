@@ -9,8 +9,8 @@ if ($id) {
 if (isset($_POST['update'])) {
 
 
-  $ques = isset($_POST["question"]) ? $_POST["question"] : "";
-  $answ = isset($_POST["answer"]) ? $_POST["answer"] : "";
+  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
+  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
   $err = [];
 
   if ($ques == "") {
@@ -27,7 +27,8 @@ if (isset($_POST['update'])) {
     // die;
     if ($result) {
       //header("location:edit_faq.php");
-      $err['message'] = ' Record Update successfully';
+      //$err['message'] = ' Record Update successfully';
+      header("location:faq.php?update=Record Update successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }

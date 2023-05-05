@@ -2,13 +2,13 @@
 if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";
-  $title = isset($_POST["title"]) ? $_POST["title"] : "";
+  $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
-  $btn_1_text = isset($_POST["btn_1_text"]) ? $_POST["btn_1_text"] : "";
-  $btn_1_url = isset($_POST["btn_1_url"]) ? $_POST["btn_1_url"] : "";
-  $btn_2_text = isset($_POST["btn_2_text"]) ? $_POST["btn_2_text"] : "";
-  $btn_2_url = isset($_POST["btn_2_url"]) ? $_POST["btn_2_url"] : "";
+  $btn_1_text = isset($_POST["btn_1_text"]) ? trim($_POST["btn_1_text"]) : "";
+  $btn_1_url = isset($_POST["btn_1_url"]) ? trim($_POST["btn_1_url"]) : "";
+  $btn_2_text = isset($_POST["btn_2_text"]) ? trim($_POST["btn_2_text"]) : "";
+  $btn_2_url = isset($_POST["btn_2_url"]) ? trim($_POST["btn_2_url"]) : "";
 
   //print_r($status);
   $err = [];
@@ -37,7 +37,8 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      $err['add'] = 'Form Submit Successfully';
+      // $err['add'] = 'Form Submit Successfully';
+      header("location:view_banner.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

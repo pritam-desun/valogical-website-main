@@ -2,10 +2,10 @@
 if (isset($_POST['submit'])) {
 
   // print_r($_POST);
-  $people_name = isset($_POST["people_name"]) ? $_POST["people_name"] : "";
-  $people_designation = isset($_POST["people_designation"]) ? $_POST["people_designation"] : "";
-  $content = isset($_POST["content"]) ? $_POST["content"] : "";
-  $status = isset($_POST["status"]) ? $_POST["status"] : "";
+  $people_name = isset($_POST["people_name"]) ? trim($_POST["people_name"]) : "";
+  $people_designation = isset($_POST["people_designation"]) ? trim($_POST["people_designation"]) : "";
+  $content = isset($_POST["content"]) ? trim($_POST["people_designation"]) : "";
+  $status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
   //print_r($status);
   $err = [];
   if ($people_name == "") {
@@ -26,7 +26,8 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      $err['register'] = 'New Data Added successfully';
+      //$err['register'] = 'New Data Added successfully';
+      header("location:testimonials.php?add=New Data Added successfully");
     } else {
       $err['register'] = 'Not Worked please check Your code ';
     }

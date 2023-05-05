@@ -414,14 +414,17 @@ if (@$_GET['type'] == 'delete') {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <?php if (isset($_GET['message'])) { ?>
-                        <div class="alert alert-success"><?= $_GET['message']; ?></div>
-                    <?php } ?>
                     <?php if (isset($err['msg'])) { ?>
                         <div class="alert alert-success"><?= $err['msg']; ?></div>
                     <?php } ?>
+                    <?php if (isset($_GET['add'])) { ?>
+                        <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
+                    <?php }  ?>
+                    <?php if (isset($_GET['update'])) { ?>
+                        <div class="alert alert-success"><?= $_GET['update']; ?></div>
+                    <?php }  ?>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Testimonials View</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Testimonials </h1>
                     <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="form.php">Add Data</a>.</p>
 
                     <!-- DataTales Example -->
@@ -462,7 +465,7 @@ if (@$_GET['type'] == 'delete') {
                                                     <td><?php echo $rows['people_designation'] ?></td>
                                                     <td><?php echo $rows['content'] ?></td>
                                                     <td><?php echo $rows['status'] ?> </td>
-                                                    <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit.php?id=<?php echo $rows['testimonial_id'] ?>">Edit</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="testimonials.php?id=<?php echo $rows['testimonial_id'] ?>&type=delete">Delete</a>
+                                                    <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit.php?id=<?php echo $rows['testimonial_id'] ?>">Edit</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="testimonials.php?id=<?php echo $rows['testimonial_id'] ?>&type=delete">Delete</a>
                                                     </td>
                                                 <?php } ?>
                                                 </tr>
@@ -535,7 +538,11 @@ if (@$_GET['type'] == 'delete') {
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
+    <script language="JavaScript" type="text/javascript">
+        function checkDelete() {
+            return confirm('Are you sure?');
+        }
+    </script>
 </body>
 
 </html>

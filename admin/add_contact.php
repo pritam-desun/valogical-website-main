@@ -2,11 +2,11 @@
 if (isset($_POST['submit'])) {
 
   // print_r($_POST);
-  $name = isset($_POST["name"]) ? $_POST["name"] : "";
-  $email = isset($_POST["email"]) ? $_POST["email"] : "";
-  $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
-  $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
-  $message = isset($_POST["message"]) ? $_POST["message"] : "";
+  $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $subject = isset($_POST["subject"]) ? trim($_POST["subject"]) : "";
+  $phone = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
+  $message = isset($_POST["message"]) ? trim($_POST["message"]) : "";
   //print_r($status);
   $err = [];
   if ($name == "") {
@@ -30,7 +30,8 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      $err['add'] = 'Form Submit Successfully';
+      // $err['add'] = 'Form Submit Successfully';
+      header("location:view_contact.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
