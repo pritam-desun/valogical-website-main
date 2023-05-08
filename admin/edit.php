@@ -435,25 +435,29 @@ if (isset($_POST['update'])) {
                             <div class="card-body p-0">
                                 <!-- Nested Row within Card Body -->
                                 <div class="row">
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-12 col-md-12">
                                         <div class="p-5">
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-4">Testimonial Data</h1>
                                             </div>
                                             <form class="user" action="" method="post">
                                                 <div class="form-group ">
+                                                    <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name :</label>
                                                     <input type="name" class="form-control form-control-user" name="people_name" value="<?= isset($row["people_name"]) ? $row["people_name"] : ""; ?>" id="exampleFirstName" placeholder="Enetr a name">
                                                     <?php if (isset($err['people_name'])) { ?><div class="small alert-danger"><?= $err['people_name']; ?></div> <?php } ?>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Designation :</label>
                                                     <input type="name" class="form-control form-control-user" name="people_designation" value="<?= isset($row["people_designation"]) ? $row["people_designation"] : ""; ?>" id="exampleInputEmail" placeholder="Enter a designation">
                                                     <?php if (isset($err['people_designation'])) { ?><div class="small alert-danger"><?= $err['people_designation']; ?></div> <?php } ?>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <input type="text" class="form-control form-control-user" id="exampleInputPassword" value="<?= isset($row["content"]) ? $row["content"] : ""; ?>" name="content" placeholder="Enetr a content">
+                                                    <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Content :</label>
+                                                    <textarea type="text" class="form-control form-control-user" id="contentt" value="<?= isset($row["content"]) ? $row["content"] : ""; ?>" name="content" placeholder="Enetr a content"><?= isset($row["content"]) ? $row["content"] : ""; ?></textarea>
                                                     <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                                                 </div>
                                                 <div class="form-group ">
+                                                    <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Status:</label>
                                                     <select type="status" name="status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                                         <option value="<?= isset($row['status']) ? $row['status'] : ""; ?> " selected><?= isset($row['status']) ? $row['status'] : ""; ?></option>
                                                         <?php
@@ -538,6 +542,27 @@ if (isset($_POST['update'])) {
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <!-- ck_editor -->
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#contentt'))
+            .then(contentt => {
+                console.log(contentt);
+                contentt.editing.view.change((writer) => {
+                        writer.setStyle(
+                            "height",
+                            "200px",
+                            contentt.editing.view.document.getRoot()
+                        );
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+    </script>
 </body>
 
 </html>

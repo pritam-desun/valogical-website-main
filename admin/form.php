@@ -57,6 +57,11 @@ if (isset($_POST['submit'])) {
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <style>
+    label {
+      color: black;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -131,11 +136,11 @@ if (isset($_POST['submit'])) {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#faq" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Contact" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Contact</span>
         </a>
-        <div id="faq" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="Contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Contact</h6>
             <a class="collapse-item" href="view_contact.php">Contact View</a>
@@ -423,28 +428,34 @@ if (isset($_POST['submit'])) {
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Testimonial Data</h1>
                       </div>
                       <form class="user" action="" method="post">
                         <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name :</label>
                           <input type="name" class="form-control form-control-user" name="people_name" id="exampleFirstName" placeholder="Enter a name.....">
                           <?php if (isset($err['people_name'])) { ?><div class="small alert-danger"><?= $err['people_name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Designation :</label>
                           <input type="name" class="form-control form-control-user" name="people_designation" id="exampleInputEmail" placeholder="Enter a designation.....">
                           <?php if (isset($err['people_designation'])) { ?><div class="small alert-danger"><?= $err['people_designation']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <input type="text" class="form-control form-control-user" id="exampleInputPassword" name="content" placeholder="Enter a content....">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Content :</label>
+                          <textarea type="text" class="form-control form-control-user" id="contentt" name="content" placeholder="Enter a content...."></textarea>
                           <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                         </div>
-                        <select type="status" name="status" class="form-control sform-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                          <option value="1" selected>Active</option>
-                          <option value="2">Inactive</option>
-                        </select>
+                        <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Status:</label>
+                          <select type="status" name="status" class="form-control sform-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="1" selected>Active</option>
+                            <option value="2">Inactive</option>
+                          </select>
+                        </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
                       <hr>
@@ -519,6 +530,27 @@ if (isset($_POST['submit'])) {
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+  <!-- ck_editor -->
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#contentt'))
+      .then(contentt => {
+        console.log(contentt);
+        contentt.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              contentt.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
 </body>
 
 </html>

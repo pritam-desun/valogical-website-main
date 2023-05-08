@@ -459,12 +459,12 @@ if (isset($_POST['submit'])) {
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
-                          <input type="name" class="form-control form-control-user" id="name" name="name" placeholder="name  ">
+                          <input type="name" class="form-control form-control-user" id="name" name="name" placeholder="name">
                           <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Url text :</label>
-                          <input type="text" class="form-control form-control-user" id="url_text	 " name="url_text" placeholder="url_text  ">
+                          <input type="text" class="form-control form-control-user" id="url_text	 " name="url_text" placeholder="url text  ">
                           <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
                         </div>
 

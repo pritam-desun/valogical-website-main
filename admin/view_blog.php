@@ -2,7 +2,7 @@
 if (@$_GET['type'] == 'delete') {
   $id = isset($_GET['id']) ? $_GET['id'] : '';
   $err = [];
-  $result1 = mysqli_query($conn, "DELETE FROM `portfolio` WHERE `portfolio_id` = $id");
+  $result1 = mysqli_query($conn, "DELETE FROM `blog` WHERE `blog_id` = $id");
   $row = mysqli_affected_rows($conn);
   //print_r($row);
   if ($row > 0) {
@@ -435,8 +435,8 @@ if (@$_GET['type'] == 'delete') {
             <div class="alert alert-success"><?= $_GET['update']; ?></div>
           <?php }  ?>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Portfolio </h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_portfolio.php">Add Data</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Blogs </h1>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_blog.php">Add Data</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -446,7 +446,7 @@ if (@$_GET['type'] == 'delete') {
             <div class="card-body">
               <div class="table-responsive">
                 <?php $id = 0;
-                $sql = "SELECT * FROM `portfolio`";
+                $sql = "SELECT * FROM `blog`";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_num_rows($result);
                 // print_r($row);
@@ -458,9 +458,13 @@ if (@$_GET['type'] == 'delete') {
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>Image</th>
-                        <th>Portfolio Name</th>
-                        <th>Url text</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Feature Image</th>
+                        <th>Short desp</th>
+                        <th>Content</th>
+                        <th>Published On</th>
+                        <th>Published Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -471,11 +475,15 @@ if (@$_GET['type'] == 'delete') {
                         $id = $id + 1;
                       ?>
                         <tr>
-                          <td><?php echo $rows['portfolio_id'] ?></td>
-                          <td><img src="<?php echo $rows['image'] ?>" height="50px"></td>
-                          <td><?php echo $rows['name'] ?></td>
-                          <td><?php echo $rows['url_text'] ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>&type=delete">Delete</a>
+                          <td><?php echo $rows['blog_id'] ?></td>
+                          <td><?php echo $rows['title'] ?></td>
+                          <td><?php echo $_SESSION['id'] ?></td>
+                          <td><img src="<?php echo $rows['feature_img'] ?>" height="50px"></td>
+                          <td><?php echo $rows['short_desc'] ?></td>
+                          <td><?php echo $rows['content'] ?></td>
+                          <td><?php echo $rows['published_on'] ?></td>
+                          <td><?php echo $rows['published_status'] ?></td>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_blog.php?id=<?php echo $rows['blog_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_blog.php?id=<?php echo $rows['blog_id'] ?>&type=delete">Delete</a>
                           </td>
                         <?php  } ?>
                     </tbody>
