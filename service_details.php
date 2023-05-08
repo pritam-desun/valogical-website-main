@@ -1,12 +1,17 @@
 <?php 
 include("config.php");
 include("inc/header.php"); 
-      ?>
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM `services` WHERE `service_id` = $id ";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+    ?>
     <!-- Start main-content -->
     <section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
       <div class="auto-container">
         <div class="title-outer">
-          <h1 class="title">Content Writing</h1>
+          <h1 class="title"> <?php print_r($row['short_desp']); ?></h1>
           <ul class="page-breadcrumb">
             <li><a href="index.html">Home</a></li>
             <i class="fa fa-angle-right"></i>
@@ -76,26 +81,9 @@ include("inc/header.php");
           <!--Start Services Details Content-->
           <div class="col-xl-8 col-lg-8">
             <div class="services-details__content">
-              <h3 class="mt-4">Content Writing</h3>
-              <p>Our content writing services include business writing, technical writing, creative writing, SEO
-                copywriting, academic content, resume writing, speech writing, ghost writing, social media writing,
-                content editing, and content development services such as blogs, articles, press releases, product
-                reviews, eBooks, case studies, white papers, and newsletters etc. across diverse domains and industries.
+              <h3 class="mt-4"> <?php print_r($row['short_desp']); ?></h3>
+              <p> <?php print_r($row['long_desp']); ?>
               </p>
-            </div>
-            <div class="list">
-              <ul>
-                <li><a href="#">Blog Writing</a></li>
-                <li><a href="#">Business Plans</a></li>
-                <li><a href="#">Web Content Writing</a></li>
-                <li><a href="#">Copywriting</a></li>
-                <li><a href="#">Academic and Technical Writing</a></li>
-                <li><a href="#">Keyword Rich Content</a></li>
-                <li><a href="#">Proofreading</a></li>
-                <li><a href="#">Video transcription</a></li>
-                <li><a href="#">Article Writing</a></li>
-                <li><a href="#">Ghostwriting</a></li>
-              </ul>
             </div>
           </div>
           <!--End Services Details Content-->
@@ -103,5 +91,6 @@ include("inc/header.php");
       </div>
     </section>
     <!--End Services Details-->
-
-    <?php include("inc/footer.php"); ?>
+ <?php 
+}
+     include("inc/footer.php"); ?>

@@ -1,6 +1,42 @@
 <?php 
 include("config.php");
 include("inc/header.php"); 
+if (isset($_POST['submit'])) {
+
+	
+	$name = isset($_POST["name"]) ? $_POST["name"] : "";
+	$email = isset($_POST["email"]) ? $_POST["email"] : "";
+	$subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
+	$phone = isset($_POST["email"]) ? $_POST["email"] : "";
+	$message = isset($_POST["message"]) ? $_POST["message"] : "";
+
+	$err = [];
+	if ($name == "") {
+			$err["name"] = "Please enter name";
+	}
+	if ($email == "") {
+			$err['email'] = "Email is Required";
+	}
+	if ($subject == "") {
+		$err["subject"] = "Please enter a subject";
+  }
+	if ($phone == "") {
+		$err["phone"] = "phone Number is Required";
+  }
+
+		$query = "INSERT INTO `contact`(`name`, `email`, `subject`, `phone`, `message`) VALUES ('$name','$email','$subject','$phone','$message')";
+		//Print_r($query);
+		$result = mysqli_query($conn, $query);
+		// Print_r($_POST);
+		//die;
+		if ($result) {
+				$msg['messsage'] = 'massage submit successfully';
+		} else {
+				$msg['messsage'] = 'massage not submit successfully ';
+		}
+}
+}
+
       ?>
 		<!--End Main Header -->
 
@@ -82,39 +118,44 @@ include("inc/header.php");
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
+						<?php if (isset($msg['messsage'])) { echo $msg['messsage']; } ?>
 						<!-- Contact Form -->
-						<form id="contact_form" name="contact_form" class="" action="" method="post">
+						<form id="contact_form" name="contact_form" class="" method="post">
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="form_name" class="form-control" type="text" placeholder="Enter Name">
+										<input name="name" class="form-control" type="name" placeholder="Enter Name">
+										<p style="color:red;font-size:14px;"><?php if (isset($err['name'])) { echo $err['name']; } ?> </p>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
+										<input name="email" class="form-control required email" type="email" placeholder="Enter Email">
+										<p style="color:red;font-size:14px;"><?php if (isset($err['email'])) { echo $err['email']; } ?> </p>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject">
+										<input name="subject" class="form-control required" type="text" name="subject" placeholder="Enter Subject">
+										<p style="color:red;font-size:14px;"><?php if (isset($err['subject'])) { echo $err['subject']; } ?> </p>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
+										<input name="phone" class="form-control" type="text" name="phone" placeholder="Enter Phone">
+										<p style="color:red;font-size:14px;"><?php if (isset($err['phone'])) { echo $err['phone']; } ?> </p>
 									</div>
 								</div>
 							</div>
 							<div class="mb-3">
-								<textarea name="form_message" class="form-control required" rows="5"
+								<textarea name="message" class="form-control required" rows="5 type="text" name="phone""
 									placeholder="Enter Message"></textarea>
 							</div>
 							<div class="mb-3 text-center">
-								<input name="form_botcheck" class="form-control" type="hidden" value="" />
-								<button type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span
+								
+								<button type="submit" name="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span
 										class="btn-title">Send message</span></button>
 								<button type="reset" class="theme-btn btn-style-one"><span class="btn-title">Reset</span></button>
 							</div>

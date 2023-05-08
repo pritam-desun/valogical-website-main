@@ -2,7 +2,6 @@
 include("config.php");
 include("inc/header.php"); 
       ?>
-	
 
 		<!-- Start main-content -->
 		<section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
@@ -40,7 +39,7 @@ include("inc/header.php");
             ?>
 					<div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
 						<aside class="aside">
-							<a class='normal' href='content-writing.php'>
+							<a class='normal' href='service_details.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>
 								<span>
 									<div class="sBoxBlack">
 										<i class="icon flaticon-color-sample"></i>
@@ -51,7 +50,7 @@ include("inc/header.php");
 							<div class="info">
 								<strong><?php echo $rows['short_desp'] ?></strong>
 								<p><?php echo $rows['long_desp'] ?></p>
-								<a style="color:#fff;" href='content-writing.html'>Learn More</a>
+								<a method="Get" style="color:#fff;" href='service_details.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>Learn More</a>
 							</div>
 						</aside>
 					</div>
