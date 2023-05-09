@@ -10,11 +10,12 @@ if (isset($_POST['submit'])) {
     $errMsg = '';
     $query = "SELECT * FROM `users` WHERE `email` = '$email' and `password` = '$password' ";
     $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
     $row = mysqli_num_rows($result);
-    //print_r($row);
     if ($row > 0) {
         // die("here");
-        $_SESSION['user'] =  1;
+        $_SESSION['user_name'] = $data['name'];
+        $_SESSION['id'] = $data['user_id'];
         header("Location: dashboard.php");
     } else {
         $errMsg = "Invalid username and password";

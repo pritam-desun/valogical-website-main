@@ -9,13 +9,13 @@ if ($id) {
 }
 if (isset($_POST['update'])) {
   $target_dir = "upload/";
-  $title = isset($_POST["title"]) ? $_POST["title"] : "";
+  $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
-  $btn_1_text = isset($_POST["btn_1_text"]) ? $_POST["btn_1_text"] : "";
-  $btn_1_url = isset($_POST["btn_1_url"]) ? $_POST["btn_1_url"] : "";
-  $btn_2_text = isset($_POST["btn_2_text"]) ? $_POST["btn_2_text"] : "";
-  $btn_2_url = isset($_POST["btn_2_url"]) ? $_POST["btn_2_url"] : "";
+  $btn_1_text = isset($_POST["btn_1_text"]) ? trim($_POST["btn_1_text"]) : "";
+  $btn_1_url = isset($_POST["btn_1_url"]) ? trim($_POST["btn_1_url"]) : "";
+  $btn_2_text = isset($_POST["btn_2_text"]) ? trim($_POST["btn_2_text"]) : "";
+  $btn_2_url = isset($_POST["btn_2_url"]) ? trim($_POST["btn_2_url"]) : "";
   $date = isset($_POST["date"]) ? $_POST["date"] : "";
   // $datetime = date("$date", " H:i:s");
 
@@ -23,11 +23,19 @@ if (isset($_POST['update'])) {
 
   //print_r($status);
   $err = [];
+  if (file_exists($row['image'])) {
+    $image = $row['image'];
+    $image_tep_name = $_FILES['image']['tmp_name'];
+    if (!empty($_FILES['image']['name'])) {
+      $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+      $image_tep_name = $_FILES['image']['tmp_name'];
+    }
+  }
   if ($title == "") {
     $err["title"] = "Please enter title  ";
   }
   if ($image == "") {
-    $err["image"] = "Please enter image  ";
+    $err["image"] = "Please upload image  ";
   }
   if ($btn_1_text == "") {
     $err["btn_1_text"] = "Please enter btn_1_text  ";
@@ -38,9 +46,7 @@ if (isset($_POST['update'])) {
   if ($btn_2_text == "") {
     $err["btn_2_text"] = "Please enter btn_2_text  ";
   }
-  if ($date == "") {
-    $err["date"] = "Please Set the Today date  ";
-  }
+
   if (empty($err)) {
 
     $query = "UPDATE `banner` SET
@@ -49,15 +55,15 @@ if (isset($_POST['update'])) {
     `btn_1_url`='$btn_1_text',
     `btn_2_url`='$btn_1_url',
     `btn_2_text`='$btn_2_text',
-    `btn_2_url`='$btn_2_url',
-    `update_at`='$date'
+    `btn_2_url`='$btn_2_url'
     WHERE banner_id = $id";
     $result = mysqli_query($conn, $query);
 
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      $err['add'] = 'Form Update Successfully';
+      // $err['add'] = 'Form Update Successfully';
+      header("location:view_banner.php?update=Record Update successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -481,7 +487,7 @@ if (isset($_POST['update'])) {
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Banner Form</h1>
@@ -520,11 +526,6 @@ if (isset($_POST['update'])) {
                           <label for="exampleFormControlTitle" class="form-label">Button_1_Url Url:</label>
                           <input type="text" class="form-control form-control-user" value="<?= isset($row['btn_2_url']) ? $row['btn_2_url'] : ""; ?> " id="btn_1_text " name="btn_2_url" placeholder="btn_1_url  ">
                           <?php if (isset($err['btn_2_url'])) { ?><div class="small alert-danger"><?= $err['btn_2_url']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Datetime:</label>
-                          <input type="date" class="form-control form-control-user" value="" id="date" name="date" placeholder="">
-                          <?php if (isset($err['date'])) { ?><div class="small alert-danger"><?= $err['date']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
                       </form>

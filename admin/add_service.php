@@ -4,8 +4,8 @@ if (isset($_POST['submit'])) {
   // print_r($_POST);
   $target_dir = "upload/";
 
-  $s_desp = isset($_POST["short_desp"]) ? $_POST["short_desp"] : "";
-  $l_desp = isset($_POST["long_desp"]) ? $_POST["long_desp"] : "";
+  $s_desp = isset($_POST["short_desp"]) ? trim($_POST["short_desp"]) : "";
+  $l_desp = isset($_POST["long_desp"]) ? trim($_POST["long_desp"]) : "";
   $status = isset($_POST["status"]) ? $_POST["status"] : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
@@ -34,6 +34,8 @@ if (isset($_POST['submit'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       $err['message'] = 'New Record Addded successfully';
+      //$msg = $err['message'];
+      header("location:view_service.php?add=New Record Addded successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }
@@ -431,24 +433,24 @@ if (isset($_POST['submit'])) {
           <!-- DataTales Example -->
           <div class="container">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card o-hidden border-0 shadow-lg my-50">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Services Data</h1>
                       </div>
                       <form class="user" action="" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Short Description:</label>
-                          <textarea type="name" name="short_desp" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Short Description........"></textarea>
+                        <div class="form-group  ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis w-100">Short Description:</label>
+                          <textarea type="name" name="short_desp" rows="8" class="form-control" id="short_desp" rows="3" placeholder="Short Description........"></textarea>
                           <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
-                          <textarea type="name" name="long_desp" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Long Description........"></textarea>
+                          <textarea type="name" name="long_desp" class="form-control" id="long_desp" rows="3" placeholder="Long Description........"></textarea>
                           <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
@@ -537,6 +539,44 @@ if (isset($_POST['submit'])) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!--ckeditor link -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#short_desp'))
+      .then(short_desp => {
+        console.log(short_desp);
+        short_desp.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              short_desp.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#long_desp'))
+      .then(long_desp => {
+        console.log(long_desp);
+        long_desp.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              long_desp.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
 
 </body>
 

@@ -2,7 +2,7 @@
 if (@$_GET['type'] == 'delete') {
   $id = isset($_GET['id']) ? $_GET['id'] : '';
   $err = [];
-  $result1 = mysqli_query($conn, "DELETE FROM `banner` WHERE `banner_id` = $id");
+  $result1 = mysqli_query($conn, "DELETE FROM `blog` WHERE `blog_id` = $id");
   $row = mysqli_affected_rows($conn);
   //print_r($row);
   if ($row > 0) {
@@ -128,7 +128,7 @@ if (@$_GET['type'] == 'delete') {
         <div id="banner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner</h6>
-            <a class="collapse-item" href="view_banner.php">Banner View</a>
+            <a class="collapse-item" href="view_banner.php">Portfolio View</a>
           </div>
         </div>
       </li>
@@ -156,6 +156,15 @@ if (@$_GET['type'] == 'delete') {
           </div>
         </div>
       </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <!-- <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div> -->
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -209,14 +218,10 @@ if (@$_GET['type'] == 'delete') {
                 </form>
               </div>
             </li>
-
-
-
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
                 <img class="img-profile rounded-circle" src="upload/images.jpg">
               </a>
               <!-- Dropdown - User Information -->
@@ -230,7 +235,7 @@ if (@$_GET['type'] == 'delete') {
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -254,16 +259,15 @@ if (@$_GET['type'] == 'delete') {
             <div class="alert alert-success"><?= $_GET['update']; ?></div>
           <?php }  ?>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Banner </h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_banner.php">Add Data</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Blogs </h1>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_blog.php">Add Blog</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-
             <div class="card-body">
               <div class="table-responsive">
                 <?php $id = 0;
-                $sql = "SELECT * FROM `banner`";
+                $sql = "SELECT * FROM `blog`";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_num_rows($result);
                 // print_r($row);
@@ -275,35 +279,31 @@ if (@$_GET['type'] == 'delete') {
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>title</th>
-                        <th>image</th>
-                        <th>btn 1 text</th>
-                        <th>btn 1 url</th>
-                        <th>btn 2 text</th>
-                        <th>btn 2 url</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Feature Image</th>
+                        <th>Short desp</th>
+                        <th>Published On</th>
+                        <th>Published Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $id = 0;
-                      $sql = "SELECT * FROM `banner`";
-                      $result = mysqli_query($conn, $sql);
-                      ?>
-                      <?php while ($rows = mysqli_fetch_assoc($result)) {
+                      <?php
+                      while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;
                       ?>
                         <tr>
-                          <td><?php echo $rows['banner_id'] ?></td>
+                          <td><?php echo $rows['blog_id'] ?></td>
                           <td><?php echo $rows['title'] ?></td>
-                          <td><img src="<?php echo $rows['image'] ?>" height="50px"></td>
-                          <td><?php echo $rows['btn_1_text'] ?></td>
-                          <td><?php echo $rows['btn_1_url'] ?></td>
-                          <td><?php echo $rows['btn_2_text'] ?></td>
-                          <td><?php echo $rows['btn_2_url'] ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_banner.php?id=<?php echo $rows['banner_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure ?')" href=" view_banner.php?id=<?php echo $rows['banner_id'] ?>&type=delete">Delete</a>
+                          <td><?php echo @$_SESSION['user_name'] ?></td>
+                          <td><img src="<?php echo $rows['feature_img'] ?>" height="50px"></td>
+                          <td><?php echo $rows['short_desc'] ?></td>
+                          <td><?php echo $rows['published_on'] ?></td>
+                          <td><?php echo $rows['published_status'] ?></td>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_blog.php?id=<?php echo $rows['blog_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_blog.php?id=<?php echo $rows['blog_id'] ?>&type=delete">Delete</a>
                           </td>
-                        <?php } ?>
-                        </tr>
+                        <?php  } ?>
                     </tbody>
                   </table>
                 <?php endif ?>
@@ -378,7 +378,6 @@ if (@$_GET['type'] == 'delete') {
       return confirm('Are you sure?');
     }
   </script>
-
 </body>
 
 </html>

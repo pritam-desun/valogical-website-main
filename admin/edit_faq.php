@@ -9,8 +9,8 @@ if ($id) {
 if (isset($_POST['update'])) {
 
 
-  $ques = isset($_POST["question"]) ? $_POST["question"] : "";
-  $answ = isset($_POST["answer"]) ? $_POST["answer"] : "";
+  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
+  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
   $err = [];
 
   if ($ques == "") {
@@ -27,7 +27,8 @@ if (isset($_POST['update'])) {
     // die;
     if ($result) {
       //header("location:edit_faq.php");
-      $err['message'] = ' Record Update successfully';
+      //$err['message'] = ' Record Update successfully';
+      header("location:faq.php?update=Record Update successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }
@@ -419,7 +420,7 @@ $answ = [];
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4 ">Frequently Asked Questions</h1>
@@ -433,7 +434,7 @@ $answ = [];
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
 
-                          <textarea type="name" name="answer" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="" cols="30" rows="10"><?= isset($row['answer']) ? $row['answer'] : ""; ?></textarea>
+                          <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"><?= isset($row['answer']) ? $row['answer'] : ""; ?></textarea>
                           <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
@@ -509,7 +510,28 @@ $answ = [];
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <!-- ck_editor -->
 
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#answer'))
+      .then(answer => {
+        console.log(answer);
+        answer.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              answer.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
+</body>
 </body>
 
 </html>
