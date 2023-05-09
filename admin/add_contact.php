@@ -2,11 +2,11 @@
 if (isset($_POST['submit'])) {
 
   // print_r($_POST);
-  $name = isset($_POST["name"]) ? $_POST["name"] : "";
-  $email = isset($_POST["email"]) ? $_POST["email"] : "";
-  $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
-  $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
-  $message = isset($_POST["message"]) ? $_POST["message"] : "";
+  $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $subject = isset($_POST["subject"]) ? trim($_POST["subject"]) : "";
+  $phone = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
+  $message = isset($_POST["message"]) ? trim($_POST["message"]) : "";
   //print_r($status);
   $err = [];
   if ($name == "") {
@@ -30,7 +30,8 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      $err['add'] = 'Form Submit Successfully';
+      // $err['add'] = 'Form Submit Successfully';
+      header("location:view_contact.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -426,7 +427,7 @@ if (isset($_POST['submit'])) {
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Contact Form</h1>
@@ -449,7 +450,7 @@ if (isset($_POST['submit'])) {
                           <?php if (isset($err['phone'])) { ?><div class="small alert-danger"><?= $err['phone']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <textarea type="text" class="form-control form-control-user" id="exampleInputPassword" name="message" placeholder="Enter the message..."></textarea>
+                          <textarea type="text" class="form-control form-control-user" id="message" name="message" placeholder="Enter the message..."></textarea>
                           <?php if (isset($err['message'])) { ?><div class="small alert-danger"><?= $err['message']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
@@ -526,6 +527,27 @@ if (isset($_POST['submit'])) {
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+  <!-- ck_editor -->
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#message'))
+      .then(message => {
+        console.log(message);
+        message.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              message.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
 </body>
 
 </html>

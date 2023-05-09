@@ -1,16 +1,16 @@
 <?php include("include/config.php");
+// print_r($_SESSION['id']);
 if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";
   $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
-  $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
-  $image_tep_name = $_FILES['image']['tmp_name'];
-  $btn_1_text = isset($_POST["btn_1_text"]) ? trim($_POST["btn_1_text"]) : "";
-  $btn_1_url = isset($_POST["btn_1_url"]) ? trim($_POST["btn_1_url"]) : "";
-  $btn_2_text = isset($_POST["btn_2_text"]) ? trim($_POST["btn_2_text"]) : "";
-  $btn_2_url = isset($_POST["btn_2_url"]) ? trim($_POST["btn_2_url"]) : "";
-
-  //print_r($status);
+  $image = $target_dir . basename($_FILES['feature_img']['name'], 'JPEG');
+  $image_tep_name = $_FILES['feature_img']['tmp_name'];
+  $short_desc = isset($_POST["short_desc"]) ? trim($_POST["short_desc"]) : "";
+  $content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
+  $published_status = isset($_POST["published_status"]) ? trim($_POST["published_status"]) : "";
+  $published_on = date("Y/m/d H:i:s");
+  //print_r($image);
   $err = [];
   if ($title == "") {
     $err["title"] = "Please enter title  ";
@@ -18,27 +18,23 @@ if (isset($_POST['submit'])) {
   if ($image == "") {
     $err["image"] = "Please enter image  ";
   }
-  if ($btn_1_text == "") {
-    $err["btn_1_text"] = "Please enter btn_1_text  ";
+  if ($short_desc == "") {
+    $err["short_desc"] = "Please enter short description";
   }
-  if ($btn_1_url == "") {
-    $err["btn_1_url"] = "Please enter btn_1_url  ";
+  if ($content == "") {
+    $err["content"] = "Please enter the content  ";
   }
-  if ($btn_2_text == "") {
-    $err["btn_2_text"] = "Please enter btn_2_text  ";
-  }
-  if ($btn_2_url == "") {
-    $err["btn_2_url"] = "Please enter btn_2_url  ";
-  }
+
   if (empty($err)) {
-    $query = "INSERT INTO `banner`(`title`, `image`, `btn_1_text`,`btn_1_url`,`btn_2_text`,`btn_2_url`) VALUES ('" . $title . "','" . $image  . "','" . $btn_1_text  . "','" . $btn_1_url  . "','" . $btn_2_text  . "','" . $btn_2_url  . "')";
+    $query = "INSERT INTO `blog`(`title`, `author`, `feature_img`,`short_desc`,`content`,`published_on`,`published_status`) VALUES ('" . $title . "','" . $_SESSION['id']  . "','" . $image  . "','" . $short_desc  . "','" . $content  . "','" . $published_on . "','" . $published_status . "')";
     $result = mysqli_query($conn, $query);
 
     // die;
     if ($result) {
+      //die;
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Submit Successfully';
-      header("location:view_banner.php?add=Form Submit Successfully");
+      header("location:view_blog.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -166,6 +162,18 @@ if (isset($_POST['submit'])) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner</h6>
             <a class="collapse-item" href="view_banner.php">Banner View</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blog" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Blog</span>
+        </a>
+        <div id="blog" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Blog</h6>
+            <a class="collapse-item" href="view_blog.php">Blog View</a>
           </div>
         </div>
       </li>
@@ -439,7 +447,7 @@ if (isset($_POST['submit'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Banner</h1>
+          <h1 class="h3 mb-2 text-gray-800">Blog</h1>
           <?php if (isset($err['add'])) { ?>
             <div class="alert alert-success"><?= $err['add']; ?></div>
           <?php } ?>
@@ -450,10 +458,10 @@ if (isset($_POST['submit'])) {
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-12 col-md-12 ">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Banner Form</h1>
+                        <h1 class="h4 text-gray-900 mb-4">Add New Blog</h1>
                       </div>
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
@@ -462,31 +470,29 @@ if (isset($_POST['submit'])) {
                           <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
-                          <label for="formFileLg" class="form-label">Upload Image:</label>
-                          <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                          <label for="formFileLg" class="form-label">Feature Image:</label>
+                          <input class="form-control form-control-lg" id="feature_img" type="file" name="feature_img">
                         </div>
                         <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_text " name="btn_1_text" placeholder=" ">
-                          <?php if (isset($err['btn_1_text'])) { ?><div class="small alert-danger"><?= $err['btn_1_text']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTitle" class="form-label">Short desp :</label>
+                          <textarea type="name" name="short_desc" rows="8" class="form-control" id="short_desp" rows="5" placeholder=""></textarea>
+                          <?php if (isset($err['short_desc'])) { ?><div class="small alert-danger"><?= $err['short_desc']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_url " name="btn_1_url" placeholder="  ">
-                          <?php if (isset($err['btn_1_url'])) { ?><div class="small alert-danger"><?= $err['btn_1_url']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTitle" class="form-label">Content :</label>
+                          <textarea type="name" name="content" rows="8" class="form-control" id="contentt" rows="5" placeholder=""></textarea>
+                          <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_2_text  " name="btn_2_text" placeholder="  ">
-                          <?php if (isset($err['btn_2_text'])) { ?><div class="small alert-danger"><?= $err['btn_2_text']; ?></div> <?php } ?>
+                          <label for="formFileLg" class="form-label">Published Status:</label>
+                          <select type="status" name="published_status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="Draft" selected>Draft</option>
+                            <option value="Published">Published</option>
+                          </select>
                         </div>
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_text " name="btn_2_url" placeholder="  ">
-                          <?php if (isset($err['btn_2_url'])) { ?><div class="small alert-danger"><?= $err['btn_2_url']; ?></div> <?php } ?>
-                        </div>
+
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
                       <hr>
@@ -558,8 +564,48 @@ if (isset($_POST['submit'])) {
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- ck_editor -->
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#short_desp'))
+      .then(short_desp => {
+        console.log(short_desp);
+        short_desp.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              short_desp.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#contentt'))
+      .then(contentt => {
+        console.log(contentt);
+        contentt.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              contentt.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+  </script>
 
 </body>
 

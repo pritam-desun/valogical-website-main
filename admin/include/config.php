@@ -1,14 +1,2 @@
 <?php
-// $hostname     = "localhost";
-// $username     = "root";
-// $password     = "";
-// $databasename = "valogical_db";
-// session_start();
-// // Create connection 
-// $conn = new mysqli($hostname, $username, $password, $databasename);
-// // Check connection 
-// if ($conn->connect_error) {
-//   die("Unable to Connect database: " . $conn->connect_error);
-// }
-
 require_once dirname(dirname(__DIR__)) . '/config.php';

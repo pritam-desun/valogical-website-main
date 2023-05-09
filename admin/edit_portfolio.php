@@ -7,27 +7,28 @@ if ($id) {
   $sql = "SELECT * FROM `portfolio` WHERE portfolio_id = $id";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
+  //print_r($row['image']);
 }
 //reset($row);
 if (isset($_POST['update'])) {
 
   $target_dir = "upload/";
-  $name = isset($_POST["name"]) ? $_POST["name"] : "";
+  $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
   $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
   $image_tep_name = $_FILES['image']['tmp_name'];
-  $url_text  = isset($_POST["url_text"]) ? $_POST["url_text"] : "";
-  $date = date("Y-m-d h:i:s");
+  $url_text  = isset($_POST["url_text"]) ? trim($_POST["url_text"]) : "";
 
-  // $date = strtotime($_POST["date"]);
-  // $new_date = date_format($date, 'Y-m-d H:i:s');
-  // echo $new_date;
-
-  // print_r($date);
   $err = [];
 
-  if (!file_exists($_FILES["image"]["tmp_name"])) {
-    $err["image"] = "Please Select the Image  ";
+  if (file_exists($row['image'])) {
+    $image = $row['image'];
+    $image_tep_name = $_FILES['image']['tmp_name'];
+    if (!empty($_FILES['image']['name'])) {
+      $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+      $image_tep_name = $_FILES['image']['tmp_name'];
+    }
   }
+
   if ($url_text == "") {
     $err["url_text"] = "Please enter url_text  ";
   }
@@ -35,21 +36,22 @@ if (isset($_POST['update'])) {
     $err["name"] = "Please enter name  ";
   }
 
-  if ($date == "") {
-    $err["date"] = "Please Set the Today date  ";
-  }
+  // if ($date == "") {
+  //   $err["date"] = "Please Set the Today date  ";
+  // }
 
   if (empty($err)) {
     $query = "UPDATE `portfolio` SET
     `image`='$image',
     `url_text`='$url_text',
-    `name`='$name',
-    `update_at`=$date
+    `name`='$name'   
     WHERE portfolio_id = $id";
+    //print_r($query);
     $result = mysqli_query($conn, $query);
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      $err['add'] = 'Form Update Successfully';
+      // $err['add'] = 'Form Update Successfully';
+      header("location:view_portfolio.php?update=Form Update Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -480,14 +482,14 @@ if (isset($_POST['update'])) {
                       </div>
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Url_text :</label>
+                          <label for="exampleFormControlTitle" class="form-label">Url text :</label>
                           <input type="name" class="form-control form-control-user" id="name" name="name" value="<?= isset($row['name']) ? $row['name'] : ""; ?> " placeholder="name  ">
                           <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
-                          <input type="text" class="form-control form-control-user" id="url_text" value="<?= isset($row['url_text']) ? $row['url_text'] : ""; ?> " name="url_text" placeholder="url_text  ">
-                          <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['btn_1url_text']; ?></div> <?php } ?>
+                          <input type="text" class="form-control form-control-user" id="url_text" value="<?= isset($row['url_text']) ? $row['url_text'] : ""; ?> " name="url_text" placeholder="url text  ">
+                          <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="formFileLg" class="form-label">Upload Image:</label>
@@ -496,7 +498,6 @@ if (isset($_POST['update'])) {
                             <?php print_r($row['image']); ?>
                           <?php } ?>
                         </div>
-                        <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
                       </form>
                       <hr>
