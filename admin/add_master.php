@@ -169,6 +169,18 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Master</span>
+        </a>
+        <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Master</h6>
+            <a class="collapse-item" href="view_master.php">Master View</a>
+          </div>
+        </div>
+      </li>
 
 
       <!-- Nav Item - Utilities Collapse Menu -->
@@ -463,11 +475,11 @@ if (isset($_POST['submit'])) {
                           <input type="text" class="form-control" name="country" placeholder="Enter the Country Name">
                         </div>
                         <div class="form-group ">
-                          <label for="formFileLg" class="form-label">Country Code:</label>
+                          <label for="formFileLg" class="form-label">Currency Code:</label>
                           <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Name">
                         </div>
                         <div class="form-group ">
-                          <label for="formFileLg" class="form-label">Country Symbol:</label>
+                          <label for="formFileLg" class="form-label">Currency Symbol:</label>
                           <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Name">
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
