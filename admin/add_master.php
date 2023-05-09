@@ -1,87 +1,32 @@
 <?php include("include/config.php");
+// print_r($_SESSION['id']);
+if (isset($_POST['submit'])) {
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-if ($id) {
-  $sql = "SELECT * FROM `blog` WHERE blog_id = $id";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
-  // die();
-}
-function slugify($text, string $divider = '-')
-{
-  // replace non letter or digits by divider
-  $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+  $country = isset($_POST["country"]) ? trim($_POST["country"]) : "";
+  $currency_code = isset($_POST["currency_code"]) ? trim($_POST["currency_code"]) : "";
+  $currency_symbol = isset($_POST["currency_symbol"]) ? trim($_POST["currency_symbol"]) : "";
+  $create_on = date("Y/m/d H:i:s");
 
-  // transliterate
-  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-  // remove unwanted characters
-  $text = preg_replace('~[^-\w]+~', '', $text);
-
-  // trim
-  $text = trim($text, $divider);
-
-  // remove duplicate divider
-  $text = preg_replace('~-+~', $divider, $text);
-
-  // lowercase
-  $text = strtolower($text);
-
-  if (empty($text)) {
-    return 'n-a';
-  }
-  return $text;
-}
-if (isset($_POST['update'])) {
-  $target_dir = "upload/";
-  $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
-  $image = $target_dir . basename($_FILES['feature_img']['name'], 'JPEG');
-  $image_tep_name = $_FILES['feature_img']['tmp_name'];
-  $short_desc = isset($_POST["short_desc"]) ? trim($_POST["short_desc"]) : "";
-  $content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
-  $published_status = isset($_POST["published_status"]) ? trim($_POST["published_status"]) : "";
-
-  // $datetime = date("$date", " H:i:s");
-
-
-
-  //print_r($status);
+  //print_r($image);
   $err = [];
-  if (file_exists($row['feature_img'])) {
-    $image = $row['feature_img'];
-    $image_tep_name = $_FILES['feature_img']['tmp_name'];
-    if (!empty($_FILES['feature_img']['name'])) {
-      $image = $target_dir . basename($_FILES['feature_img']['name'], 'JPEG');
-      $image_tep_name = $_FILES['feature_img']['tmp_name'];
-    }
+  if ($country == "") {
+    $err["country"] = "Please enter title  ";
   }
-  if ($title == "") {
-    $err["title"] = "Please enter title  ";
+  if ($currency_code == "") {
+    $err["currency_code"] = "Please enter currency code";
   }
-  if ($short_desc == "") {
-    $err["short_desc"] = "Please enter short description";
-  }
-  if ($content == "") {
-    $err["content"] = "Please enter the content  ";
+  if ($currency_symbol == "") {
+    $err["currency_symbol"] = "Please enter the currency symbol  ";
   }
 
   if (empty($err)) {
-    $slug = slugify($title);
-    $query = "UPDATE `blog` SET
-    `title`='$title',
-    `slug` ='$slug',
-    `feature_img`='$image',
-    `short_desc`='$short_desc',
-    `content`='$content',
-    `published_status`='$published_status'
-    WHERE blog_id = $id";
+    $query = "INSERT INTO `master`(`country`,`currency_code`, `currency_symbol`,`create_at`) VALUES ('" . $country . "','" . $currency_code . "','" . $currency_symbol  . "','" . $create_on  . "')";
     $result = mysqli_query($conn, $query);
 
     // die;
     if ($result) {
-      move_uploaded_file($image_tep_name, $image);
-      // $err['add'] = 'Form Update Successfully';
-      header("location:view_blog.php?update=Record Update successfully");
+      // $err['add'] = 'Form Submit Successfully';
+      header("location:view_master.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -224,6 +169,7 @@ if (isset($_POST['update'])) {
           </div>
         </div>
       </li>
+
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -494,7 +440,7 @@ if (isset($_POST['update'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Blog</h1>
+          <h1 class="h3 mb-2 text-gray-800">Master</h1>
           <?php if (isset($err['add'])) { ?>
             <div class="alert alert-success"><?= $err['add']; ?></div>
           <?php } ?>
@@ -505,48 +451,26 @@ if (isset($_POST['update'])) {
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-12 col-md-7">
+                  <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Add Data Form</h1>
+                        <h1 class="h4 text-gray-900 mb-4">Add New Master</h1>
                       </div>
-                      <form class="user" action="" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                          <input type="text" class="form-control form-control-user" value="<?= isset($row['title']) ? $row['title'] : ""; ?>" name="title" id="title" placeholder="">
-                          <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group">
-                          <label for="formFileLg" class="form-label">Feature Image:</label>
-                          <input class="form-control form-control-lg" id="feature_img" type="file" name="feature_img">
-                          <?php if (isset($row['feature_img'])) { ?>
-                            <?php print_r($row['feature_img']); ?>
-                          <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Short desp :</label>
-                          <textarea type="name" value="" name="short_desc" rows="8" class="form-control" id="short_desp" rows="3" placeholder=""><?= isset($row['short_desc']) ? $row['short_desc'] : ""; ?></textarea>
-                          <?php if (isset($err['short_desc'])) { ?><div class="small alert-danger"><?= $err['short_desc']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Content :</label>
-                          <textarea type="name" value="" name="content" rows="" class="form-control" id="contentt" rows="3" placeholder=""><?= isset($row['content']) ? $row['content'] : ""; ?></textarea>
-                          <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="formFileLg" class="form-label">Published Status:</label>
-                          <select type="status" name="published_status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option value="<?= isset($row['published_status']) ? $row['published_status'] : ""; ?>" selected><?= isset($row['published_status']) ? $row['published_status'] : ""; ?></option>
-                            <?php
-                            if ($row['published_status'] == 'Published' && $row['published_status'] != 'draft') { ?>
-                              <option value="draft">draft</option>
-                            <?php } else { ?>
-                              <option value="published">published</option>
-                            <?php } ?>
-                          </select>
-                        </div>
+                      <form class="user" action="" method="post">
 
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Country:</label>
+                          <input type="text" class="form-control" name="country" placeholder="Enter the Country Name">
+                        </div>
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Country Code:</label>
+                          <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Name">
+                        </div>
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Country Symbol:</label>
+                          <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Name">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
                       <hr>
                     </div>
@@ -622,43 +546,6 @@ if (isset($_POST['update'])) {
   <script src="js/demo/datatables-demo.js"></script>
 
   <!-- ck_editor -->
-
-  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
-  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#short_desp'))
-      .then(short_desp => {
-        console.log(short_desp);
-        short_desp.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              short_desp.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#contentt'))
-      .then(contentt => {
-        console.log(contentt);
-        contentt.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              contentt.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
 </body>
 
 </html>
