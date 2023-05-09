@@ -3,39 +3,56 @@ include("config.php");
 include("inc/header.php"); 
 if (isset($_POST['submit'])) {
 
-	
-	$name = isset($_POST["name"]) ? $_POST["name"] : "";
-	$email = isset($_POST["email"]) ? $_POST["email"] : "";
-	$subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
-	$phone = isset($_POST["email"]) ? $_POST["email"] : "";
-	$message = isset($_POST["message"]) ? $_POST["message"] : "";
 
-	$err = [];
-	if ($name == "") {
-			$err["name"] = "Please enter name";
-	}
-	if ($email == "") {
-			$err['email'] = "Email is Required";
-	}
-	if ($subject == "") {
-		$err["subject"] = "Please enter a subject";
-  }
-	if ($phone == "") {
-		$err["phone"] = "phone Number is Required";
-  }
+    $name = isset($_POST["name"]) ? $_POST["name"] : "";
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
+    $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
+    $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
+    $message = isset($_POST["message"]) ? $_POST["message"] : "";
 
-		$query = "INSERT INTO `contact`(`name`, `email`, `subject`, `phone`, `message`) VALUES ('$name','$email','$subject','$phone','$message')";
-		//Print_r($query);
-		$result = mysqli_query($conn, $query);
-		// Print_r($_POST);
-		//die;
-		if ($result) {
-				$msg['messsage'] = 'massage submit successfully';
-		} else {
-				$msg['messsage'] = 'massage not submit successfully ';
-		}
+    $err = [];
+    if ($name == "") {
+        $err["name"] = "Please enter name";
+    }
+    if ($email == "") {
+        $err['email'] = "Email is Required";
+    }
+    if ($subject == "") {
+        $err["subject"] = "Please enter a subject";
+    }
+    if ($phone == "") {
+        $err["phone"] = "phone Number is Required";
+    }
+    if (empty($err)) {
+
+        $query = "INSERT INTO `contact`(`name`, `email`, `subject`, `phone`, `message`) VALUES ('$name','$email','$subject','$phone','$message')";
+        //Print_r($query);
+        $result = mysqli_query($conn, $query);
+        
+        if ($result) {
+            $msg['messsage'] = 'massage submit successfully';
+        } else {
+            $msg['messsage'] = 'massage not submit successfully ';
+
+        }
+    }
+		//else{
+			//if(!($name == "")){
+				//$fill['name'] = $name;
+			//}
+			//if(!($email == "")){
+				//$fill['email'] = $email;
+			//}
+			//if(!($subject == "")){
+				//$fill['subject'] = $subject;
+			//}
+			//if(!($phone == ""){
+				//$fill['phone'] = $phone;
+			//}
+
+		//}
 }
-}
+
 
       ?>
 		<!--End Main Header -->
@@ -124,13 +141,13 @@ if (isset($_POST['submit'])) {
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="name" class="form-control" type="name" placeholder="Enter Name">
+										<input name="name" class="form-control" type="text" value="<?=(array_key_exists('name', $_POST))?$_POST["name"]:''?>" placeholder="Enter Name">
 										<p style="color:red;font-size:14px;"><?php if (isset($err['name'])) { echo $err['name']; } ?> </p>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="email" class="form-control required email" type="email" placeholder="Enter Email">
+										<input name="email" class="form-control required email" type="email" value="<?=(array_key_exists('email', $_POST))?$_POST["email"]:''?>" placeholder="Enter Email">
 										<p style="color:red;font-size:14px;"><?php if (isset($err['email'])) { echo $err['email']; } ?> </p>
 									</div>
 								</div>
@@ -138,19 +155,19 @@ if (isset($_POST['submit'])) {
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="subject" class="form-control required" type="text" name="subject" placeholder="Enter Subject">
+										<input name="subject" class="form-control required" type="text" value="<?=(array_key_exists('subject', $_POST))?$_POST["subject"]:''?>" name="subject" placeholder="Enter Subject">
 										<p style="color:red;font-size:14px;"><?php if (isset($err['subject'])) { echo $err['subject']; } ?> </p>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="mb-3">
-										<input name="phone" class="form-control" type="text" name="phone" placeholder="Enter Phone">
+										<input name="phone" class="form-control" type="text" name="phone" value="<?=(array_key_exists('phone', $_POST))?$_POST["phone"]:''?>" placeholder="Enter Phone">
 										<p style="color:red;font-size:14px;"><?php if (isset($err['phone'])) { echo $err['phone']; } ?> </p>
 									</div>
 								</div>
 							</div>
 							<div class="mb-3">
-								<textarea name="message" class="form-control required" rows="5 type="text" name="phone""
+								<textarea name="message" class="form-control required" rows="5 type="text" name="phone"
 									placeholder="Enter Message"></textarea>
 							</div>
 							<div class="mb-3 text-center">

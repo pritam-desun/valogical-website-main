@@ -3,7 +3,7 @@
 $hostname     = "localhost";
 $username     = "root";
 $password     = "";
-$databasename = "valogical";
+$databasename = "valogical_db";
 //session_start();
 // Create connection 
 $conn = new mysqli($hostname, $username, $password, $databasename);
