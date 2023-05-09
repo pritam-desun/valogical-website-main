@@ -41,7 +41,14 @@ if (isset($_POST['submit'])) {
 
   $err = [];
   if ($title == "") {
-    $err["title"] = "Please enter title  ";
+    $err['title'] = "Title is  Required";
+  }
+  if ($title != "") {
+    $sql = "SELECT * FROM `blog` WHERE title='$title'";
+    $res = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($res) > 0) {
+      $err['title'] = "Title is Already Exists";
+    }
   }
   if ($image == "") {
     $err["image"] = "Please enter image  ";
