@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
   }
 
   if (empty($err)) {
-    $query = "INSERT INTO `blog`(`title`, `author`, `feature_img`,`short_desc`,`content`,`published_on`,`published_status`) VALUES ('" . $title . "','" . $author  . "','" . $image  . "','" . $short_desc  . "','" . $content  . "','" . $published_on . "','" . $published_status . "')";
+    $query = "INSERT INTO `blog`(`title`, `author`, `feature_img`,`short_desc`,`content`,`published_on`,`published_status`) VALUES ('" . $title . "','" . $_SESSION['id']  . "','" . $image  . "','" . $short_desc  . "','" . $content  . "','" . $published_on . "','" . $published_status . "')";
     $result = mysqli_query($conn, $query);
 
     // die;
@@ -461,7 +461,7 @@ if (isset($_POST['submit'])) {
                   <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Blog Form</h1>
+                        <h1 class="h4 text-gray-900 mb-4">Add New Blog</h1>
                       </div>
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">

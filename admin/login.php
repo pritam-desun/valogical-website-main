@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $row = mysqli_num_rows($result);
     if ($row > 0) {
         // die("here");
+        $_SESSION['user_name'] = $data['name'];
         $_SESSION['id'] = $data['user_id'];
         header("Location: dashboard.php");
     } else {
