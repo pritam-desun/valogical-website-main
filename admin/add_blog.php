@@ -1,5 +1,31 @@
 <?php include("include/config.php");
 // print_r($_SESSION['id']);
+
+function slugify($text, string $divider = '-')
+{
+  // replace non letter or digits by divider
+  $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+  // transliterate
+  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+  // remove unwanted characters
+  $text = preg_replace('~[^-\w]+~', '', $text);
+
+  // trim
+  $text = trim($text, $divider);
+
+  // remove duplicate divider
+  $text = preg_replace('~-+~', $divider, $text);
+
+  // lowercase
+  $text = strtolower($text);
+
+  if (empty($text)) {
+    return 'n-a';
+  }
+  return $text;
+}
 if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";
@@ -11,6 +37,8 @@ if (isset($_POST['submit'])) {
   $published_status = isset($_POST["published_status"]) ? trim($_POST["published_status"]) : "";
   $published_on = date("Y/m/d H:i:s");
   //print_r($image);
+
+
   $err = [];
   if ($title == "") {
     $err["title"] = "Please enter title  ";
@@ -26,7 +54,8 @@ if (isset($_POST['submit'])) {
   }
 
   if (empty($err)) {
-    $query = "INSERT INTO `blog`(`title`, `author`, `feature_img`,`short_desc`,`content`,`published_on`,`published_status`) VALUES ('" . $title . "','" . $_SESSION['id']  . "','" . $image  . "','" . $short_desc  . "','" . $content  . "','" . $published_on . "','" . $published_status . "')";
+    $slug = slugify($title);
+    $query = "INSERT INTO `blog`(`title`,`slug`, `author`, `feature_img`,`short_desc`,`content`,`published_on`,`published_status`) VALUES ('" . $title . "','" . $slug . "','" . $_SESSION['id']  . "','" . $image  . "','" . $short_desc  . "','" . $content  . "','" . $published_on . "','" . $published_status . "')";
     $result = mysqli_query($conn, $query);
 
     // die;
