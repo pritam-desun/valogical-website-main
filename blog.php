@@ -1,6 +1,14 @@
 <?php 
 include("config.php");
 include("inc/header.php"); 
+function textShorten($text, $limit = 50){
+	$text = $text. " ";
+	$text = substr($text, 0, $limit);
+	$text = substr($text, 0, strrpos($text, ' '));
+	$text = $text.".....";
+	return $text;
+ }
+
 ?>
 		<!-- Start main-content -->
 		<section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
@@ -22,13 +30,14 @@ include("inc/header.php");
 				<div class="row">
 
 				<?php $id = 0;
-           $sql = "SELECT * FROM `blog`";
+           $sql = "SELECT `blog`.*, `users`.`name` FROM `blog` LEFT JOIN `users` ON `users`.`user_id` = `blog`.`author` ORDER BY `blog`.`published_on`";
            $result = mysqli_query($conn, $sql);
-           $row = mysqli_num_rows($result);
-            // print_r($row);
               while ($rows = mysqli_fetch_assoc($result)) {
                 $id = $id + 1;
-								$author = $rows['author']
+								$blog_id = $rows['blog_id'];
+								$a_name = $rows['name'];
+								$short_desp = $rows['short_desc'];
+							
             ?>
 					<!-- News Block -->
 					<div class="news-block col-xl-4 col-lg-6 col-md-6">
@@ -39,14 +48,13 @@ include("inc/header.php");
 							</div>
 							<div class="content-box">
 								<span class="date"><?php echo (new DateTime($rows['published_on']))->format('d M, Y')  ?></span>
-								<span class="post-info"><i class="fa fa-user-circle"></i> 
-								<?php 
-								$queary = "SELECT `users`.`name`, `blog`.`author` FROM `users` LEFT JOIN `blog` ON `blog`.`$author`=`users`.`user_id` ORDER BY `users`.`name`";
-								$result = mysqli_query($conn, $sql);
-								$row = mysqli_num_rows($result);
-								echo $rows['name'] ?></span>
+								<span class="post-info"><i class="fa fa-user-circle"></i>
+										<?php
+										echo "by ",$a_name;
+										?>
+							</span>
 								<h5 class="title"><a href="blog_details.php?id=<?php echo $rows['slug'];?>"><?php echo $rows['title'] ?></a></h5>
-								<div class="text"><?php echo $rows['short_desc'] ?></div>
+								<div class="text"><?php echo textShorten(strchr($short_desp,'.'),95); ?></div>
 								<a method="Get" href="blog_details.php?id=<?php echo $rows['slug'];?>" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read More</a>
 							</div>
 						</div>

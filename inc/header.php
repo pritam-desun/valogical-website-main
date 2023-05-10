@@ -25,7 +25,7 @@
     <div class="page-wrapper">
 
         <!-- Preloader -->
-        <div class="preloader"></div>
+        <!-- <div class="preloader"></div> -->
 
         <!-- Main Header-->
         <header class="main-header header-style-two">
@@ -162,7 +162,7 @@
                     <div class="inner-container">
                         <!--Logo-->
                         <div class="logo">
-                            <a href="index.html" title=""><img src="images/logo-2.png" alt="" title=""></a>
+                            <a href="index.php" title=""><img src="images/logo-2.png" alt="" title=""></a>
                         </div>
 
                         <!--Right Col-->
