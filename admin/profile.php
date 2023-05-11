@@ -1,31 +1,7 @@
 <?php include("include/config.php");
-if (isset($_POST['submit'])) {
-
-  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
-  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
-  $err = [];
-
-  if ($ques == "") {
-    $err["question"] = "Please enter Question  ";
-  }
-  if ($answ == "") {
-    $err["answer"] = "Please enter Answer  ";
-  }
-  if (empty($err)) {
-    //die("here");
-    $query = "INSERT INTO `faq`(`question`, `answer`) VALUES ('" . $ques . "','" . $answ . "')";
-    $result = mysqli_query($conn, $query);
-    //Print_r($query);
-    // die;
-    if ($result) {
-      //$err['message'] = 'New Record Addded successfully';
-      header("location:faq.php?add=New Record Addded successfully");
-    } else {
-      $err['message'] = ' Not Worked please check Your code ';
-    }
-  }
-}
-?>
+$sql = "SELECT * FROM `users`";
+$result = mysqli_query($conn, $sql);
+$rows = mysqli_fetch_assoc($result) ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,12 +25,6 @@ if (isset($_POST['submit'])) {
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-
-  <style>
-    label {
-      color: black;
-    }
-  </style>
 </head>
 
 <body id="page-top">
@@ -104,15 +74,16 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Services</span>
+          <span>Service</span>
         </a>
         <div id="collapseT" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Services</h6>
-            <a class="collapse-item" href="view_service.php">Services View</a>
+            <a class="collapse-item" href="view_service.php">Services view</a>
           </div>
         </div>
       </li>
@@ -129,11 +100,11 @@ if (isset($_POST['submit'])) {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contact" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Contact" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Contact</span>
         </a>
-        <div id="contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="Contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Contact</h6>
             <a class="collapse-item" href="view_contact.php">Contact View</a>
@@ -148,7 +119,7 @@ if (isset($_POST['submit'])) {
         <div id="banner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner</h6>
-            <a class="collapse-item" href="view_banner.php">Banner View</a>
+            <a class="collapse-item" href="view_banner.php">Portfolio View</a>
           </div>
         </div>
       </li>
@@ -188,8 +159,18 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
       </li>
-
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#price" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pricing</span>
+        </a>
+        <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pricing</h6>
+            <a class="collapse-item" href="view_price.php">Pricing View</a>
+          </div>
+        </div>
+      </li>
     </ul>
     <!-- End of Sidebar -->
 
@@ -226,7 +207,7 @@ if (isset($_POST['submit'])) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?> </span>
                 <img class="img-profile rounded-circle" src="upload/images.jpg">
               </a>
               <!-- Dropdown - User Information -->
@@ -234,10 +215,6 @@ if (isset($_POST['submit'])) {
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -258,65 +235,62 @@ if (isset($_POST['submit'])) {
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800 " style="margin-left:  1.25rem !important;">FAQ </h1>
           <?php if (isset($err['message'])) { ?>
             <div class="alert alert-success"><?= $err['message']; ?></div>
           <?php } ?>
+          <?php if (isset($_GET['add'])) { ?>
+            <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
+          <?php }  ?>
+          <?php if (isset($_GET['update'])) { ?>
+            <div class="alert alert-success"><?= $_GET['update']; ?></div>
+          <?php }  ?>
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Profile</h1>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="change_password.php">Change Password</a>.</p>
+
           <!-- DataTales Example -->
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                  <div class="col-lg-12 col-md-12">
-                    <div class="p-5">
-                      <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4 ">Frequently Asked Questions</h1>
-                      </div>
-                      <form class="user" action="" method="post">
-                        <div class="form-group ">
-                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Question:</label>
-                          <input type="name" name="question" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
-                          <?php if (isset($err['question'])) { ?><div class="small alert-danger"><?= $err['question']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
-
-                          <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"></textarea>
-                          <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
-                        </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
-                      </form>
-                      <hr>
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><?= $rows['name']; ?> </p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><?= $rows['email']; ?> </p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Phone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><?= $rows['phone_no']; ?> </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
-        <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+      <!-- /.container-fluid -->
 
     </div>
-    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -361,27 +335,10 @@ if (isset($_POST['submit'])) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
-  <!-- ck_editor -->
-
-  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
-  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#answer'))
-      .then(answer => {
-        console.log(answer);
-        answer.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              answer.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
+  <script language="JavaScript" type="text/javascript">
+    function checkDelete() {
+      return confirm('Are you sure?');
+    }
   </script>
 </body>
 

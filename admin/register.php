@@ -5,6 +5,8 @@ if (isset($_POST['submit'])) {
 
     $name = isset($_POST["name"]) ? $_POST["name"] : "";
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
+    $number = isset($_POST["number"]) ? $_POST["number"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
     //print_r("$name");
     $err = [];
@@ -13,6 +15,9 @@ if (isset($_POST['submit'])) {
     }
     if ($email == "") {
         $err['email'] = "Email is Required";
+    }
+    if ($number == "") {
+        $err['number'] = "Email is Required";
     }
 
     if ($email != "") {
@@ -28,7 +33,7 @@ if (isset($_POST['submit'])) {
 
     if (empty($err)) {
         // die("here");
-        $query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('" . $name . "','" . $email . "','" . md5($password) . "')";
+        $query = "INSERT INTO `users`(`name`, `email`,`phone_no`, `password`) VALUES ('" . $name . "','" . $email . "','" . $number . "','" . md5($password) . "')";
         //Print_r($query);
         $result = mysqli_query($conn, $query);
         // Print_r($_POST);
@@ -83,16 +88,20 @@ if (isset($_POST['submit'])) {
                             </div>
                             <form class="user" action="" method="post">
                                 <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName" placeholder="First Name">
+                                    <input type="text" class="form-control form-control-user" name="name" id="name" placeholder="First Name">
                                     <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
 
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" name="email" id="exampleInputEmail" placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address">
                                     <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                                 </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control form-control-user" name="number" id="number" placeholder="Phone Nmber">
+                                    <?php if (isset($err['number'])) { ?><div class="small alert-danger"><?= $err['number']; ?></div> <?php } ?>
+                                </div>
                                 <div class="form-group ">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
+                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                     <?php if (isset($err['password'])) { ?><div class="small alert-danger"><?= $err['password']; ?></div> <?php } ?>
 
                                 </div>
