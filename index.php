@@ -219,7 +219,7 @@ include("inc/header.php");
                     <div class="info">
                         <strong><?php echo $rows['short_desp'] ?></strong>
                         <p><?php echo $rows['long_desp'] ?></p>
-                        <a style="color:#fff;" href='content-writing.html'>Learn More</a>
+                        <a style="color:#fff;" href='content-writing.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>Learn More</a>
                     </div>
                 </aside>
             </div>

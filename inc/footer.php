@@ -66,7 +66,7 @@
               while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;?>
                 <figure class="image">
-                  <a href="<?php echo $rows['url_text'] ?>"><img src="admin/<?php echo $rows['image']  ?>" width="30px" height="50px" alt="" ></a>
+                  <a href="<?php echo $rows['url_text'] ?>"><img src="admin/<?php echo $rows['image']?>" width="30px" height="50px" alt="" ></a>
                 </figure>
              <?php } ?>
               </div>
