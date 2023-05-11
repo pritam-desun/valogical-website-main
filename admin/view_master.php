@@ -168,10 +168,20 @@ if (@$_GET['type'] == 'delete') {
           </div>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#price" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pricing</span>
+        </a>
+        <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pricing</h6>
+            <a class="collapse-item" href="view_price.php">Pricing View</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
       <!-- Sidebar Toggler (Sidebar) -->
       <!-- <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -294,7 +304,7 @@ if (@$_GET['type'] == 'delete') {
                         <th>Country</th>
                         <th>Currency Code</th>
                         <th>Currency Symbol</th>
-                        <th>Create On</th>
+                        <th>Added On</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -302,13 +312,17 @@ if (@$_GET['type'] == 'delete') {
                       <?php
                       while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;
+                        // date_default_timezone_set("America/New_York");
+                        //echo "The time is " . date("h:i:sa");
+                        $date = $rows['create_at'];
+                        $added_on = date("d/F/Y ", strtotime($date));
                       ?>
                         <tr>
-                          <td><?php echo $rows['master_id'] ?></td>
-                          <td><?php echo $rows['country'] ?></td>
-                          <td><?php echo $rows['currency_code'] ?></td>
+                          <td><?php echo $rows['master_id']       ?></td>
+                          <td><?php echo $rows['country']         ?></td>
+                          <td><?php echo $rows['currency_code']   ?></td>
                           <td><?php echo $rows['currency_symbol'] ?></td>
-                          <td><?php echo $rows['create_at'] ?></td>
+                          <td><?php echo $added_on ?></td>
                           <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a>
                           </td>
                         <?php  } ?>

@@ -2,7 +2,7 @@
 if (@$_GET['type'] == 'delete') {
   $id = isset($_GET['id']) ? $_GET['id'] : '';
   $err = [];
-  $result1 = mysqli_query($conn, "DELETE FROM `portfolio` WHERE `portfolio_id` = $id");
+  $result1 = mysqli_query($conn, "DELETE FROM `pricing` WHERE `price_id` = $id");
   $row = mysqli_affected_rows($conn);
   //print_r($row);
   if ($row > 0) {
@@ -15,7 +15,6 @@ if (@$_GET['type'] == 'delete') {
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,7 +50,6 @@ if (@$_GET['type'] == 'delete') {
         </div>
         <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
       </a>
-
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -180,6 +178,13 @@ if (@$_GET['type'] == 'delete') {
           </div>
         </div>
       </li>
+
+      <!-- Divider -->
+      <!-- Sidebar Toggler (Sidebar) -->
+      <!-- <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div> -->
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -214,11 +219,29 @@ if (@$_GET['type'] == 'delete') {
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
                 <img class="img-profile rounded-circle" src="upload/images.jpg">
               </a>
               <!-- Dropdown - User Information -->
@@ -232,7 +255,7 @@ if (@$_GET['type'] == 'delete') {
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -256,15 +279,15 @@ if (@$_GET['type'] == 'delete') {
             <div class="alert alert-success"><?= $_GET['update']; ?></div>
           <?php }  ?>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Portfolio </h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_portfolio.php">Add Data</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Pricing</h1>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_master.php">Add </a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
                 <?php $id = 0;
-                $sql = "SELECT * FROM `portfolio`";
+                $sql = "SELECT * FROM `pricing`";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_num_rows($result);
                 // print_r($row);
@@ -276,24 +299,25 @@ if (@$_GET['type'] == 'delete') {
                     <thead>
                       <tr>
                         <th>Id</th>
-                        <th>Image</th>
-                        <th>Portfolio Name</th>
-                        <th>Url text</th>
+                        <th>Country</th>
+                        <th>Amount</th>
+                        <th>currency Code</th>
+                        <th>Create On</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-
                       <?php
                       while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;
                       ?>
                         <tr>
-                          <td><?php echo $rows['portfolio_id'] ?></td>
-                          <td><img src="<?php echo $rows['image'] ?>" height="50px"></td>
-                          <td><?php echo $rows['name'] ?></td>
-                          <td><?php echo $rows['url_text'] ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>&type=delete">Delete</a>
+                          <td><?php echo $rows['price_id'] ?></td>
+                          <td><?php echo $rows['country'] ?></td>
+                          <td><?php echo $rows['amount'] ?></td>
+                          <td><?php echo $rows['currency_code'] ?></td>
+                          <td><?php echo $rows['create_at'] ?></td>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_price.php?id=<?php echo $rows['price_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_price.php?id=<?php echo $rows['price_id'] ?>&type=delete">Delete</a>
                           </td>
                         <?php  } ?>
                     </tbody>
