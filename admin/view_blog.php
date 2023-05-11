@@ -158,7 +158,30 @@ if (@$_GET['type'] == 'delete') {
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Master</span>
+        </a>
+        <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Master</h6>
+            <a class="collapse-item" href="view_master.php">Master View</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#price" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pricing</span>
+        </a>
+        <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pricing</h6>
+            <a class="collapse-item" href="view_price.php">Pricing View</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <!-- <div class="text-center d-none d-md-inline">
@@ -292,6 +315,8 @@ if (@$_GET['type'] == 'delete') {
                       <?php
                       while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;
+                        $date = $rows['published_on'];
+                        $published_on = date("d/F/Y", strtotime($date));
                       ?>
                         <tr>
                           <td><?php echo $rows['blog_id'] ?></td>
@@ -299,7 +324,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo @$_SESSION['user_name'] ?></td>
                           <td><img src="<?php echo $rows['feature_img'] ?>" height="50px"></td>
                           <td><?php echo $rows['short_desc'] ?></td>
-                          <td><?php echo $rows['published_on'] ?></td>
+                          <td><?php echo $published_on ?></td>
                           <td><?php echo $rows['published_status'] ?></td>
                           <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_blog.php?id=<?php echo $rows['blog_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_blog.php?id=<?php echo $rows['blog_id'] ?>&type=delete">Delete</a>
                           </td>

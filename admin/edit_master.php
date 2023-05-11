@@ -1,13 +1,41 @@
 <?php include("include/config.php");
-if (@$_GET['type'] == 'delete') {
-  $id = isset($_GET['id']) ? $_GET['id'] : '';
+// print_r($_SESSION['id']);
+$id = isset($_GET['id']) ? $_GET['id'] : "";
+if ($id) {
+  $sql = "SELECT * FROM `master` WHERE master_id = $id";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+}
+if (isset($_POST['update'])) {
+
+  $country = isset($_POST["country"]) ? trim($_POST["country"]) : "";
+  $currency_code = isset($_POST["currency_code"]) ? trim($_POST["currency_code"]) : "";
+  $currency_symbol = isset($_POST["currency_symbol"]) ? trim($_POST["currency_symbol"]) : "";
+  $create_on = date("Y/m/d H:i:s");
+
+  //print_r($image);
   $err = [];
-  $result1 = mysqli_query($conn, "DELETE FROM `portfolio` WHERE `portfolio_id` = $id");
-  $row = mysqli_affected_rows($conn);
-  //print_r($row);
-  if ($row > 0) {
-    $err['message'] = "Record Deleted Successfully";
-    //header('Location:view_contact.php?type=true');
+  if ($country == "") {
+    $err["country"] = "Please enter title  ";
+  }
+  if ($currency_code == "") {
+    $err["currency_code"] = "Please enter currency code";
+  }
+  if ($currency_symbol == "") {
+    $err["currency_symbol"] = "Please enter the currency symbol  ";
+  }
+
+  if (empty($err)) {
+    $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
+    $result = mysqli_query($conn, $query);
+
+    // die;
+    if ($result) {
+      // $err['add'] = 'Form Submit Successfully';
+      header("location:view_master.php?add=Form Submit Successfully");
+    } else {
+      $err['add'] = ' Not Worked please check Your code ';
+    }
   }
 }
 ?>
@@ -33,7 +61,11 @@ if (@$_GET['type'] == 'delete') {
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <style>
+    label {
+      color: black;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -83,16 +115,15 @@ if (@$_GET['type'] == 'delete') {
           </div>
         </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Service</span>
+          <span>Services</span>
         </a>
         <div id="collapseT" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Services</h6>
-            <a class="collapse-item" href="view_service.php">Services view</a>
+            <a class="collapse-item" href="view_service.php">Services View</a>
           </div>
         </div>
       </li>
@@ -128,7 +159,7 @@ if (@$_GET['type'] == 'delete') {
         <div id="banner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner</h6>
-            <a class="collapse-item" href="view_banner.php">Portfolio View</a>
+            <a class="collapse-item" href="view_banner.php">Banner View</a>
           </div>
         </div>
       </li>
@@ -168,18 +199,6 @@ if (@$_GET['type'] == 'delete') {
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#price" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Pricing</span>
-        </a>
-        <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Pricing</h6>
-            <a class="collapse-item" href="view_price.php">Pricing View</a>
-          </div>
-        </div>
-      </li>
     </ul>
     <!-- End of Sidebar -->
 
@@ -213,12 +232,10 @@ if (@$_GET['type'] == 'delete') {
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
                 <img class="img-profile rounded-circle" src="upload/images.jpg">
               </a>
               <!-- Dropdown - User Information -->
@@ -226,6 +243,10 @@ if (@$_GET['type'] == 'delete') {
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -246,61 +267,46 @@ if (@$_GET['type'] == 'delete') {
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <?php if (isset($err['message'])) { ?>
-            <div class="alert alert-success"><?= $err['message']; ?></div>
-          <?php } ?>
-          <?php if (isset($_GET['add'])) { ?>
-            <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
-          <?php }  ?>
-          <?php if (isset($_GET['update'])) { ?>
-            <div class="alert alert-success"><?= $_GET['update']; ?></div>
-          <?php }  ?>
+
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Portfolio </h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_portfolio.php">Add Data</a>.</p>
-
+          <h1 class="h2 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Master Elements</h1>
+          <?php if (isset($err['add'])) { ?>
+            <div class="alert alert-success"><?= $err['add']; ?></div>
+          <?php } ?>
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                <?php $id = 0;
-                $sql = "SELECT * FROM `portfolio`";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_num_rows($result);
-                // print_r($row);
-                ?>
-                <?php if ($row == 0) : ?>
-                  <h2>Data Not Found</h2>
-                <?php else : ?>
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>Image</th>
-                        <th>Portfolio Name</th>
-                        <th>Url text</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+          <div class="container">
 
-                      <?php
-                      while ($rows = mysqli_fetch_assoc($result)) {
-                        $id = $id + 1;
-                      ?>
-                        <tr>
-                          <td><?php echo $rows['portfolio_id'] ?></td>
-                          <td><img src="<?php echo $rows['image'] ?>" height="50px"></td>
-                          <td><?php echo $rows['name'] ?></td>
-                          <td><?php echo $rows['url_text'] ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_portfolio.php?id=<?php echo $rows['portfolio_id'] ?>&type=delete">Delete</a>
-                          </td>
-                        <?php  } ?>
-                    </tbody>
-                  </table>
-                <?php endif ?>
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="p-5">
+                      <div class="text-center">
+                      </div>
+                      <form class="user" action="" method="post">
+
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Country:</label>
+                          <input type="text" class="form-control" value="<?= isset($row['country']) ? $row['country'] : ""; ?>" name="country" placeholder="Enter the Country Name">
+                        </div>
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Currency Code:</label>
+                          <input type="text" class="form-control" value="<?= isset($row['currency_code']) ? $row['currency_code'] : ""; ?>" name="currency_code" placeholder="Enter the Country Name">
+                        </div>
+                        <div class="form-group ">
+                          <label for="formFileLg" class="form-label">Currency Symbol:</label>
+                          <input type="text" class="form-control" value="<?= isset($row['currency_symbol']) ? $row['currency_symbol'] : ""; ?>" name="currency_symbol" placeholder="Enter the Country Name">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+                      </form>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
@@ -363,13 +369,11 @@ if (@$_GET['type'] == 'delete') {
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-  <script language="JavaScript" type="text/javascript">
-    function checkDelete() {
-      return confirm('Are you sure?');
-    }
-  </script>
+
+  <!-- ck_editor -->
 </body>
 
 </html>
