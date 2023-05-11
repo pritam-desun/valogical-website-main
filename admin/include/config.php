@@ -10,3 +10,6 @@ $conn = new mysqli($hostname, $username, $password, $databasename);
 if ($conn->connect_error) {
   die("Unable to Connect database: " . $conn->connect_error);
 }
+if ($_SESSION['logged_in'] != 1) {
+  header("location:login.php?log=At First You Need To Login For Access other Pages");
+}

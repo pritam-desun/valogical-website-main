@@ -315,6 +315,8 @@ if (@$_GET['type'] == 'delete') {
                       <?php
                       while ($rows = mysqli_fetch_assoc($result)) {
                         $id = $id + 1;
+                        $date = $rows['published_on'];
+                        $published_on = date("d/F/Y", strtotime($date));
                       ?>
                         <tr>
                           <td><?php echo $rows['blog_id'] ?></td>
@@ -322,7 +324,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo @$_SESSION['user_name'] ?></td>
                           <td><img src="<?php echo $rows['feature_img'] ?>" height="50px"></td>
                           <td><?php echo $rows['short_desc'] ?></td>
-                          <td><?php echo $rows['published_on'] ?></td>
+                          <td><?php echo $published_on ?></td>
                           <td><?php echo $rows['published_status'] ?></td>
                           <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_blog.php?id=<?php echo $rows['blog_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_blog.php?id=<?php echo $rows['blog_id'] ?>&type=delete">Delete</a>
                           </td>

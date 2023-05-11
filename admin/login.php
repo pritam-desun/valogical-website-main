@@ -1,5 +1,15 @@
 <?php
-include('include/config.php');
+$hostname     = "localhost";
+$username     = "root";
+$password     = "";
+$databasename = "valogical_db";
+session_start();
+// Create connection 
+$conn = new mysqli($hostname, $username, $password, $databasename);
+// Check connection 
+if ($conn->connect_error) {
+    die("Unable to Connect database: " . $conn->connect_error);
+}
 if (isset($_POST['submit'])) {
 
     $email = isset($_POST['email']) ? $_POST['email'] : "";
@@ -16,6 +26,7 @@ if (isset($_POST['submit'])) {
         // die("here");
         $_SESSION['user_name'] = $data['name'];
         $_SESSION['id'] = $data['user_id'];
+        $_SESSION['logged_in'] = 1;
         header("Location: dashboard.php");
     } else {
         $errMsg = "Invalid username and password";
@@ -59,13 +70,17 @@ if (isset($_POST['submit'])) {
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome to Login</h1>
                                         <?php if (!empty($errMsg)) { ?>
                                             <div class="alert alert-danger"><?= $errMsg; ?></div> <?php } ?>
+                                        <?php if (isset($_GET['log'])) { ?>
+                                            <div class="alert alert-danger"><?= $_GET['log'];; ?></div> <?php } ?>
                                     </div>
                                     <form class="user" action="" method="post">
                                         <div class="form-group">
