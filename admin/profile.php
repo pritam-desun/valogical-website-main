@@ -1,4 +1,11 @@
 <?php include("include/config.php");
+$id = $_SESSION['id'];
+$query = "SELECT * FROM `users` WHERE  `user_id` = $id  ";
+$result = mysqli_query($conn, $query);
+$data = mysqli_fetch_assoc($result);
+$_SESSION['user_image'] = $data['image'];
+$_SESSION['user_email'] = $data['email'];
+$_SESSION['user_name'] = $data['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

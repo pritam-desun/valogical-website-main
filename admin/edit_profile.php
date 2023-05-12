@@ -28,23 +28,19 @@ if (isset($_POST['update'])) {
   $id = isset($_SESSION['id']) ? $_SESSION['id'] : "";
   if (empty($err)) {
     //Print_r($query);
-    $sql = "UPDATE `users` SET
-   name='$name',
+    $sql = "UPDATE users SET
+   `name`='$name',
     email='$email',
     image='$image'  
-    WHERE user_id = $id ";
-    //echo $sql;
+    WHERE user_id = $id";
+    /* echo $sql;
+    die; */
     $result = mysqli_query($conn, $sql);
+    // $row =  $conn->affected_rows;
+    // print_r($row);
+    // die();
     if ($result) {
-
       move_uploaded_file($image_tep_name, $image);
-      $query = "SELECT * FROM `users` WHERE `email` = '$email' and `password` = '$password' ";
-      $result = mysqli_query($conn, $query);
-      $data = mysqli_fetch_assoc($result);
-      $_SESSION['user_image'] = $data['image'];
-      $_SESSION['user_email'] = $data['email'];
-      $_SESSION['user_name'] = $data['name'];
-      $_SESSION['id'] = $data['user_id'];
       header("location:profile.php?update=Profile Update successfully");
     } else {
       $err['messsage'] = 'Registration Not Worked please check Your code ';
