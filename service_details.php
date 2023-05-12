@@ -1,6 +1,6 @@
 <?php 
-include("config.php");
-include("inc/header.php"); 
+require_once("config.php") ;
+require_once("inc/header.php"); 
 if(isset($_GET['id'])){
   $id = $_GET['id'];
   $sql = "SELECT * FROM `services` WHERE `service_id` = $id ";

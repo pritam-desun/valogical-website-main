@@ -2,35 +2,36 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Taskenhance :: Contact Us</title>
-	<!-- Stylesheets -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Taskenhance :: Blog </title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+    <link href="css/style.css?q=<?=time()?>" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
 
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
-	<!-- Responsive -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-	<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
 
 <body>
-<div class="page-wrapper">
-	 <!-- Preloader -->
-	 <!-- <div class="preloader"></div> -->
 
-	 <!-- Main Header-->
-	 <header class="main-header header-style-one">
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
+
+        <!-- Main Header-->
+        <header class="main-header header-style-two">
             <!-- Header Top -->
             <div class="header-top">
                 <div class="inner-container">
-
                     <div class="top-left">
                         <!-- Info List -->
                         <ul class="list-style-one">
@@ -57,10 +58,9 @@
                     <div class="main-box">
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="index.html"><img src="images/logo-3.png" alt="" title="Tronis"></a>
+                                <a href="index.php"><img src="images/logo-2.png" alt="" title="Tronis"></a>
                             </div>
                         </div>
-										
 
                         <!--Nav Box-->
                         <div class="nav-outer">
@@ -69,12 +69,6 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="about.php">About us</a></li>
                                     <li><a href="services.php">Services</a></li>
-                                    <!--<li class="dropdown"><a href="#">Project</a>
-										<ul>
-											<li><a href="pricing1.html">Web Design and Development</a></li>
-											<li><a href="pricing.html">Digital Marketing</a></li>
-										</ul>
-									</li>-->
                                     <li><a href="pricing.php">Pricing</a></li>
                                     <li><a href="faq.php">Faq</a></li>
                                     <li><a href="blog.php">Blog</a></li>
@@ -100,7 +94,7 @@
                 <nav class="menu-box">
                     <div class="upper-box">
                         <div class="nav-logo">
-                            <a href="index.php"><img src="images/logo-2.png" alt="" title=""></a>
+                            <a href="index.html"><img src="images/logo.png" alt="" title=""></a>
                         </div>
                         <div class="close-btn"><i class="icon fa fa-times"></i></div>
                     </div>
@@ -122,7 +116,7 @@
                             <div class="contact-info-box">
                                 <span class="icon lnr-icon-envelope1"></span>
                                 <span class="title">Send Email</span>
-                                <a href="mailto:help@taskenhance.com">help@taskenhance.com</a>
+                                <a href="mailto:help@company.com">help@company.com</a>
                             </div>
                         </li>
                         <li>
@@ -136,9 +130,10 @@
 
 
                     <ul class="social-links">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                 </nav>
             </div>
@@ -190,4 +185,3 @@
             <!-- End Sticky Menu -->
         </header>
         <!--End Main Header -->
-</div>

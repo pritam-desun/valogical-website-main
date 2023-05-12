@@ -1,6 +1,6 @@
 <?php 
-include("config.php");
-include("inc/header.php"); 
+require_once("config.php") ;
+require_once("inc/header.php"); 
 function textShorten($text, $limit = 50){
 	$text = $text. " ";
 	$text = substr($text, 0, $limit);

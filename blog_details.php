@@ -1,6 +1,6 @@
 <?php 
-include("config.php");
-include("inc/header.php"); 
+require_once("config.php") ;
+require_once("inc/header.php"); 
 if(isset($_GET['id'])){
   $slug = $_GET['id'];
   $sql = "SELECT * FROM `blog` WHERE `slug` = '$slug' "; 

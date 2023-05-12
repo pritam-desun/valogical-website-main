@@ -1,40 +1,39 @@
-<?php include("config.php");
-include("inc/header.php"); 
+<?php 
+require_once("config.php") ;
+require_once("inc/index_header.php"); 
       ?>
-
 <!-- Banner Section -->
 <section class="banner-section">
     <div class="banner-carousel owl-carousel owl-theme">
+		<?php 
+				 $id = 0;
+				$sql = "SELECT * FROM `banner`";
+				$result = mysqli_query($conn, $sql);
+while ($rows = mysqli_fetch_assoc($result)) {
+    $id = $id + 1;
+    $banner_id = $rows['banner_id'];
+    $title = $rows['title'];
+    $image = $rows['image'];
+    $Explore_btn = $rows['btn_1_text'];
+    $Explore_url = $rows['btn_1_url'];
+    $contact_btn = $rows['btn_2_text'];
+    $contact_url = $rows['btn_2_url'];
+    ?>	
         <!-- Slide Item -->
         <div class="slide-item">
-            <div class="bg-image" style="background-image: url(images/main-slider/4.jpg);"></div>
+            <div class="bg-image"> <img src="admin/<?php echo $image; ?>" width="30px" height="15px" alt="" ></div>
             <div class="auto-container">
                 <div class="content-box">
-                    <h1 class="title animate-2">Secure Solutions for a more <br>secure environment</h1>
+                    <h1 class="title animate-2"><?php echo $title; ?></h1>
                     <div class="btn-box animate-3">
-                        <a href="about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-                        <a href="contact.html" class="theme-btn btn-style-one light"><span class="btn-title">Contact
-										now</span></a>
+                        <a href="about.html" class="theme-btn btn-style-one"><span class="btn-title"><?php echo $Explore_btn; ?></span></a>
+                        <a href="contact.html" class="theme-btn btn-style-one light"><span class="btn-title"><?php echo $contact_btn; ?></span></a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Slide Item -->
-        <div class="slide-item">
-            <div class="bg-image" style="background-image: url(images/main-slider/3.jpg);"></div>
-            <div class="auto-container">
-                <div class="content-box">
-                    <h1 class="title animate-2">Secure Solutions for a more <br>secure environment</h1>
-                    <div class="btn-box animate-3">
-                        <a href="about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-                        <a href="contact.html" class="theme-btn btn-style-one light"><span class="btn-title">Contact
-										now</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					 </div>
+					 <?php } ?>
+       </div>
 </section>
 <!-- End Banner Section -->
 

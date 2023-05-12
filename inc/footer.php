@@ -1,4 +1,3 @@
-<?php include('config.php')?>
 <footer class="main-footer">
   <div class="bg bg-pattern-9"></div>
   <div class="auto-container">
