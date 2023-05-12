@@ -281,7 +281,7 @@ if (@$_GET['type'] == 'delete') {
           <?php }  ?>
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Pricing</h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_master.php">Add </a>.</p>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_price.php">Add </a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

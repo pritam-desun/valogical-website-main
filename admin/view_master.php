@@ -324,7 +324,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo $rows['currency_code']   ?></td>
                           <td><?php echo $rows['currency_symbol'] ?></td>
                           <td><?php echo $added_on ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_price.php?id=<?php echo $rows['master_id'] ?>&type=price">Pricing</a>
                           </td>
                         <?php  } ?>
                     </tbody>
