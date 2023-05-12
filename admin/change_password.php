@@ -1,27 +1,28 @@
 <?php include("include/config.php");
-$email = $_POST['email'];
-$currentPassword = sha1($_POST['current_password']);
-$newPassword = md5($_POST['new_password']);
-$confirmpassword = md5($_POST['confirm_password']);
-if ($newPassword != $confirmpassword) {
-  header('Location: change_password.php?message=New and Confirm password does not match!');
+if (isset($_POST["submit"])) {
+  $email = $_SESSION['user_email'];
+  $currentPassword = md5($_POST['current_password']);
+  $newPassword = md5($_POST['new_password']);
+  $confirmpassword = md5($_POST['confirm_password']);
+  if ($newPassword != $confirmpassword) {
+    $message = "New and Confirm password does not match!";
+  }
+
+  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$currentPassword'";
+  $result = mysqli_query($conn, $sql);
+  $rowCount = mysqli_num_rows($result);
+  //print_r($rowCount);
+  if ($rowCount > 0) {
+    $sql = "UPDATE `users` set password = '$newPassword' WHERE `email` = '$email'";
+    $result = mysqli_query($conn, $sql);
+    $rowCount = mysqli_affected_rows($conn);
+    print_r($rowCount);
+    if ($rowCount > 0) {
+      header("Location:profile.php?message=Password change successfully!");
+    }
+  }
 }
 
-$sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$currentPassword'";
-$result = mysqli_query($conn, $sql);
-$rowCount = mysqli_num_rows($result);
-if ($rowCount > 0) {
-  $sql = "UPDATE `users` set password = '$newPassword' WHERE `email` = '$email'";
-  $result = mysqli_query($conn, $sql);
-  $rowCount = mysqli_affected_rows($conn);
-  if ($rowCount > 0) {
-    header("Location:profile.php?message=Password change successfully!");
-    die;
-  }
-} else {
-  header("Location: change_password.php?message=Email is incorrect!");
-  die;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,11 @@ if ($rowCount > 0) {
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <style>
+    label {
+      color: black;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -95,16 +100,15 @@ if ($rowCount > 0) {
           </div>
         </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Service</span>
+          <span>Services</span>
         </a>
         <div id="collapseT" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Services</h6>
-            <a class="collapse-item" href="view_service.php">Services view</a>
+            <a class="collapse-item" href="view_service.php">Services View</a>
           </div>
         </div>
       </li>
@@ -140,7 +144,7 @@ if ($rowCount > 0) {
         <div id="banner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Banner</h6>
-            <a class="collapse-item" href="view_banner.php">Portfolio View</a>
+            <a class="collapse-item" href="view_banner.php">Banner View</a>
           </div>
         </div>
       </li>
@@ -180,18 +184,7 @@ if ($rowCount > 0) {
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#price" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Pricing</span>
-        </a>
-        <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Pricing</h6>
-            <a class="collapse-item" href="view_price.php">Pricing View</a>
-          </div>
-        </div>
-      </li>
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -228,18 +221,18 @@ if ($rowCount > 0) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?> </span>
-                <img class="img-profile rounded-circle" src="upload/images.jpg">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
+                <img class="img-profile rounded-circle" src=<?= $_SESSION['user_image'] ?>>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Change Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -256,80 +249,69 @@ if ($rowCount > 0) {
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <?php if (isset($err['message'])) { ?>
-            <div class="alert alert-success"><?= $err['message']; ?></div>
-          <?php } ?>
-          <?php if (isset($_GET['add'])) { ?>
-            <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
-          <?php }  ?>
-          <?php if (isset($_GET['update'])) { ?>
-            <div class="alert alert-success"><?= $_GET['update']; ?></div>
-          <?php }  ?>
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Profile</h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_portfolio.php">Change Password</a>.</p>
 
+          <!-- Page Heading -->
+          <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Change Password</h1>
+          <?php if (isset($message)) { ?>
+            <div class=" alert alert-success"><?= $message; ?>
+            </div>
+          <?php } ?>
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Full Name</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">Johnatan Smith</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">example@example.com</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Phone</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(097) 234-5678</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Mobile</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(098) 765-4321</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Address</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+          <div class="container">
+            <div class="card o-hidden border-0 shadow-lg my-4">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="p-5">
+                      <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4"></h1>
+                      </div>
+                      <form class="user" action="" method="post">
+                        <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Current Password:</label>
+                          <input type="text" class="form-control form-control-user" name="current_password" id="current_password" placeholder="Enter a Current Password">
+                          <?php if (isset($err['current_password'])) { ?><div class="small alert-danger"><?= $err['current_password']; ?></div> <?php } ?>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">New Password:</label>
+                          <input type="text" class="form-control form-control-user" name="new_password" id="new_password" placeholder="Enter a New Password">
+                          <?php if (isset($err['new_password'])) { ?><div class="small alert-danger"><?= $err['new_password']; ?></div> <?php } ?>
+                        </div>
+                        <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Confirm Password:</label>
+                          <input type="text" class="form-control form-control-user" id="confirm_password" name="confirm_password" placeholder="Enter a Confirm Password">
+                          <?php if (isset($err['confirm_password'])) { ?><div class="small alert-danger"><?= $err['confirm_password']; ?></div> <?php } ?>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
+                      </form>
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
+
         </div>
+        <!-- /.container-fluid -->
 
       </div>
-      <!-- /.container-fluid -->
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
     </div>
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -374,10 +356,27 @@ if ($rowCount > 0) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-  <script language="JavaScript" type="text/javascript">
-    function checkDelete() {
-      return confirm('Are you sure?');
-    }
+
+  <!-- ck_editor -->
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+  <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#message'))
+      .then(message => {
+        console.log(message);
+        message.editing.view.change((writer) => {
+            writer.setStyle(
+              "height",
+              "200px",
+              message.editing.view.document.getRoot()
+            );
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
   </script>
 </body>
 

@@ -1,31 +1,56 @@
-<?php include("include/config.php");
-if (isset($_POST['submit'])) {
+<?php
+include("include/config.php");
 
-  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
-  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
+if (isset($_POST['update'])) {
+  $target_dir = "upload/";
+  $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+  $image_tep_name = $_FILES['image']['tmp_name'];
+  $password = isset($_POST["password"]) ? $_POST["password"] : "";
   $err = [];
-
-  if ($ques == "") {
-    $err["question"] = "Please enter Question  ";
-  }
-  if ($answ == "") {
-    $err["answer"] = "Please enter Answer  ";
-  }
-  if (empty($err)) {
-    //die("here");
-    $query = "INSERT INTO `faq`(`question`, `answer`) VALUES ('" . $ques . "','" . $answ . "')";
-    $result = mysqli_query($conn, $query);
-    //Print_r($query);
-    // die;
-    if ($result) {
-      //$err['message'] = 'New Record Addded successfully';
-      header("location:faq.php?add=New Record Addded successfully");
-    } else {
-      $err['message'] = ' Not Worked please check Your code ';
+  if (file_exists($_SESSION['user_image'])) {
+    $image = $_SESSION['user_image'];
+    $image_tep_name = $_FILES['image']['tmp_name'];
+    if (!empty($_FILES['image']['name'])) {
+      $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+      $image_tep_name = $_FILES['image']['tmp_name'];
     }
   }
-}
-?>
+  if ($name == "") {
+    $err["name"] = "Please enter name  ";
+  }
+  if ($email == "") {
+    $err['email'] = "Email is Required";
+  }
+  // print_r($image);
+  // die();
+  $id = isset($_SESSION['id']) ? $_SESSION['id'] : "";
+  if (empty($err)) {
+    //Print_r($query);
+    $sql = "UPDATE `users` SET
+   name='$name',
+    email='$email',
+    image='$image'  
+    WHERE user_id = $id ";
+    //echo $sql;
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+
+      move_uploaded_file($image_tep_name, $image);
+      $query = "SELECT * FROM `users` WHERE `email` = '$email' and `password` = '$password' ";
+      $result = mysqli_query($conn, $query);
+      $data = mysqli_fetch_assoc($result);
+      $_SESSION['user_image'] = $data['image'];
+      $_SESSION['user_email'] = $data['email'];
+      $_SESSION['user_name'] = $data['name'];
+      $_SESSION['id'] = $data['user_id'];
+      header("location:profile.php?update=Profile Update successfully");
+    } else {
+      $err['messsage'] = 'Registration Not Worked please check Your code ';
+    }
+  }
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,11 +154,11 @@ if (isset($_POST['submit'])) {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contact" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Contact" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Contact</span>
         </a>
-        <div id="contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="Contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Contact</h6>
             <a class="collapse-item" href="view_contact.php">Contact View</a>
@@ -188,8 +213,6 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
       </li>
-
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -257,7 +280,7 @@ if (isset($_POST['submit'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800 " style="margin-left:  1.25rem !important;">FAQ </h1>
+          <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Upadte Profile </h1>
           <?php if (isset($err['message'])) { ?>
             <div class="alert alert-success"><?= $err['message']; ?></div>
           <?php } ?>
@@ -271,21 +294,26 @@ if (isset($_POST['submit'])) {
                   <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4 ">Frequently Asked Questions</h1>
                       </div>
-                      <form class="user" action="" method="post">
+                      <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
-                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Question:</label>
-                          <input type="name" name="question" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
-                          <?php if (isset($err['question'])) { ?><div class="small alert-danger"><?= $err['question']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name:</label>
+                          <input type="name" name="name" value="<?= isset($_SESSION['user_name']) ? $_SESSION['user_name'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
-
-                          <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"></textarea>
-                          <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTextarea1" class="form-label">Email:</label>
+                          <input type="email" name="email" value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1" class="form-label">Profile Image Upload:</label>
+                          <input type="file" name="image" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <?php if (isset($_SESSION['user_image'])) { ?>
+                            <?php print_r($_SESSION['user_image']); ?>
+                          <?php } ?>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
                       </form>
                       <hr>
                     </div>
@@ -358,28 +386,12 @@ if (isset($_POST['submit'])) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
-
   <!-- ck_editor -->
 
   <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
   <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#answer'))
-      .then(answer => {
-        console.log(answer);
-        answer.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              answer.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
+
+</body>
 </body>
 
 </html>

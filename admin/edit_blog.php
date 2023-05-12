@@ -138,7 +138,7 @@ if (isset($_POST['update'])) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -299,21 +299,18 @@ if (isset($_POST['update'])) {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
-                <img class="img-profile rounded-circle" src="upload/images.jpg">
+                <img class="img-profile rounded-circle" src=<?= $_SESSION['user_image'] ?>>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
+
+                <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Change Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -338,7 +335,6 @@ if (isset($_POST['update'])) {
           <?php } ?>
           <!-- DataTales Example -->
           <div class="container">
-
             <div class="card o-hidden border-0 shadow-lg my-5">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->

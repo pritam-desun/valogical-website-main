@@ -1,7 +1,5 @@
 <?php include("include/config.php");
-$sql = "SELECT * FROM `users`";
-$result = mysqli_query($conn, $sql);
-$rows = mysqli_fetch_assoc($result) ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -208,20 +206,20 @@ $rows = mysqli_fetch_assoc($result) ?>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name'] ?> </span>
-                <img class="img-profile rounded-circle" src="upload/images.jpg">
+                <img class="img-profile rounded-circle" src=<?= $_SESSION['user_image'] ?>>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Change Password
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -235,18 +233,15 @@ $rows = mysqli_fetch_assoc($result) ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <?php if (isset($err['message'])) { ?>
-            <div class="alert alert-success"><?= $err['message']; ?></div>
+          <?php if (isset($_GET['message'])) { ?>
+            <div class="alert alert-success"><?= $_GET['message']; ?></div>
           <?php } ?>
-          <?php if (isset($_GET['add'])) { ?>
-            <div class="alert alert-success"><?php echo $_GET['add']; ?></div>
-          <?php }  ?>
           <?php if (isset($_GET['update'])) { ?>
             <div class="alert alert-success"><?= $_GET['update']; ?></div>
-          <?php }  ?>
+          <?php } ?>
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Profile</h1>
-          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="change_password.php">Change Password</a>.</p>
+          <p class=" mb-4 "><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_profile.php">Update Profile</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -258,7 +253,7 @@ $rows = mysqli_fetch_assoc($result) ?>
                       <p class="mb-0">Full Name</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><?= $rows['name']; ?> </p>
+                      <p class="text-muted mb-0"><?= $_SESSION['user_name']; ?> </p>
                     </div>
                   </div>
                   <hr>
@@ -267,16 +262,7 @@ $rows = mysqli_fetch_assoc($result) ?>
                       <p class="mb-0">Email</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0"><?= $rows['email']; ?> </p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Phone</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0"><?= $rows['phone_no']; ?> </p>
+                      <p class="text-muted mb-0"><?= $_SESSION['user_email']; ?> </p>
                     </div>
                   </div>
                 </div>

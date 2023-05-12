@@ -23,7 +23,8 @@ if (isset($_POST['submit'])) {
     $data = mysqli_fetch_assoc($result);
     $row = mysqli_num_rows($result);
     if ($row > 0) {
-        // die("here");
+        $_SESSION['user_image'] = $data['image'];
+        $_SESSION['user_email'] = $data['email'];
         $_SESSION['user_name'] = $data['name'];
         $_SESSION['id'] = $data['user_id'];
         $_SESSION['logged_in'] = 1;
