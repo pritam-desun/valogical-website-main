@@ -1,7 +1,8 @@
-<?php 
-include("config.php");
-include("inc/header.php"); 
-      ?>
+<?php
+require_once("config.php");
+require_once("inc/header.php");
+
+?>
 
         <!-- Start main-content -->
         <section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
@@ -63,58 +64,7 @@ include("inc/header.php");
                 </div>
             </div>
         </section>
-        <!--Emd About Section -->
-
-        <!-- Services Section -->
-        <!----	<section class="services-section pt-0">
-			<div class="auto-container">
-				<div class="sec-title text-center">
-					<span class="sub-title">What We’re Offering</span>
-					<h2>Services we’re offering to <br>our customers.</h2>
-				</div>
-
-				<div class="row">
-					
-					<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-						<div class="inner-box">
-							<div class="icon-box"><i class="icon flaticon-color-sample"></i></div>
-							<h5 class="title"><a href="page-service-details.html">Web designing</a></h5>
-							<div class="text">Tincidunt elit magnis nulla facilisis sags maecenas nunc amet ultrices.</div>
-							<a href="page-service-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read
-								more</a>
-						</div>
-					</div>
-
-					
-					<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-						<div class="inner-box">
-							<div class="icon-box"><i class="icon flaticon-front-end"></i></div>
-							<h5 class="title"><a href="page-service-details.html">Web development</a></h5>
-							<div class="text">Tincidunt elit magnis nulla facilisis sags maecenas nunc amet ultrices.</div>
-							<a href="page-service-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read
-								more</a>
-						</div>
-					</div>
-
-					
-					<div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-						<div class="inner-box">
-							<div class="icon-box"><i class="icon flaticon-online-shopping"></i></div>
-							<h5 class="title"><a href="page-service-details.html">Web application</a></h5>
-							<div class="text">Tincidunt elit magnis nulla facilisis sags maecenas nunc amet ultrices.</div>
-							<a href="page-service-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read
-								more</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="bottom-box">
-					<div class="text">Trust the experts for all your <strong>web design & development</strong> needs.</div>
-					<a href="page-services.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-				</div>
-			</div>
-		</section>
-		<!-- End Services Section-->
+        <!--End About Section -->
 
         <!-- Features Section -->
         <section class="features-section">
@@ -175,117 +125,6 @@ include("inc/header.php");
                 </div>
             </div>
         </section>
-        <!-- End Offer Section -->
-
-        <!-- Projects section two-->
-        <!--<section class="projects-section-two p-0">
-			<div class="bg-image" style="background-image: url(images/background/2.jpg)"></div>
-			<div class="auto-container">
-				<div class="upper-box">
-					<div class="counter-column">
-						<div class="count-box">
-							<span class="title">Work Completed</span>
-							<div class="numbers">86900+</div>
-						</div>
-					</div>
-					<div class="text-column">
-						<div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod tempor incididunt
-							ut labore et dolore magna aliqua.</div>
-					</div>
-				</div>
-
-				<div class="sec-title text-center light">
-					<span class="sub-title">Recent Work</span>
-					<h2>Work showcase</h2>
-				</div>
-
-				<div class="carousel-outer">
-					<div class="projects-carousel owl-carousel owl-theme">
-						
-						<div class="project-block">
-							<div class="inner-box">
-								<div class="image-box">
-									<figure class="image"><a href="page-project-details.html"><img src="images/resource/project-1.jpg"
-												alt=""></a>
-									</figure>
-									<div class="info-box">
-										<a href="page-project-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-										<span class="cat">Graphics</span>
-										<h6 class="title"><a href="page-project-details.html">Digital marketing web</a></h6>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						
-						<div class="project-block">
-							<div class="inner-box">
-								<div class="image-box">
-									<figure class="image"><a href="page-project-details.html"><img src="images/resource/project-2.jpg"
-												alt=""></a>
-									</figure>
-									<div class="info-box">
-										<a href="page-project-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-										<span class="cat">Graphics</span>
-										<h6 class="title"><a href="page-project-details.html">Digital marketing web</a></h6>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						
-						<div class="project-block">
-							<div class="inner-box">
-								<div class="image-box">
-									<figure class="image"><a href="page-project-details.html"><img src="images/resource/project-3.jpg"
-												alt=""></a>
-									</figure>
-									<div class="info-box">
-										<a href="page-project-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-										<span class="cat">Graphics</span>
-										<h6 class="title"><a href="page-project-details.html">Digital marketing web</a></h6>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						
-						<div class="project-block">
-							<div class="inner-box">
-								<div class="image-box">
-									<figure class="image"><a href="page-project-details.html"><img src="images/resource/project-4.jpg"
-												alt=""></a>
-									</figure>
-									<div class="info-box">
-										<a href="page-project-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-										<span class="cat">Graphics</span>
-										<h6 class="title"><a href="page-project-details.html">Digital marketing web</a></h6>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		
-
-		<!-- Clients Section   -->
-        <!--<section class="clients-section">
-			<div class="auto-container">
-				<div class="sponsors-outer">
-					<ul class="clients-carousel owl-carousel owl-theme">
-						<li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-						<li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-						<li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-						<li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-						<li class="slide-item"> <a href="#"><img src="images/resource/client.png" alt=""></a> </li>
-					</ul>
-				</div>
-			</div>
-		</section>-->
-        <!--End Clients Section -->
-
-       
-        <?php include("inc/footer.php"); ?>
-       
+        <!-- End Features Section -->
+<?php include("inc/footer.php"); ?>
+</div>

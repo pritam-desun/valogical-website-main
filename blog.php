@@ -1,6 +1,6 @@
 <?php 
-include("config.php");
-include("inc/header.php"); 
+require_once("config.php") ;
+require_once("inc/header.php"); 
 function textShorten($text, $limit = 50){
 	$text = $text. " ";
 	$text = substr($text, 0, $limit);
@@ -42,6 +42,7 @@ function textShorten($text, $limit = 50){
 					<!-- News Block -->
 					<div class="news-block col-xl-4 col-lg-6 col-md-6">
 						<div class="inner-box">
+							
 							<div class="image-box">
 								<figure class="image"><a href="blog_details.php?id=<?php echo $rows['blog_id'];?>"><img src="admin/<?php echo $rows['feature_img']?>" alt=""></a>
 								</figure>
