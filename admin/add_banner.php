@@ -3,7 +3,7 @@ if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";
   $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";
-  $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+  $image = $target_dir . basename($_FILES['image']['name']);
   $image_tep_name = $_FILES['image']['tmp_name'];
   $btn_1_text = isset($_POST["btn_1_text"]) ? trim($_POST["btn_1_text"]) : "";
   $btn_1_url = isset($_POST["btn_1_url"]) ? trim($_POST["btn_1_url"]) : "";
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
       // $err['add'] = 'Form Submit Successfully';
       header("location:view_banner.php?add=Form Submit Successfully");
     } else {
-      $err['add'] = ' Not Worked please check Your code ';
+      $err['add'] = '!Oops something went wrong. Please try again.';
     }
   }
 }
@@ -298,7 +298,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                           <label for="formFileLg" class="form-label">Upload Image:</label>
-                          <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                          <input class="form-control form-control-lg" accept=".jpg,.png,.jpeg" id="formFileLg" type="file" name="image">
                         </div>
                         <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
