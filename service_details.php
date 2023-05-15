@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
         <div class="title-outer">
           <h1 class="title"> <?php print_r($row['short_desp']); ?></h1>
           <ul class="page-breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <i class="fa fa-angle-right"></i>
             <li>Services</li>
           </ul>
@@ -31,26 +31,6 @@ if(isset($_GET['id'])){
             <div class="service-sidebar">
               <!--Start Services Details Sidebar Single-->
               <div class="sidebar-widget service-sidebar-single">
-
-                <!--<div class="sidebar-service-list">
-                  <ul>
-                    <li><a href="content-writing.html" class="current"><i class="fas fa-angle-right"></i><span>Content
-                          Writing</span></a></li>
-                    <li class="current"><a href="administrative-services.html"><i
-                          class="fas fa-angle-right"></i><span>Administrative Services</span></a></li>
-                    <li><a href="email-organization.html"><i class="fas fa-angle-right"></i><span>Email
-                          Organization</span></a></li>
-                    <li><a href="tech-support.html"><i class="fas fa-angle-right"></i><span>Tech Support for
-                          PC</span></a></li>
-                    <li><a href="book-keeping.html"><i class="fas fa-angle-right"></i><span>Book Keeping and Financial
-                          Management</span></a></li>
-                    <li><a href="projects.html"><i class="fas fa-angle-right"></i><span>Projects</span></a></li>
-                    <li><a href="web-design-and-development.html"><i class="fas fa-angle-right"></i><span>Web Design and
-                          Development</span></a></li>
-                    <li><a href="SEO-and-digital-marketing.html"><i class="fas fa-angle-right"></i><span>SEO and Digital
-                          Marketing</span></a></li>
-                  </ul>
-                </div>-->
 
                 <div class="service-details-help">
                   <div class="help-shape-1"></div>

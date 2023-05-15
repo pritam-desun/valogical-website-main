@@ -1,6 +1,13 @@
 <?php 
 require_once("config.php") ;
 require_once("inc/header.php"); 
+function textShorten($text, $limit = 50){
+	$text = $text. " ";
+	$text = substr($text, 0, $limit);
+	$text = substr($text, 0, strrpos($text, ' '));
+	$text = $text." ";
+	return $text;
+ }
       ?>
 
 		<!-- Start main-content -->
@@ -49,7 +56,7 @@ require_once("inc/header.php");
 							</a>
 							<div class="info">
 								<strong><?php echo $rows['short_desp'] ?></strong>
-								<p><?php echo $rows['long_desp'] ?></p>
+								<p><?php echo textShorten($rows['long_desp'], 80); ?></p>
 								<a method="Get" style="color:#fff;" href='service_details.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>Learn More</a>
 							</div>
 						</aside>
