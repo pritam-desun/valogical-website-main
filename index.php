@@ -1,6 +1,6 @@
 <?php
 require_once("config.php") ;
-require_once("inc/index_header.php");
+require_once("inc/home-header.php");
 ?>
 <!-- Banner Section -->
 <section class="banner-section">
