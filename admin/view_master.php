@@ -176,7 +176,7 @@ if (@$_GET['type'] == 'delete') {
         <div id="price" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pricing</h6>
-            <a class="collapse-item" href="view_price.php">Pricing View</a>
+            <a class="collapse-item" href="view_price.php">Pricing </a>
           </div>
         </div>
       </li>
@@ -244,17 +244,18 @@ if (@$_GET['type'] == 'delete') {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$_SESSION['user_name']; ?></span>
-                <img class="img-profile rounded-circle" src="upload/images.jpg">
+                <img class="img-profile rounded-circle" src=<?= $_SESSION['user_image'] ?>>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+
+                <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Change Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
@@ -323,7 +324,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo $rows['currency_code']   ?></td>
                           <td><?php echo $rows['currency_symbol'] ?></td>
                           <td><?php echo $added_on ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_price.php?id=<?php echo $rows['master_id'] ?>&type=price">Pricing</a>
                           </td>
                         <?php  } ?>
                     </tbody>

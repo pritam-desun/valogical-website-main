@@ -1,30 +1,28 @@
 <?php include("include/config.php");
-if (isset($_POST['submit'])) {
-
-  $ques = isset($_POST["question"]) ? trim($_POST["question"]) : "";
-  $answ = isset($_POST["answer"]) ? trim($_POST["answer"]) : "";
-  $err = [];
-
-  if ($ques == "") {
-    $err["question"] = "Please enter Question  ";
+if (isset($_POST["submit"])) {
+  $email = $_SESSION['user_email'];
+  $currentPassword = md5($_POST['current_password']);
+  $newPassword = md5($_POST['new_password']);
+  $confirmpassword = md5($_POST['confirm_password']);
+  if ($newPassword != $confirmpassword) {
+    $message = "New and Confirm password does not match!";
   }
-  if ($answ == "") {
-    $err["answer"] = "Please enter Answer  ";
-  }
-  if (empty($err)) {
-    //die("here");
-    $query = "INSERT INTO `faq`(`question`, `answer`) VALUES ('" . $ques . "','" . $answ . "')";
-    $result = mysqli_query($conn, $query);
-    //Print_r($query);
-    // die;
-    if ($result) {
-      //$err['message'] = 'New Record Addded successfully';
-      header("location:faq.php?add=New Record Addded successfully");
-    } else {
-      $err['message'] = ' Not Worked please check Your code ';
+
+  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$currentPassword'";
+  $result = mysqli_query($conn, $sql);
+  $rowCount = mysqli_num_rows($result);
+  //print_r($rowCount);
+  if ($rowCount > 0) {
+    $sql = "UPDATE `users` set password = '$newPassword' WHERE `email` = '$email'";
+    $result = mysqli_query($conn, $sql);
+    $rowCount = mysqli_affected_rows($conn);
+    print_r($rowCount);
+    if ($rowCount > 0) {
+      header("Location:profile.php?message=Password change successfully!");
     }
   }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +46,6 @@ if (isset($_POST['submit'])) {
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-
   <style>
     label {
       color: black;
@@ -129,11 +125,11 @@ if (isset($_POST['submit'])) {
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contact" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Contact" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Contact</span>
         </a>
-        <div id="contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="Contact" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Contact</h6>
             <a class="collapse-item" href="view_contact.php">Contact View</a>
@@ -189,7 +185,6 @@ if (isset($_POST['submit'])) {
         </div>
       </li>
 
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -235,7 +230,6 @@ if (isset($_POST['submit'])) {
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-
                 <a class="dropdown-item" href="change_password.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Change Password
@@ -257,37 +251,41 @@ if (isset($_POST['submit'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800 " style="margin-left:  1.25rem !important;">FAQ </h1>
-          <?php if (isset($err['message'])) { ?>
-            <div class="alert alert-success"><?= $err['message']; ?></div>
+          <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Change Password</h1>
+          <?php if (isset($message)) { ?>
+            <div class=" alert alert-success"><?= $message; ?>
+            </div>
           <?php } ?>
           <!-- DataTales Example -->
           <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card o-hidden border-0 shadow-lg my-4">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                   <div class="col-lg-12 col-md-12">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4 ">Frequently Asked Questions</h1>
+                        <h1 class="h4 text-gray-900 mb-4"></h1>
                       </div>
                       <form class="user" action="" method="post">
                         <div class="form-group ">
-                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Question:</label>
-                          <input type="name" name="question" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
-                          <?php if (isset($err['question'])) { ?><div class="small alert-danger"><?= $err['question']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Current Password:</label>
+                          <input type="text" class="form-control form-control-user" name="current_password" id="current_password" placeholder="Enter a Current Password">
+                          <?php if (isset($err['current_password'])) { ?><div class="small alert-danger"><?= $err['current_password']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
-
-                          <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"></textarea>
-                          <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">New Password:</label>
+                          <input type="text" class="form-control form-control-user" name="new_password" id="new_password" placeholder="Enter a New Password">
+                          <?php if (isset($err['new_password'])) { ?><div class="small alert-danger"><?= $err['new_password']; ?></div> <?php } ?>
+                        </div>
+                        <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Confirm Password:</label>
+                          <input type="text" class="form-control form-control-user" id="confirm_password" name="confirm_password" placeholder="Enter a Confirm Password">
+                          <?php if (isset($err['confirm_password'])) { ?><div class="small alert-danger"><?= $err['confirm_password']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
-                      <hr>
+
                     </div>
                   </div>
                 </div>
@@ -365,14 +363,14 @@ if (isset($_POST['submit'])) {
   <!-- <script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script> -->
   <script>
     ClassicEditor
-      .create(document.querySelector('#answer'))
-      .then(answer => {
-        console.log(answer);
-        answer.editing.view.change((writer) => {
+      .create(document.querySelector('#message'))
+      .then(message => {
+        console.log(message);
+        message.editing.view.change((writer) => {
             writer.setStyle(
               "height",
               "200px",
-              answer.editing.view.document.getRoot()
+              message.editing.view.document.getRoot()
             );
           })
           .catch(error => {

@@ -1,12 +1,22 @@
 <?php
-include('include/config.php');
+$hostname     = "localhost";
+$username     = "root";
+$password     = "";
+$databasename = "valogical_db";
+// Create connection 
+$conn = new mysqli($hostname, $username, $password, $databasename);
+// Check connection 
+if ($conn->connect_error) {
+    die("Unable to Connect database: " . $conn->connect_error);
+}
 
 if (isset($_POST['submit'])) {
-
-    $name = isset($_POST["name"]) ? $_POST["name"] : "";
-    $email = isset($_POST["email"]) ? $_POST["email"] : "";
+    $target_dir = "upload/";
+    $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
+    $email = isset($_POST["email"]) ?  trim($_POST["email"]) : "";
+    $image = $target_dir . basename($_FILES['image']['name'], 'JPEG');
+    $image_tep_name = $_FILES['image']['tmp_name'];
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
-    //print_r("$name");
     $err = [];
     if ($name == "") {
         $err["name"] = "Please enter name  ";
@@ -14,8 +24,11 @@ if (isset($_POST['submit'])) {
     if ($email == "") {
         $err['email'] = "Email is Required";
     }
-
+    if ($image == "") {
+        $err["image"] = "Please enter image  ";
+    }
     if ($email != "") {
+
         $sql = "SELECT * FROM `users` WHERE email='$email'";
         $res = mysqli_query($conn, $sql);
         if (mysqli_num_rows($res) > 0) {
@@ -28,12 +41,11 @@ if (isset($_POST['submit'])) {
 
     if (empty($err)) {
         // die("here");
-        $query = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('" . $name . "','" . $email . "','" . md5($password) . "')";
-        //Print_r($query);
+        $query = "INSERT INTO `users`(`name`, `email`,`image`, `password`) VALUES ('" . $name . "','" . $email . "','" . $image . "','" . md5($password) . "')";
         $result = mysqli_query($conn, $query);
-        // Print_r($_POST);
-        //die;
+        //print_r($row);
         if ($result) {
+            move_uploaded_file($image_tep_name, $image);
             $err['messsage'] = 'New Registration successfully';
         } else {
             $err['messsage'] = 'Registration Not Worked please check Your code ';
@@ -81,18 +93,22 @@ if (isset($_POST['submit'])) {
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" action="" method="post">
+                            <form class="user" action="" method="post" enctype="multipart/form-data">
                                 <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName" placeholder="First Name">
+                                    <input type="text" class="form-control form-control-user" name="name" id="name" placeholder="First Name">
                                     <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
 
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" name="email" id="exampleInputEmail" placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address">
                                     <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                                 </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control form-control-user" name="image" id="image" placeholder="image">
+                                    <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
+                                </div>
                                 <div class="form-group ">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
+                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                     <?php if (isset($err['password'])) { ?><div class="small alert-danger"><?= $err['password']; ?></div> <?php } ?>
 
                                 </div>
