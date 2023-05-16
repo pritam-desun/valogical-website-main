@@ -279,6 +279,7 @@ if (@$_GET['type'] == 'delete') {
                                                 <th>Name</th>
                                                 <th>Designation</th>
                                                 <th>Content</th>
+                                                <th>Rating</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -293,6 +294,7 @@ if (@$_GET['type'] == 'delete') {
                                                     <td><?php echo $rows['people_name'] ?></td>
                                                     <td><?php echo $rows['people_designation'] ?></td>
                                                     <td><?php echo $rows['content'] ?></td>
+                                                    <td><?php echo $rows['rating'] ?></td>
                                                     <td><?php echo $rows['status'] ?> </td>
                                                     <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit.php?id=<?php echo $rows['testimonial_id'] ?>">Edit</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="testimonials.php?id=<?php echo $rows['testimonial_id'] ?>&type=delete">Delete</a>
                                                     </td>

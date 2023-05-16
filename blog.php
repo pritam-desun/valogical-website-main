@@ -37,6 +37,7 @@ function textShorten($text, $limit = 50){
 								$blog_id = $rows['blog_id'];
 								$a_name = $rows['name'];
 								$short_desp = $rows['short_desc'];
+								$title = $rows['title'];
 							
             ?>
 					<!-- News Block -->
@@ -54,8 +55,8 @@ function textShorten($text, $limit = 50){
 										echo "by ",$a_name;
 										?>
 							</span>
-								<h5 class="title"><a href="blog_details.php?id=<?php echo $rows['slug'];?>"><?php echo $rows['title'] ?></a></h5>
-								<div class="text"><?php echo textShorten(strchr($short_desp,'.'),95); ?></div>
+								<h5 class="title"><a href="blog_details.php?id=<?php echo $rows['slug'];?>"><?php echo textShorten($title,40); ?></a></h5>
+								<div class="text"><?php echo textShorten($short_desp,95); ?></div>
 								<a method="Get" href="blog_details.php?id=<?php echo $rows['slug'];?>" class="read-more"><i class="fa fa-long-arrow-alt-right"></i> Read More</a>
 							</div>
 						</div>

@@ -184,6 +184,7 @@ function textShorten($text, $limit = 50){
         $result = mysqli_query($conn, $sql);
         $row = mysqli_num_rows($result);
         while ($rows = mysqli_fetch_assoc($result)) {
+        $rating = $rows['rating'];
         $id  = $id  ++ ;
         ?>
         <!-- Testimonial Block Two -->
@@ -196,7 +197,16 @@ function textShorten($text, $limit = 50){
                         <span class="designation"><?php echo $rows['people_designation'] ?></span>
                         <span class="icon icon-quote"></span>
                     </div>
-                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                    <?php 
+                    if ($rating != 0) {
+                        ?>
+                    <div class="rating">
+                    <?php
+                    for ($i=1; $i<=$rating; $i++){
+                    echo '<i class="fa fa-star"></i>';
+                    }
+                    ?></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -4,7 +4,8 @@ if (isset($_POST['submit'])) {
   // print_r($_POST);
   $people_name = isset($_POST["people_name"]) ? trim($_POST["people_name"]) : "";
   $people_designation = isset($_POST["people_designation"]) ? trim($_POST["people_designation"]) : "";
-  $content = isset($_POST["content"]) ? trim($_POST["people_designation"]) : "";
+  $content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
+  $rating = isset($_POST["rating"]) ? trim($_POST["rating"]) : "";
   $status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
   //print_r($status);
   $err = [];
@@ -21,7 +22,7 @@ if (isset($_POST['submit'])) {
     $err["status"] = "Please enter status  ";
   }
   if (empty($err)) {
-    $query = "INSERT INTO `testimonials`(`people_name`, `people_designation`, `content`,`status`) VALUES ('" . $people_name . "','" . $people_designation . "','" . $content . "','" . $status . "')";
+    $query = "INSERT INTO `testimonials`(`people_name`, `people_designation`, `content`,`rating`,`status`) VALUES ('" . $people_name . "','" . $people_designation . "','" . $content . "','" . $rating . "','" . $status . "')";
     $result = mysqli_query($conn, $query);
     // Print_r($query);
     // die;
@@ -295,6 +296,20 @@ if (isset($_POST['submit'])) {
                           <textarea type="text" class="form-control form-control-user" id="contentt" name="content" placeholder="Enter a content...."></textarea>
                           <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                         </div>
+
+                        <div class="form-group ">
+                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Rating:</label>
+                          <select type="status" name="rating" class="form-control sform-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                          <?php if (isset($err['Rating'])) { ?><div class="small alert-danger"><?= $err['Rating']; ?></div> <?php } ?>
+                          </div>
+
+                        
                         <div class="form-group ">
                           <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Status:</label>
                           <select type="status" name="status" class="form-control sform-select form-select-lg mb-3" aria-label=".form-select-lg example">
