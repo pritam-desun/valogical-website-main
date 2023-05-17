@@ -36,7 +36,7 @@
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Testimonials</h6>
-      <a class="collapse-item" href="Testimonials.php">Testimonials View</a>
+      <a class="collapse-item" href="testimonials.php">Testimonials View</a>
     </div>
   </div>
 </li>
@@ -121,7 +121,7 @@
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Master</h6>
       <a class="collapse-item" href="view_master.php">Master View</a>
-      <a class="collapse-item" href="edit_web-information.php">Web Information</a>
+      <a class="collapse-item" href="edit_web-info.php">Web Information</a>
     </div>
   </div>
 </li>
