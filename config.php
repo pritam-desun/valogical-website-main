@@ -1,5 +1,6 @@
 <?php
-session_start();
+ include_once "framework/main.php";
+
 $hostname     = "localhost";
 $username     = "root";
 $password     = "";

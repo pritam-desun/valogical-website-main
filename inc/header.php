@@ -1,32 +1,35 @@
+<?php
+$site_info_header = fetchRow('site_info');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Taskenhance :: Contact Us</title>
-	<!-- Stylesheets -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Taskenhance :: Contact Us</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
 
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
-	<!-- Responsive -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-	<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
 
 <body>
-<div class="page-wrapper">
-	 <!-- Preloader -->
-	 <!-- <div class="preloader"></div> -->
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
 
-	 <!-- Main Header-->
-	 <header class="main-header header-style-one">
+        <!-- Main Header-->
+        <header class="main-header header-style-one">
             <!-- Header Top -->
             <div class="header-top">
                 <div class="inner-container">
@@ -34,17 +37,36 @@
                     <div class="top-left">
                         <!-- Info List -->
                         <ul class="list-style-one">
-                            <li><a href="mailto:info@taskenhancer.com"><i class="fa fa-envelope"></i> info@taskenhancer.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i> +1-347-809-6802</a></li>
-                            <li><a href="#"><i class="fab fa-skype"></i> Taskenhancer</a></li>
+                            <?php if ($site_info_header['phone'] != '') { ?>
+                                <li><a href="mailto:<?= $site_info_header['email'] ?>"><i class="fa fa-envelope"></i> <?= $site_info_header['email'] ?></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['phone'] != '') { ?>
+                                <li><a href="#"><i class="fa fa-phone"></i> +<?= $site_info_header['phone'] ?></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['skype'] != '') { ?>
+                                <li><a href="#"><i class="fab fa-skype"></i> <?= $site_info_header['skype'] ?></a></li>
+                            <?php } ?>
+
                         </ul>
                     </div>
 
                     <div class="top-right">
                         <ul class="social-icon-one">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <?php if ($site_info_header['facebook_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['twitter_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['twitter_link'] ?>"><i class="fab fa-twitter"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['youtube_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['youtube_link'] ?>"><i class="fab fa-youtube"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['instagram_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['instagram_link'] ?>"><i class="fab fa-instagram"></i></a></li>
+                            <?php } ?>
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -60,7 +82,7 @@
                                 <a href="index.php"><img src="images/logo-3.png" alt="" title="Tronis"></a>
                             </div>
                         </div>
-										
+
 
                         <!--Nav Box-->
                         <div class="nav-outer">

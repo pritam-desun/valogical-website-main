@@ -9,7 +9,6 @@ function textShorten($text, $limit = 50){
 	$text = $text." ";
 	return $text;
  }
- include_once "framework/main.php";
  $site_info=fetchRow('site_info');
 
 ?>
