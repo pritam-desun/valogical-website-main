@@ -36,8 +36,8 @@
               <li><a href="about.php">About Us</a></li>
               <li><a href="services.php">Services</a></li>
               <li><a href="pricing.php">Our Pricing</a></li>
-              <li><a href="blog.php">Privacy Policy</a></li>
-              <li><a href="faq.php">Terms & Condition</a></li>
+              <li><a href="blog.php">Blog</a></li>
+              <li><a href="faq.php">Faq</a></li>
             </ul>
           </div>
         </div>

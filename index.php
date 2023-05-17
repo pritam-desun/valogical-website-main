@@ -34,8 +34,7 @@ function textShorten($text, $limit = 50){
                 </div>
             </div>
         </div>
-        <?php } ?>
-        
+        <?php } ?>    
     </div>
 </section>
 <!-- About Section Two -->
@@ -48,9 +47,9 @@ function textShorten($text, $limit = 50){
                         <span class="sub-title">Welcome to Taskenhance</span>
                         <h2>How We Work</h2>
                         <div class="text">We are a startup firm that started up from ground bottom with 3 highly qualified individuals and gradually on the way to climbing the corporate ladder. We believe in providing the best of our services to our customers.</div>
-                        <div class="text">We are a startup firm that started up from ground bottom with 3 highly qualified individuals and gradually on the way to climbing the corporate ladder. We believe in providing the best of our services to our customers.</div>
+                        <div class="text"> </div>
                     </div>
-                    <a href="about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
+                    <a href="about.php" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
                 </div>
             </div>
             <!-- Image Column -->

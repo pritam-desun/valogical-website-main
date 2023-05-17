@@ -15,7 +15,6 @@ if (isset($_POST['update'])) {
   $currency_symbol = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
   $currency_symbol = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
 
-
   if (empty($err)) {
     $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
     $result = mysqli_query($conn, $query);
