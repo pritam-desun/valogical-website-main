@@ -17,6 +17,7 @@ function textShorten($text, $limit = 50){
 					<h1 class="title">Blog</h1>
 					<ul class="page-breadcrumb">
 						<li><a href="index.html">Home</a></li>
+						<i class="fa fa-angle-right"></i>
 						<li>Blog</li>
 					</ul>
 				</div>
