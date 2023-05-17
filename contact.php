@@ -3,6 +3,8 @@ require_once("config.php");
 require_once("inc/header.php");
 include_once "framework/main.php";
 if (isset($_POST['submit'])) {
+
+
 	$name = isset($_POST["name"]) ? $_POST["name"] : "";
 	$email = isset($_POST["email"]) ? $_POST["email"] : "";
 	$subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
@@ -13,14 +15,26 @@ if (isset($_POST['submit'])) {
 	if ($name == "") {
 		$err["name"] = "Please enter name";
 	}
+	if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+		$err['name'] = "Only letters and white space allowed";
+	}
 	if ($email == "") {
 		$err['email'] = "Email is Required";
+	}
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$err['email'] = "Invalid email format";
 	}
 	if ($subject == "") {
 		$err["subject"] = "Please enter a subject";
 	}
+	if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+		$err['subject'] = "Only letters and white space allowed";
+	}
 	if ($phone == "") {
-		$err["phone"] = "Phone Number is Required";
+		$err["phone"] = "phone Number is Required";
+	}
+	if (!preg_match('/^[0-9]{10}+$/', $phone)) {
+		$err["phone"] = "Invalid Phone Number";
 	}
 	if (empty($err)) {
 
