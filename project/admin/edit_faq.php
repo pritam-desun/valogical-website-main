@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 $id = isset($_GET['id']) ? $_GET['id'] : "";
 if ($id) {
   $sql = "SELECT * FROM `faq` WHERE faq_id = $id";

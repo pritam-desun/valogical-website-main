@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 if (isset($_POST['submit'])) {
 
   // print_r($_POST);

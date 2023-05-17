@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         $err["subject"] = "Please enter a subject";
     }
     if ($phone == "") {
-        $err["phone"] = "phone Number is Required";
+        $err["phone"] = "Phone Number is Required";
     }
     if (empty($err)) {
 
@@ -31,6 +31,7 @@ if (isset($_POST['submit'])) {
         
         if ($result) {
             $msg['messsage'] = 'massage submit successfully';
+						echo '<script> setTimeout(window.location.replace("contact.php"),1000)</script>';
         } else {
             $msg['messsage'] = 'massage not submit successfully ';
 

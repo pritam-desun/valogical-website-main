@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";

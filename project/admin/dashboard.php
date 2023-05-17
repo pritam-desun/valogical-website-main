@@ -1,5 +1,5 @@
 <?php
-include('include/config.php');
+include('include/master.php');
 include("include/header.php");
 include("include/nav.php");
 include("include/sidebar.php");

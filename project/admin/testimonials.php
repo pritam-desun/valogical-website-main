@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 if (@$_GET['type'] == 'delete') {
 
     $id =  isset($_GET['id']) ? $_GET['id'] : '';

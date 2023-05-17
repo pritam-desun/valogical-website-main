@@ -1,5 +1,5 @@
 <?php
-include('include/config.php');
+include('include/master.php');
 if (isset($_POST['submit'])) {
 
     $email = isset($_POST['email']) ? $_POST['email'] : "";

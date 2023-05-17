@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 if (isset($_POST['submit'])) {
 
   $ques = isset($_POST["question"]) ? $_POST["question"] : "";

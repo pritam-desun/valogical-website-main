@@ -1,5 +1,5 @@
 <?php
-include('include/config.php');
+include('include/master.php');
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 if ($id) {
     $sql = "SELECT * FROM `testimonials` WHERE testimonial_id = $id";

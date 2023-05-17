@@ -1,5 +1,5 @@
 <?php
-include("include/config.php");
+include("include/master.php");
 $id = $_GET['id'];
 
 $sql = "DELETE FROM testimonials WHERE `testimonial_id` = '$id'";

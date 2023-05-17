@@ -1,4 +1,4 @@
-<?php include("include/config.php");
+<?php include("include/master.php");
 // print_r($_POST)
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 
