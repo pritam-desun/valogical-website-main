@@ -1,4 +1,6 @@
 <?php include("include/config.php");
+
+// trigger_error("Fatal error", E_USER_ERROR);
 if (isset($_POST['submit'])) {
 
   $target_dir = "upload/";

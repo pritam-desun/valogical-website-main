@@ -1,6 +1,14 @@
 <?php
 require_once("config.php") ;
 require_once("inc/home-header.php");
+ini_set ('display_errors', 1);  
+function textShorten($text, $limit = 50){
+	$text = $text. " ";
+	$text = substr($text, 0, $limit);
+	$text = substr($text, 0, strrpos($text, ' '));
+	$text = $text." ";
+	return $text;
+ }
 ?>
 <!-- Banner Section -->
 <section class="banner-section">
@@ -13,7 +21,7 @@ require_once("inc/home-header.php");
         ?>
         <!-- Slide Item -->
         <div class="slide-item">
-            <div class="bg-image" style="background-image: url(images/main-slider/4.jpg);"></div>
+            <div class="bg-image" style="background-image: url(admin/<?=$rows['image']?>);"></div>
             <div class="auto-container">
                 <div class="content-box">
                     <h1 class="title animate-2"><?=$rows['title']?></h1>
@@ -136,8 +144,8 @@ require_once("inc/home-header.php");
                 </a>
                 <div class="info">
                     <strong><?php echo $rows['short_desp'] ?></strong>
-                    <p><?php echo $rows['long_desp'] ?></p>
-                    <a style="color:#fff;" href='content-writing.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>Learn More</a>
+                    <p><?php echo textShorten($rows['long_desp'], 80); ?></p>
+                    <a method="Get" style="color:#fff;" href='service_details.php?id=<?php echo $rows['service_id'];?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>Learn More</a>
                 </div>
             </aside>
         </div>
@@ -176,6 +184,7 @@ require_once("inc/home-header.php");
         $result = mysqli_query($conn, $sql);
         $row = mysqli_num_rows($result);
         while ($rows = mysqli_fetch_assoc($result)) {
+        $rating = $rows['rating'];
         $id  = $id  ++ ;
         ?>
         <!-- Testimonial Block Two -->
@@ -188,7 +197,16 @@ require_once("inc/home-header.php");
                         <span class="designation"><?php echo $rows['people_designation'] ?></span>
                         <span class="icon icon-quote"></span>
                     </div>
-                    <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                    <?php 
+                    if ($rating != 0) {
+                        ?>
+                    <div class="rating">
+                    <?php
+                    for ($i=1; $i<=$rating; $i++){
+                    echo '<i class="fa fa-star"></i>';
+                    }
+                    ?></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ if (isset($_POST['update'])) {
     $people_name = isset($_POST["people_name"]) ? trim($_POST["people_name"]) : "";
     $people_designation = isset($_POST["people_designation"]) ? trim($_POST["people_designation"]) : "";
     $content = isset($_POST["content"]) ? trim($_POST["content"]) : "";
+    $rating = isset($_POST["rating"]) ? trim($_POST["rating"]) : "";
     $status = isset($_POST["status"]) ? $_POST["status"] : "";
 
     // print_r($people_name);
@@ -32,6 +33,7 @@ if (isset($_POST['update'])) {
       `people_name`='$people_name',
       `people_designation`='$people_designation',
       `content`='$content',
+      `rating`='$rating',
       `status`='$status'
      WHERE testimonial_id = $testimonial_id";
         $result = mysqli_query($conn, $query);
@@ -45,7 +47,6 @@ if (isset($_POST['update'])) {
         }
     }
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -300,6 +301,21 @@ if (isset($_POST['update'])) {
                                                     <textarea type="text" class="form-control form-control-user" id="contentt" value="<?= isset($row["content"]) ? $row["content"] : ""; ?>" name="content" placeholder="Enetr a content"><?= isset($row["content"]) ? $row["content"] : ""; ?></textarea>
                                                     <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                                                 </div>
+
+                                                <div class="form-group ">
+                                                    <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Rating:</label>
+                                                    <select type="rating" name="rating" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                        <option value="<?= isset($row['rating']) ? $row['rating'] : ""; ?> " selected><?= isset($row['rating']) ? $row['rating'] : ""; ?></option>
+                                                            <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                    </select>
+                                                </div>
+
+
                                                 <div class="form-group ">
                                                     <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Status:</label>
                                                     <select type="status" name="status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">

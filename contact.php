@@ -36,21 +36,6 @@ if (isset($_POST['submit'])) {
 
         }
     }
-		//else{
-			//if(!($name == "")){
-				//$fill['name'] = $name;
-			//}
-			//if(!($email == "")){
-				//$fill['email'] = $email;
-			//}
-			//if(!($subject == "")){
-				//$fill['subject'] = $subject;
-			//}
-			//if(!($phone == ""){
-				//$fill['phone'] = $phone;
-			//}
-
-		//}
 }
 
 
@@ -73,60 +58,6 @@ if (isset($_POST['submit'])) {
 		<!-- end main-content -->
 
 		<!--Contact Details Start-->
-		<!--<section class="contact-details">
-			<div class="container ">
-				<div class="row">
-					<div class="col-xl-2 col-lg-3 mb-md-60"></div>
-					<div class="col-xl-6 col-lg-6 mb-md-60">
-						<div class="contact-details__right">
-							<div class="sec-title">
-								<span class="sub-title">Need any help?</span>
-								<h2>Get in touch with us</h2>
-								<div class="text">Lorem ipsum is simply free text available dolor sit amet, consectetur notted
-									adipisicing elit sed do eiusmod tempor incididunt simply free ut labore et dolore magna aliqua.</div>
-							</div>
-							<ul class="list-unstyled contact-details__info">
-								<li>
-									<div class="icon">
-										<span class="lnr-icon-phone-plus"></span>
-									</div>
-									<div class="text">
-										<h6>Have any question?</h6>
-										<a href="tel:+13478096802"><span>Free</span>+1-347-809-6802</a>
-									</div>
-								</li>
-								<li>
-									<div class="icon">
-										<span class="lnr-icon-envelope1"></span>
-									</div>
-									<div class="text">
-										<h6>Write email</h6>
-										<a href="mailto:info@valogical.com">info@taskenhance.com</a>
-									</div>
-								</li>
-								<li>
-									<div class="icon">
-										<span class="lnr-icon-location"></span>
-									</div>
-									<div class="text">
-										<h6>Visit anytime</h6>
-										<span>36/1/2C, Pulin Khatick Road, Kolkata - 700015</span>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xl-7 col-lg-6">
-						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.843149788316!2d144.9537131159042!3d-37.81714274201087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sbn!2sbd!4v1583760510840!5m2!1sbn!2sbd"
-							width="100%" height="550" frameborder="0" allowfullscreen=""></iframe>
-					</div>
-				</div>
-			</div>
-		</section>-->
-		<!--Contact Details End-->
-
-		<!--Contact Details Start-->
 		<section class="team-contact-form">
 			<div class="container pb-100">
 				<div class="sec-title text-center">
@@ -135,7 +66,14 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
-						<?php if (isset($msg['messsage'])) { echo $msg['messsage']; } ?>
+
+					<?php if (isset($msg['messsage'])){ ?>
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<?php echo $msg['messsage']; ?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				 <?php } ?>
+			
 						<!-- Contact Form -->
 						<form id="contact_form" name="contact_form" class="" method="post">
 							<div class="row">
