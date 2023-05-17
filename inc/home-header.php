@@ -35,17 +35,32 @@
                     <div class="top-left">
                         <!-- Info List -->
                         <ul class="list-style-one">
-                            <li><a href="mailto:info@taskenhancer.com"><i class="fa fa-envelope"></i> info@taskenhancer.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i> +1-347-809-6802</a></li>
-                            <li><a href="#"><i class="fab fa-skype"></i> Taskenhancer</a></li>
+                        <?php if ($site_info_header['email'] != '') { ?>
+                                <li><a href="mailto:<?= $site_info_header['email'] ?>"><i class="fa fa-envelope"></i> <?= $site_info_header['email'] ?></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['phone'] != '') { ?>
+                                <li><a href="#"><i class="fa fa-phone"></i> +<?= $site_info_header['phone'] ?></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['skype'] != '') { ?>
+                                <li><a href="#"><i class="fab fa-skype"></i> <?= $site_info_header['skype'] ?></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
 
                     <div class="top-right">
                         <ul class="social-icon-one">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <?php if ($site_info_header['facebook_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['twitter_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['twitter_link'] ?>"><i class="fab fa-twitter"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['youtube_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['youtube_link'] ?>"><i class="fab fa-youtube"></i></a></li>
+                            <?php } ?>
+                            <?php if ($site_info_header['instagram_link'] != '') { ?>
+                                <li><a href="<?= $site_info_header['instagram_link'] ?>"><i class="fab fa-instagram"></i></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

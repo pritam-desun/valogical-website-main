@@ -37,7 +37,7 @@ $site_info_header = fetchRow('site_info');
                     <div class="top-left">
                         <!-- Info List -->
                         <ul class="list-style-one">
-                            <?php if ($site_info_header['phone'] != '') { ?>
+                            <?php if ($site_info_header['email'] != '') { ?>
                                 <li><a href="mailto:<?= $site_info_header['email'] ?>"><i class="fa fa-envelope"></i> <?= $site_info_header['email'] ?></a></li>
                             <?php } ?>
                             <?php if ($site_info_header['phone'] != '') { ?>
