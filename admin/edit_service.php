@@ -82,12 +82,12 @@ if (isset($_POST['update'])) {
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                           <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis ">Short Description:</label>
-                          <textarea type="text" name="short_desp" value="" class="form-control" id="short_desp" rows="3"><?php echo isset($row['short_desp']) ? $row['short_desp'] : ""; ?></textarea>
+                          <textarea type="text" name="short_desp" value="" class="form-control ckeditor" id="short_desp" rows="3"><?php echo isset($row['short_desp']) ? $row['short_desp'] : ""; ?></textarea>
                           <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
-                          <textarea type="text" name="long_desp" value="" class="form-control" id="long_desp" rows="3"><?php echo isset($row['long_desp']) ? $row['long_desp'] : ""; ?></textarea>
+                          <textarea type="text" name="long_desp" value="" class="form-control ckeditor" id="long_desp" rows="3"><?php echo isset($row['long_desp']) ? $row['long_desp'] : ""; ?></textarea>
                           <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
