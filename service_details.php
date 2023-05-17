@@ -41,14 +41,14 @@ if(isset($_GET['id'])){
                   </div>
                   <div class="help-contact">
                     <p>Need help? Talk to an expert</p>
-                    <a href="tel:12463330079">+892 ( 123 ) 112 - 9999</a>
+                    <a href="tel:<?= $site_info_header['phone'] ?>">+<?= $site_info_header['phone'] ?></a>
                   </div>
                 </div>
 
                 <!--Start Services Details Sidebar Single-->
                 <div class="sidebar-widget service-sidebar-single mt-4">
                   <div class="service-sidebar-single-btn wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1200m">
-                    <a href="#" class="theme-btn btn-style-one d-grid"><span class="btn-title"><span
+                    <a href="https://web.whatsapp.com/send?phone=<?= $site_info_header['whatsapp'] ?>" class="theme-btn btn-style-one d-grid"><span class="btn-title"><span
                           class="fa-thin fa-message-lines"></span>Chat Now</span></a>
                   </div>
                 </div>
@@ -62,7 +62,7 @@ if(isset($_GET['id'])){
           <div class="col-xl-8 col-lg-8">
             <div class="services-details__content">
               <h3 class="mt-4"> <?php print_r($row['short_desp']); ?></h3>
-              <p> <?php print_r($row['long_desp']); ?>
+              <p class="text-justify"> <?=$row['long_desp']; ?>
               </p>
             </div>
           </div>
@@ -74,3 +74,9 @@ if(isset($_GET['id'])){
  <?php 
 }
      include("inc/footer.php"); ?>
+
+<style>
+  .services-details__content p{
+    text-align: justify;
+  }
+</style>
