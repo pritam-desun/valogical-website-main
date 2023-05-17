@@ -34,7 +34,7 @@ $site_info=fetchRow('site_info');
                             </div>
 
                             <ul class="list-style-two">
-                                <li><i class="fa fa-check-circle"></i> Refresing to get such a personal touch.</li>
+                                <li><i class="fa fa-check-circle"></i> Refreshing to get such a personal touch.</li>
                                 <li><i class="fa fa-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate.</li>
                                 <li><i class="fa fa-check-circle"></i> Velit esse cillum dolore eu fugiat nulla pariatur.</li>
                             </ul>

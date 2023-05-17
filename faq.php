@@ -11,7 +11,7 @@ require_once("inc/header.php");
 					<ul class="page-breadcrumb">
 						<li><a href="index.html">Home</a></li>
 						<i class="fa fa-angle-right"></i>
-						<li>FAQ</li>
+						<li>Faq</li>
 					</ul>
 				</div>
 			</div>

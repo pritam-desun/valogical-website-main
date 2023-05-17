@@ -36,8 +36,8 @@ require_once("inc/header.php");
 					</div>
 					<div class="row" id="pricing">
 						<div class="inner-b a">
-							<h5>Ready to<br> tack an<br> Exclusive TRIAL?</h5>
-							<a href="#">START HEAR</a>
+							<h5>Ready to<br> track an<br> Exclusive TRIAL?</h5>
+							<a href="#">START HERE</a>
 						</div>
 						<div class="inner-box-a b">
 							<h6>VA 10 HOURS</h5>

@@ -15,17 +15,6 @@ if (isset($_POST['update'])) {
   $currency_symbol = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
   $currency_symbol = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
 
-  //print_r($image);
-  $err = [];
-  if ($country == "") {
-    $err["country"] = "Please enter title  ";
-  }
-  if ($currency_code == "") {
-    $err["currency_code"] = "Please enter currency code";
-  }
-  if ($currency_symbol == "") {
-    $err["currency_symbol"] = "Please enter the currency symbol  ";
-  }
 
   if (empty($err)) {
     $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
@@ -118,6 +107,24 @@ if (isset($_POST['update'])) {
             <div class="form-group ">
               <label for="formFileLg" class="form-label">Number of Client:</label>
               <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_client']) ? $row['number_of_client'] : ""; ?>" name="number_of_client" placeholder="Enter the Number of Client">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <div class="form-group ">
+              <label for="formFileLg" class="form-label">Number of Jobs:</label>
+              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_jobs']) ? $row['number_of_jobs'] : ""; ?>" name="number_of_jobs" placeholder="Enter the Number of Jobs">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <div class="form-group ">
+              <label for="formFileLg" class="form-label">Number of Workers:</label>
+              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_workers']) ? $row['number_of_workers'] : ""; ?>" name="number_of_workers" placeholder="Enter the Number of Workers">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <div class="form-group ">
+              <label for="formFileLg" class="form-label">Number of Contributors:</label>
+              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_contributors']) ? $row['number_of_contributors'] : ""; ?>" name="number_of_contributors" placeholder="Enter the Number of contributors">
             </div>
           </div>
       </div>
