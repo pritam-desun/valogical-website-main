@@ -43,7 +43,7 @@ require_once("inc/header.php");
 							<span>
 								<div class="sBoxBlack">
 									<!-- <i class="icon flaticon-color-sample"></i> -->
-									<img src="<?= url('admin/') . $rows['icon'] ?> " alt="">
+									<img src="<?= 'admin/' . $rows['icon'] ?> " alt="">
 								</div>
 								<h3><?php echo $rows['short_desp'] ?></h3>
 							</span>
