@@ -3,8 +3,6 @@ require_once("config.php");
 require_once("inc/header.php");
 include_once "framework/main.php";
 if (isset($_POST['submit'])) {
-
-
 	$name = isset($_POST["name"]) ? $_POST["name"] : "";
 	$email = isset($_POST["email"]) ? $_POST["email"] : "";
 	$subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
