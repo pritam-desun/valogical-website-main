@@ -3188,7 +3188,7 @@ Sticky Header
 }
 
 .sticky-header .logo img {
-    max-height: 40px;
+    /* max-height: 40px; */
 }
 
 .sticky-header .nav-outer {

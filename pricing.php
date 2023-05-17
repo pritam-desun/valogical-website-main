@@ -1,5 +1,6 @@
 <?php 
-require_once("inc/header.php"); 
+require_once("config.php") ;
+require_once("inc/header.php");
       ?>
 		<!-- Start main-content -->
 		<section class="page-title" style="background-image: url(images/main-slider/3.jpg);">

@@ -61,7 +61,7 @@ if(isset($_GET['id'])){
                   </div>
                   <div class="help-contact">
                     <p>Need help? Talk to an expert</p>
-                    <a href="tel:12463330079">+892 ( 123 ) 112 - 9999</a>
+                    <a href="tel:<?= $site_info_header['phone'] ?>">+<?= $site_info_header['phone'] ?></a>
                   </div>
                 </div>
 

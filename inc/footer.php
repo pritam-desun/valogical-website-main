@@ -72,9 +72,9 @@
           <div class="footer-widget contacts-widget">
             <h6 class="widget-title">Contact</h6>
             <ul class="contact-info">
-              <li><i class="fa fa-envelope"></i> <a href="mailto:info@taskenhancer.com">info@taskenhancer.com</a><br>
+              <li><i class="fa fa-envelope"></i> <a href="mailto:<?= $site_info_header['email'] ?>"><?= $site_info_header['email'] ?></a><br>
               </li>
-              <li><i class="fa fa-phone-square"></i> <a href="tel:+13478096802">+1-347-809-6802</a><br></li>
+              <li><i class="fa fa-phone-square"></i> <a href="tel:<?= $site_info_header['phone'] ?>">+<?= $site_info_header['phone'] ?></a><br></li>
             </ul>
           </div>
         </div>
@@ -101,7 +101,7 @@
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 
 <div class="integration">
-  <a target="_blank" href="https://web.whatsapp.com/send?phone=918777846136">
+  <a target="_blank" href="https://web.whatsapp.com/send?phone=<?= $site_info_header['whatsapp'] ?>">
     <div class="whatsapp-message">
       <img class="whatsapp-image" src="images/chaticon.svg">
     </div>
