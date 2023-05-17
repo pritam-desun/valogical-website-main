@@ -9,6 +9,9 @@ function textShorten($text, $limit = 50){
 	$text = $text." ";
 	return $text;
  }
+ include_once "framework/main.php";
+ $site_info=fetchRow('site_info');
+
 ?>
 <!-- Banner Section -->
 <section class="banner-section">
@@ -78,7 +81,7 @@ function textShorten($text, $limit = 50){
             <div class="counter-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="inner">
                     <i class="icon flaticon-campaign"></i>
-                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="180">0</span>+</div>
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="<?= $site_info['number_of_client'] ?>">0</span>+</div>
                     <h6 class="counter-title">Client</h6>
                 </div>
             </div>
@@ -86,7 +89,7 @@ function textShorten($text, $limit = 50){
             <div class="counter-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
                 <div class="inner">
                     <i class="icon flaticon-reputation"></i>
-                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="380">0</span>+</div>
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="<?= $site_info['number_of_jobs'] ?>">0</span>+</div>
                     <h6 class="counter-title">Jobs</h6>
                 </div>
             </div>
@@ -94,7 +97,7 @@ function textShorten($text, $limit = 50){
             <div class="counter-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms">
                 <div class="inner">
                     <i class="icon flaticon-coffee"></i>
-                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="60">0</span>+</div>
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="<?= $site_info['number_of_workers'] ?>">0</span>+</div>
                     <h6 class="counter-title">Workers</h6>
                 </div>
             </div>
@@ -102,7 +105,7 @@ function textShorten($text, $limit = 50){
             <div class="counter-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="900ms">
                 <div class="inner">
                     <i class="icon flaticon-social-campaign"></i>
-                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="70">0</span>+</div>
+                    <div class="count-box"><span class="count-text" data-speed="3000" data-stop="<?= $site_info['number_of_contrubutors'] ?>">0</span>+</div>
                     <h6 class="counter-title">Contrubutors</h6>
                 </div>
             </div>

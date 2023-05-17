@@ -158,42 +158,6 @@ if (isset($_POST['update'])) {
       </div>
     </div>
   </div>
-
- 
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#short_desp'))
-      .then(short_desp => {
-        console.log(short_desp);
-        short_desp.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              short_desp.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#long_desp'))
-      .then(long_desp => {
-        console.log(long_desp);
-        long_desp.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              long_desp.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
 <?php
 include("include/footer.php") 
 ?>

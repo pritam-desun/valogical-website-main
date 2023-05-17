@@ -1,6 +1,8 @@
 <?php
 require_once("config.php");
 require_once("inc/header.php");
+include_once "framework/main.php";
+$site_info=fetchRow('site_info');
 
 ?>
 
@@ -40,7 +42,7 @@ require_once("inc/header.php");
                             <div class="btn-box">
                                 <a href="tel:+13478096802" class="info-btn">
                                     <i class="icon fa fa-phone"></i>
-                                    <small>Call Anytime</small> +1-347-809-6802
+                                    <small>Call Anytime</small> <?= $site_info['phone'] ?>
                                 </a>
                                 <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
                             </div>
