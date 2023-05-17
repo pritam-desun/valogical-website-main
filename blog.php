@@ -45,7 +45,7 @@ function textShorten($text, $limit = 50){
 						<div class="inner-box">
 							
 							<div class="image-box">
-								<figure class="image"><a href="blog_details.php?id=<?php echo $rows['blog_id'];?>"><img src="admin/<?php echo $rows['feature_img']?>" alt=""></a>
+								<figure class="image"><a href="blog_details.php?id=<?php echo $rows['slug'];?>"><img src="admin/<?php echo $rows['feature_img']?>" alt=""></a>
 								</figure>
 							</div>
 							<div class="content-box">

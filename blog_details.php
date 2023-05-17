@@ -12,11 +12,11 @@ if(isset($_GET['id'])){
     <section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
       <div class="auto-container">
         <div class="title-outer">
-          <h1 class="title"> <?php print_r($row['title']); ?></h1>
+          <h1 class="text-white"> <?= $row['title'] ?></h1>
           <ul class="page-breadcrumb">
             <li><a href="index.html">Home</a></li>
             <i class="fa fa-angle-right"></i>
-            <li>Services</li>
+            <li>Blog </li>
           </ul>
         </div>
       </div>
