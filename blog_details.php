@@ -68,8 +68,8 @@ if(isset($_GET['id'])){
                 <!--Start Services Details Sidebar Single-->
                 <div class="sidebar-widget service-sidebar-single mt-4">
                   <div class="service-sidebar-single-btn wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1200m">
-                    <a href="#" class="theme-btn btn-style-one d-grid"><span class="btn-title"><span
-                          class="fa-thin fa-message-lines"></span>Chat Now</span></a>
+                    <a href="https://web.whatsapp.com/send?phone=<?= $site_info_header['whatsapp'] ?>" class="theme-btn btn-style-one d-grid"><span class="btn-title"><span
+                          class=" fa-thin fa-message-lines"></span>Chat Now</span></a>
                   </div>
                 </div>
               </div>
@@ -94,3 +94,8 @@ if(isset($_GET['id'])){
  <?php 
 }
      include("inc/footer.php"); ?>
+<style>
+  .services-details__content p{
+    text-align: justify;
+  }
+</style>

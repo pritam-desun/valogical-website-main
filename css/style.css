@@ -14749,3 +14749,6 @@ Sidebar
 .footer-bottom .copyright-text a:hover {
     color: #ffffff;
 }
+.text-justify p{
+    text-align: justify !important;
+}
