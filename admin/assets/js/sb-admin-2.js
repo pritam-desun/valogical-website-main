@@ -33,7 +33,6 @@
       e.preventDefault();
     }
   });
-
   // Scroll to top button appear
   $(document).on('scroll', function() {
     var scrollDistance = $(this).scrollTop();
