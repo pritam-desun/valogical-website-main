@@ -28,20 +28,22 @@ require_once("inc/header.php");
 					</div>
 				</div>-->
 		<div class="row gx-5">
-			<?php $id = 0;
+			<?php
 			$sql = "SELECT * FROM `services`";
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_num_rows($result);
 			// print_r($row);
 			while ($rows = mysqli_fetch_assoc($result)) {
-				$id = $id + 1;
+
+
 			?>
 				<div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
 					<aside class="aside">
 						<a class='normal' href='service_details.php?id=<?php echo $rows['service_id']; ?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>
 							<span>
 								<div class="sBoxBlack">
-									<i class="icon flaticon-color-sample"></i>
+									<!-- <i class="icon flaticon-color-sample"></i> -->
+									<img src="<?= url('admin/') . $rows['icon'] ?> " alt="">
 								</div>
 								<h3><?php echo $rows['short_desp'] ?></h3>
 							</span>
