@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+$site_info_header = fetchRow('site_info');
+?>
 <head>
     <meta charset="utf-8">
     <title>Taskenhance :: Blog </title>
     <!-- Stylesheets -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/style.css?q=<?=time()?>" rel="stylesheet">
+    <link href="css/style.css?q=<?= time() ?>" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -17,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width", initial-scale="1.0", maximum-scale="1.0", user-scalable="0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-   
+
 </head>
 
 <body>
@@ -35,7 +37,7 @@
                     <div class="top-left">
                         <!-- Info List -->
                         <ul class="list-style-one">
-                        <?php if ($site_info_header['email'] != '') { ?>
+                            <?php if ($site_info_header['email'] != '') { ?>
                                 <li><a href="mailto:<?= $site_info_header['email'] ?>"><i class="fa fa-envelope"></i> <?= $site_info_header['email'] ?></a></li>
                             <?php } ?>
                             <?php if ($site_info_header['phone'] != '') { ?>
@@ -49,7 +51,7 @@
 
                     <div class="top-right">
                         <ul class="social-icon-one">
-                        <?php if ($site_info_header['facebook_link'] != '') { ?>
+                            <?php if ($site_info_header['facebook_link'] != '') { ?>
                                 <li><a href="<?= $site_info_header['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a></li>
                             <?php } ?>
                             <?php if ($site_info_header['twitter_link'] != '') { ?>
