@@ -215,10 +215,7 @@ function textShorten($text, $limit = 50){
         <?php } ?>
     </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+
 </section>
 <!-- End Testimonial Section Two -->
 <?php include("inc/footer.php"); ?>

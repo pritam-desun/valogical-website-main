@@ -10,11 +10,20 @@
             <div class="logo">
               <a href="index.php"><img src="images/logo-3.png" alt=""></a>
             </div>
-            <div class="text">Our Mission is to Enhance the Value Of Time For Individuals And Organizations All Across The Globe. The story of the begining and dedication behind the formation of the company.</div>
+            <div class="text"><?= $site_info_header['footer_description'] ?></div>
             <ul class="social-icon-two">
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+              <?php if ($site_info_header['facebook_link'] != '') { ?>
+                <li><a href="<?= $site_info_header['facebook_link'] ?>"><i class="fab fa-facebook-f"></i></a></li>
+              <?php } ?>
+              <?php if ($site_info_header['twitter_link'] != '') { ?>
+                <li><a href="<?= $site_info_header['twitter_link'] ?>"><i class="fab fa-twitter"></i></a></li>
+              <?php } ?>
+              <?php if ($site_info_header['youtube_link'] != '') { ?>
+                <li><a href="<?= $site_info_header['youtube_link'] ?>"><i class="fab fa-youtube"></i></a></li>
+              <?php } ?>
+              <?php if ($site_info_header['instagram_link'] != '') { ?>
+                <li><a href="<?= $site_info_header['instagram_link'] ?>"><i class="fab fa-instagram"></i></a></li>
+              <?php } ?>
             </ul>
           </div>
         </div>
@@ -36,24 +45,24 @@
         <!--Footer Column-->
         <div class="footer-column col-xl-3 col-lg-4 col-md-4 col-sm-8">
           <div class="footer-widget gallery-widget">
-           <?php $id = 0;
-                $sql = "SELECT * FROM `portfolio`";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_num_rows($result);
-                // print_r($row);
-             if (!$row == 0){ ?>
-            <h6 class="widget-title">Portfolio</h6>
-            <div class="widget-content">
-              <div class="outer clearfix">
-             <?php   
-              while ($rows = mysqli_fetch_assoc($result)) {
-                        $id = $id + 1;?>
-                <figure class="image">
-                  <a href="<?php echo $rows['url_text'] ?>"><img src="admin/<?php echo $rows['image']?>" width="30px" height="50px" alt="" ></a>
-                </figure>
-             <?php } ?>
+            <?php $id = 0;
+            $sql = "SELECT * FROM `portfolio`";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_num_rows($result);
+            // print_r($row);
+            if (!$row == 0) { ?>
+              <h6 class="widget-title">Portfolio</h6>
+              <div class="widget-content">
+                <div class="outer clearfix">
+                  <?php
+                  while ($rows = mysqli_fetch_assoc($result)) {
+                    $id = $id + 1; ?>
+                    <figure class="image">
+                      <a href="<?php echo $rows['url_text'] ?>"><img src="admin/<?php echo $rows['image'] ?>" width="30px" height="50px" alt=""></a>
+                    </figure>
+                  <?php } ?>
+                </div>
               </div>
-            </div>
             <?php } ?>
           </div>
         </div>
@@ -91,7 +100,7 @@
 <!-- Scroll To Top -->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 
-  <div class="integration">
+<div class="integration">
   <a target="_blank" href="https://web.whatsapp.com/send?phone=918777846136">
     <div class="whatsapp-message">
       <img class="whatsapp-image" src="images/chaticon.svg">
