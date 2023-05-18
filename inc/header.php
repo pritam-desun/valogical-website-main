@@ -43,10 +43,10 @@ $site_info_header = fetchRow('site_info');
                                 <li><a href="mailto:<?= $site_info_header['email'] ?>"><i class="fa fa-envelope"></i> <?= $site_info_header['email'] ?></a></li>
                             <?php } ?>
                             <?php if ($site_info_header['phone'] != '') { ?>
-                                <li><a href="#"><i class="fa fa-phone"></i> +<?= $site_info_header['phone'] ?></a></li>
+                                <li><a href="tel:<?= $site_info_header['phone'] ?>"><i class="fa fa-phone"></i> +<?= $site_info_header['phone'] ?></a></li>
                             <?php } ?>
                             <?php if ($site_info_header['skype'] != '') { ?>
-                                <li><a href="#"><i class="fab fa-skype"></i> <?= $site_info_header['skype'] ?></a></li>
+                                <li><a href="<?= $site_info_header['skype'] ?>"><i class="fab fa-skype"></i> <?= $site_info_header['skype'] ?></a></li>
                             <?php } ?>
 
                         </ul>
@@ -66,9 +66,6 @@ $site_info_header = fetchRow('site_info');
                             <?php if ($site_info_header['instagram_link'] != '') { ?>
                                 <li><a href="<?= $site_info_header['instagram_link'] ?>"><i class="fab fa-instagram"></i></a></li>
                             <?php } ?>
-
-
-
                         </ul>
                     </div>
                 </div>

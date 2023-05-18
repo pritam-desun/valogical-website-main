@@ -138,7 +138,7 @@ function textShorten($text, $limit = 50){
                 <a class='normal' href=''>
                     <span>
                         <div class="sBoxBlack">
-                            <i class="icon flaticon-color-sample"></i>
+                        <img src="<?= 'admin/' . $rows['icon'] ?> " alt="">
                         </div>
                         <h3><?php echo $rows['short_desp'] ?></h3>
                     </span>
