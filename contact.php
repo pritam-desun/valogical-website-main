@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 	if ($subject == "") {
 		$err["subject"] = "Please enter a subject";
 	}
-	if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+	if (!preg_match("/^[a-zA-Z-' ]*$/", $subject)) {
 		$err['subject'] = "Only letters and white space allowed";
 	}
 	if ($phone == "") {

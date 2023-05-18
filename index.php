@@ -68,7 +68,7 @@ function textShorten($text, $limit = 50){
 <section class="fun-fact-section pt-0" style="background-image: url(images/background/1.png)">
 <div class="auto-container">
     <div class="upper-box">
-        <span class="title">Happy cutomers</span>
+        <span class="title">Happy customers</span>
         <div class="number-outer">
             <div class="numbers" style="background-image: url(images/resource/image-1.jpg)">86900+</div>
         </div>
@@ -104,7 +104,7 @@ function textShorten($text, $limit = 50){
                 <div class="inner">
                     <i class="icon flaticon-social-campaign"></i>
                     <div class="count-box"><span class="count-text" data-speed="3000" data-stop="<?= $site_info['number_of_contrubutors'] ?>">0</span>+</div>
-                    <h6 class="counter-title">Contrubutors</h6>
+                    <h6 class="counter-title">Contributors</h6>
                 </div>
             </div>
         </div>
