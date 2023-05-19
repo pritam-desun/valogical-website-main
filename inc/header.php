@@ -1,5 +1,6 @@
 <?php
 $site_info_header = fetchRow('site_info');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,8 +89,7 @@ $site_info_header = fetchRow('site_info');
                             <nav class="nav main-menu">
                                 <ul class="navigation">
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.php">About us</a></li>
-                                    <li><a href="services.php">Services</a></li>
+                                    <li><a class=" " href="about.php">About us</a></li>                                    <li><a href="services.php">Services</a></li>
                                     <!--<li class="dropdown"><a href="#">Project</a>
 										<ul>
 											<li><a href="pricing1.html">Web Design and Development</a></li>
