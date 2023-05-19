@@ -50,6 +50,9 @@ if(isset($_GET['id'])){
                   <div class="service-sidebar-single-btn wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1200m">
                     <a href="https://web.whatsapp.com/send?phone=<?= $site_info_header['whatsapp'] ?>" class="theme-btn btn-style-one d-grid"><span class="btn-title"><span
                           class="fa-thin fa-message-lines"></span>Chat Now</span></a>
+                        <hr>
+                          <a href="services.php" class="theme-btn btn-style-two d-grid"><span class="btn-title"><span
+                          class=""></span>Go  Previous</span></a>
                   </div>
                 </div>
               </div>

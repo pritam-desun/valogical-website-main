@@ -44,7 +44,7 @@ $site_info=fetchRow('site_info');
                                     <i class="icon fa fa-phone"></i>
                                     <small>Call Anytime</small> <?= $site_info['phone'] ?>
                                 </a>
-                                <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
+                                <a href="services.php" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
                             </div>
                         </div>
                     </div>

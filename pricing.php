@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
 require_once("inc/header.php");
-$pricing = fetchResult('master');
+$pricing = fetchResult('master','1 order by country asc');
 ?>
 <!-- Start main-content -->
 <section class="page-title" style="background-image: url(images/main-slider/3.jpg);">
@@ -40,32 +40,32 @@ $pricing = fetchResult('master');
 		<div class="row" id="pricing">
 			<div class="inner-b a">
 				<h5>Ready to<br> track an<br> Exclusive TRIAL?</h5>
-				<a href="https://ehostingguru.com/stage/valogical/client/">START HERE</a>
+				<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">START HERE</a>
 			</div>
 			<div class="inner-box-a b">
 				<h6>VA 10 HOURS</h5>
 					<P>USD 140/30 days</P>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 			</div>
 			<div class="inner-box-a c">
 				<h6>VA 10 HOURS</h5>
 					<P>USD 140/30 days</P>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 			</div>
 			<div class="inner-box-a d">
 				<h6>VA 10 HOURS</h5>
 					<P>USD 140/30 days</P>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 			</div>
 			<div class="inner-box-a e">
 				<h6>VA 10 HOURS</h5>
 					<P>USD 140/30 days</P>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 			</div>
 			<div class="inner-box-a f">
 				<h6>VA 10 HOURS</h5>
 					<P>USD 140/30 days</P>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 			</div>
 		</div>
 		<div class="row gx-3 gy-3">
@@ -74,14 +74,14 @@ $pricing = fetchResult('master');
 				<div class="box">
 					<h6>FULL-TIME VIRTUAL EMPLOYEE</h6>
 					<p>USD 1200 per month, 5 days a week for any business hours</p>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-5">
 				<div class="box">
 					<h6>PAY AS YOU GO</h6>
 					<p>USD 18 per hour for unlimited validity</p>
-					<a href="https://ehostingguru.com/stage/valogical/client/">SIGN UP</a>
+					<a href="https://ehostingguru.com/stage/valogical/client/" target="_blank">SIGN UP</a>
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-1"></div>

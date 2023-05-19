@@ -135,7 +135,7 @@ function textShorten($text, $limit = 50){
         ?>
         <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
             <aside class="aside">
-                <a class='normal' href=''>
+                <a class='normal' href='service_details.php?id=<?php echo $rows['service_id']; ?>&p_name=<?php echo urlencode($rows['short_desp']) ?>'>
                     <span>
                         <div class="sBoxBlack">
                         <img src="<?= 'admin/' . $rows['icon'] ?> " alt="">
