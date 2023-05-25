@@ -61,3 +61,7 @@ require_once("inc/header.php");
 </section>
 <!--End Services Details-->
 <?php include("inc/footer.php"); ?>
+
+<script>
+    document.title= "Taskenhancer :: service";
+</script>

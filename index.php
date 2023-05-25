@@ -218,3 +218,7 @@ function textShorten($text, $limit = 50){
 </section>
 <!-- End Testimonial Section Two -->
 <?php include("inc/footer.php"); ?>
+
+<script>
+    document.title= "Taskenhancer :: Home";
+</script>

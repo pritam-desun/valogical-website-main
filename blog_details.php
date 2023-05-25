@@ -99,3 +99,7 @@ if(isset($_GET['id'])){
     text-align: justify;
   }
 </style>
+
+<script>
+    document.title= "Taskenhancer :: Blog Details";
+</script>

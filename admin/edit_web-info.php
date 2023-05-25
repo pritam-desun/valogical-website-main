@@ -1,4 +1,5 @@
 <?php include("include/master.php");
+include "../framework/main.php";
 // print_r($_SESSION['id']);
 $sql = "SELECT * FROM `site_info`";
 $result = mysqli_query($conn, $sql);
@@ -16,16 +17,18 @@ if (isset($_POST['update'])) {
   $currency_symbol = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
 
   if (empty($err)) {
-    $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
+     $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
     $result = mysqli_query($conn, $query);
 
     // die;
-    if ($result) {
-      // $err['add'] = 'Form Submit Successfully';
-      header("location:view_master.php?add=Form Submit Successfully");
-    } else {
-      $err['add'] = ' Not Worked please check Your code ';
-    }
+    // if ($result) {
+    //   // $err['add'] = 'Form Submit Successfully';
+    //   // header("location:view_master.php?add=");
+    //   redirect('amdin/view_master.php');
+    //   $_GET['add']="Form Submit Successfully";
+    // } else {
+    //   $err['add'] = ' Not Worked please check Your code ';
+    // }
   }
 }
 ?>
@@ -135,20 +138,6 @@ if (isset($_POST['update'])) {
   </div>
 </div>
 
-</div>
-
-</div>
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -177,3 +166,7 @@ if (isset($_POST['update'])) {
 <?php
 include("include/footer.php")
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Edit Web Information";
+</script>

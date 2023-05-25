@@ -71,3 +71,6 @@ function textShorten($text, $limit = 50){
 
 		<!-- Main Footer -->
 		<?php include("inc/footer.php"); ?>
+		<script>
+    document.title= "Taskenhancer :: Blog";
+</script>

@@ -113,3 +113,6 @@ if (@$_GET['type'] == 'delete') {
       return confirm('Are you sure?');
     }
   </script>
+<script>
+    document.title= "Taskenhancer :: View Services";
+</script>

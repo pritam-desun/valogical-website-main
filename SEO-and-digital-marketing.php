@@ -84,3 +84,6 @@ require_once("inc/header.php");
 
     <?php include("inc/footer.php"); ?>
 
+    <script>
+    document.title= "Taskenhancer :: SEO-and-digital-marketing";
+</script>

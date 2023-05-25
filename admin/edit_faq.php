@@ -135,3 +135,7 @@ $answ = [];
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Edit FAQ";
+</script>

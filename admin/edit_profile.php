@@ -41,7 +41,7 @@ if (isset($_POST['update'])) {
     // die();
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      header("location:profile.php?update=Profile Update successfully");
+      header("location: profile.php?update=Profile Update successfully");
     } else {
       $err['messsage'] = 'Registration Not Worked please check Your code ';
     }
@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Upadte Profile </h1>
+          <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Update Profile </h1>
           <?php if (isset($err['message'])) { ?>
             <div class="alert alert-success"><?= $err['message']; ?></div>
           <?php } ?>
@@ -69,19 +69,19 @@ if (isset($_POST['update'])) {
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                           <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name:</label>
-                          <input type="name" name="name" value="<?= isset($_SESSION['user_name']) ? $_SESSION['user_name'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <input type="name" name="name" value="<?= isset($_SESSION['user_name']) ? $_SESSION['user_name'] : ""; ?>" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
                           <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Email:</label>
-                          <input type="email" name="email" value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <input type="email" name="email" value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : ""; ?>" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
                           <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Profile Image Upload:</label>
-                          <input type="file" name="image" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          <input type="file" name="image" value="" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
                           <?php if (isset($_SESSION['user_image'])) { ?>
-                            <?php print_r($_SESSION['user_image']); ?>
+                            
                           <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
@@ -135,3 +135,7 @@ if (isset($_POST['update'])) {
   <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Edit Profile";
+</script>

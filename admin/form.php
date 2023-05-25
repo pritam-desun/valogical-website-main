@@ -9,17 +9,27 @@ if (isset($_POST['submit'])) {
   $status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
   //print_r($status);
   $err = [];
+  $errMsg = [];
+  if(empty($_POST)){
+    $errMsg['valid'] = "Please Enter data in the from..";
+  }
   if ($people_name == "") {
-    $err["people_name"] = "Please enter people_name  ";
+    $err["people_name"] = "Please Enter Name  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $people_name)) {
+		$err['people_name'] = "Only letters, numeric and white space allowed";
+	}
   if ($people_designation == "") {
-    $err["people_designation"] = "Please enter people_designation  ";
+    $err["people_designation"] = "Please Enter Designation  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $people_designation)) {
+		$err['people_designation'] = "Only letters, numeric and white space allowed";
+	}
   if ($content == "") {
-    $err["content"] = "Please enter content  ";
+    $err["content"] = "Please Enter Content  ";
   }
   if ($status == "") {
-    $err["status"] = "Please enter status  ";
+    $err["status"] = "Please Enter Status  ";
   }
   if (empty($err)) {
     $query = "INSERT INTO `testimonials`(`people_name`, `people_designation`, `content`,`rating`,`status`) VALUES ('" . $people_name . "','" . $people_designation . "','" . $content . "','" . $rating . "','" . $status . "')";
@@ -27,7 +37,7 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      //$err['register'] = 'New Data Added successfully';
+      $err['register'] = 'New Data Added successfully';
       header("location:testimonials.php?add=New Data Added successfully");
     } else {
       $err['register'] = 'Not Worked please check Your code ';
@@ -111,6 +121,7 @@ if (isset($_POST['submit'])) {
     </div>
     <!-- End of Content Wrapper -->
 
+
   </div>
   <!-- End of Page Wrapper -->
 
@@ -158,3 +169,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Add Testimonials";
+</script>

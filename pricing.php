@@ -9,7 +9,7 @@ $pricing = fetchResult('master','1 order by country asc');
 		<div class="title-outer">
 			<h1 class="title">Pricing</h1>
 			<ul class="page-breadcrumb">
-				<li><a href="index.html">Home</a></li>
+				<li><a href="index.php">Home</a></li>
 				<i class="fa fa-angle-right"></i>
 				<li>Pricing</li>
 			</ul>
@@ -91,7 +91,7 @@ $pricing = fetchResult('master','1 order by country asc');
 <section class="logo">
 	<div class="container">
 		<div class="row">
-			<p>Like to discuss your requirements before signing up? <a href="tel:91+3478096802" class="ancor">Call</a>, <a href="mailto:info@taskenhancer.com" class="ancor">Email</a> or <a target="_blank" href="https://web.whatsapp.com/send?phone=918777846136" class="ancor">Chat</a> with us right away!</p>
+			<p>Like to discuss your requirements before signing up? <a href="tel:<?= $site_info_header['phone'] ?>" class="ancor">Call</a>,<a href="mail to:<?= $site_info_header['email'] ?>" class="ancor">Email</a> or <a target="_blank" href="https://web.whatsapp.com/send?phone=<?= $site_info_header['whatsapp'] ?>" class="text-danger">Chat</a> with us right away!</p>
 		</div>
 		<div class="row limg">
 			<div class="col-sm-2 col-0"></div>
@@ -113,3 +113,7 @@ $pricing = fetchResult('master','1 order by country asc');
 <?php
 include_once "framework/ajax/method.php";
 include("inc/footer.php"); ?>
+
+<script>
+    document.title= "Taskenhancer :: Pricing";
+</script>

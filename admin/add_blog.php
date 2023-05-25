@@ -217,3 +217,6 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php") 
 ?>
+<script>
+    document.title= "Taskenhancer :: Add Blog";
+</script>

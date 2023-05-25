@@ -130,3 +130,7 @@ $site_info=fetchRow('site_info');
         <!-- End Features Section -->
 <?php include("inc/footer.php"); ?>
 </div>
+
+<script>
+    document.title= "Taskenhancer :: About";
+</script>

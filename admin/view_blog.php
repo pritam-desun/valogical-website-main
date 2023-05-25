@@ -123,3 +123,7 @@ if (@$_GET['type'] == 'delete') {
 </body>
 
 </html>
+
+<script>
+    document.title= "Taskenhancer :: View Blog";
+</script>

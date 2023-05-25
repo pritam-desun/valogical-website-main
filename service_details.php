@@ -83,3 +83,7 @@ if(isset($_GET['id'])){
     text-align: justify;
   }
 </style>
+
+<script>
+    document.title= "Taskenhancer :: service_details";
+</script>

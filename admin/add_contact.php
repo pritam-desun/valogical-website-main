@@ -10,19 +10,31 @@ if (isset($_POST['submit'])) {
   //print_r($status);
   $err = [];
   if ($name == "") {
-    $err["name"] = "Please enter people_name  ";
+    $err["name"] = "Please Enter Name  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $name)) {
+		$err['name'] = "Only letters, numeric and white space allowed";
+	}
   if ($email == "") {
-    $err["email"] = "Please enter email  ";
+    $err["email"] = "Please Enter Email  ";
   }
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$err['email'] = "Invalid email format";
+	}
   if ($subject == "") {
-    $err["subject"] = "Please enter subject  ";
+    $err["subject"] = "Please Enter Subject  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $subject)) {
+		$err['subject'] = "Only letters, numeric and white space allowed";
+	}
   if ($phone == "") {
-    $err["phone"] = "Please enter phone  ";
+    $err["phone"] = "Please Enter Phone Number  ";
   }
+  if (!preg_match('/^[0-9]{10}+$/', $phone)) {
+		$err["phone"] = "Invalid Phone Number";
+	}
   if ($message == "") {
-    $err["message"] = "Please enter messages  ";
+    $err["message"] = "Please Enter a messages  ";
   }
   if (empty($err)) {
     $query = "INSERT INTO `contact`(`name`, `email`, `subject`,`phone`,`message`) VALUES ('" . $name . "','" . $email  . "','" . $subject  . "','" . $phone  . "','" . $message  . "')";
@@ -30,7 +42,7 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      // $err['add'] = 'Form Submit Successfully';
+      $err['add'] = 'Form Submit Successfully';
       header("location:view_contact.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
@@ -152,3 +164,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Add Contact";
+</script>

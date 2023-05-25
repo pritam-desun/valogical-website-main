@@ -90,3 +90,7 @@ $_SESSION['user_name'] = $data['name'];
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Profile";
+</script>

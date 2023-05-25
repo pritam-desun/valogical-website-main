@@ -175,3 +175,7 @@ if (isset($_POST['submit'])) {
 </script>
 
 <?php include("inc/footer.php"); ?>
+
+<script>
+    document.title= "Taskenhancer :: Contact";
+</script>

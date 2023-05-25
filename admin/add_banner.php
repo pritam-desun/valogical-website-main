@@ -17,21 +17,36 @@ if (isset($_POST['submit'])) {
   if ($title == "") {
     $err["title"] = "Please enter title  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $title)) {
+		$err['title'] = "Only letters, numeric and white space allowed";
+	}
   if ($image == "") {
     $err["image"] = "Please enter image  ";
   }
   if ($btn_1_text == "") {
-    $err["btn_1_text"] = "Please enter btn_1_text  ";
+    $err["btn_1_text"] = "Please Enter 1st Button Name  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $btn_1_text)) {
+		$err['btn_1_text'] = "Only letters, numeric and white space allowed";
+	}
   if ($btn_1_url == "") {
-    $err["btn_1_url"] = "Please enter btn_1_url  ";
+    $err["btn_1_url"] = "Please Enter 1st Button URL ";
   }
+  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $btn_1_url)) {
+		$err['btn_1_url'] = "Invalid URL format";
+	}
   if ($btn_2_text == "") {
-    $err["btn_2_text"] = "Please enter btn_2_text  ";
+    $err["btn_2_text"] = "Please Enter 2nd Button Name  ";
   }
+  if (preg_match('/[^a-z_\-0-9]/i', $btn_1_text)) {
+		$err['btn_1_text'] = "Only letters, numeric and white space allowed";
+	}
   if ($btn_2_url == "") {
-    $err["btn_2_url"] = "Please enter btn_2_url  ";
+    $err["btn_2_url"] = "Please Enter 1st Button URL ";
   }
+  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $btn_2_url)) {
+		$err['btn_2_url'] = "Invalid URL format";
+	}
   if (empty($err)) {
     $query = "INSERT INTO `banner`(`title`, `image`, `btn_1_text`,`btn_1_url`,`btn_2_text`,`btn_2_url`) VALUES ('" . $title . "','" . $image  . "','" . $btn_1_text  . "','" . $btn_1_url  . "','" . $btn_2_text  . "','" . $btn_2_url  . "')";
     $result = mysqli_query($conn, $query);
@@ -39,7 +54,7 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      // $err['add'] = 'Form Submit Successfully';
+      $err['add'] = 'Form Submit Successfully';
       header("location:view_banner.php?add=Form Submit Successfully");
     } else {
       $err['add'] = '!Oops something went wrong. Please try again.';
@@ -149,3 +164,13 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Add Banner";
+</script>
+
+<style> 
+#formFileLg{
+  padding-bottom: 32px;
+}
+</style>

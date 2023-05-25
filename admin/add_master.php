@@ -13,9 +13,18 @@ if (isset($_POST['submit'])) {
   if ($country == "") {
     $err["country"] = "Please enter title  ";
   }
+  if (!preg_match("/^[a-zA-Z-']*$/", $name)) {
+		$err['country'] = "Only letters and white space allowed";
+	}
   if ($currency_code == "") {
     $err["currency_code"] = "Please enter currency code";
   }
+  if (!preg_match("/^[a-zA-Z-']*$/", $name)) {
+		$err['currency_code'] = "Only letters and white space allowed";
+	}
+  if (! preg_match("^[0-9*#+]+$", $input)){
+		$err['currency_code'] = "Only letters, numeric and white space allowed";
+	}
   if ($currency_symbol == "") {
     $err["currency_symbol"] = "Please enter the currency symbol  ";
   }
@@ -26,7 +35,7 @@ if (isset($_POST['submit'])) {
 
     // die;s
     if ($result) {
-      // $err['add'] = 'Form Submit Successfully';
+       $err['add'] = 'Form Submit Successfully';
       header("location:view_master.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
@@ -58,14 +67,17 @@ if (isset($_POST['submit'])) {
                         <div class="form-group ">
                           <label for="formFileLg" class="form-label">Country:</label>
                           <input type="text" class="form-control" name="country" placeholder="Enter the Country Name">
+                          <?php if (isset($err['country'])) { ?><div class="small alert-danger"><?= $err['country']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
                           <label for="formFileLg" class="form-label">Currency Code:</label>
-                          <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Name">
+                          <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Code">
+                          <?php if (isset($err['currency_code'])) { ?><div class="small alert-danger"><?= $err['currency_code']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
                           <label for="formFileLg" class="form-label">Currency Symbol:</label>
-                          <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Name">
+                          <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Symbol">
+                          <?php if (isset($err['currency_symbol'])) { ?><div class="small alert-danger"><?= $err['currency_symbol']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
@@ -117,3 +129,7 @@ if (isset($_POST['submit'])) {
   <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Add Master";
+</script>

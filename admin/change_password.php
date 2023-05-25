@@ -20,6 +20,8 @@ if (isset($_POST["submit"])) {
     if ($rowCount > 0) {
       header("Location:profile.php?message=Password change successfully!");
     }
+  }else{
+    $message = "Current Password is wrong!";
   }
 }
 
@@ -31,7 +33,7 @@ if (isset($_POST["submit"])) {
           <!-- Page Heading -->
           <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Change Password</h1>
           <?php if (isset($message)) { ?>
-            <div class=" alert alert-success"><?= $message; ?>
+            <div class=" alert alert-danger"><?= $message; ?>
             </div>
           <?php } ?>
           <!-- DataTales Example -->

@@ -81,3 +81,6 @@ require_once("inc/header.php");
 		
 
 
+		<script>
+    document.title= "Taskenhancer :: FAQ";
+</script>

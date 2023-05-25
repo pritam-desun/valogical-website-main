@@ -121,3 +121,7 @@ if (@$_GET['type'] == 'delete') {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Testimonials";
+</script>

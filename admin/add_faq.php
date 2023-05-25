@@ -6,10 +6,10 @@ if (isset($_POST['submit'])) {
   $err = [];
 
   if ($ques == "") {
-    $err["question"] = "Please enter Question  ";
+    $err["question"] = "Please Write Your Question  ";
   }
   if ($answ == "") {
-    $err["answer"] = "Please enter Answer  ";
+    $err["answer"] = "Please Write Your Answer  ";
   }
   if (empty($err)) {
     //die("here");
@@ -127,3 +127,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: Add FAQ";
+</script>

@@ -1,40 +1,42 @@
 <?php
-$hostname     = "localhost";
-$username     = "root";
-$password     = "";
-$databasename = "valogical_db";
-session_start();
-// Create connection 
-$conn = new mysqli($hostname, $username, $password, $databasename);
-// Check connection 
-if ($conn->connect_error) {
-    die("Unable to Connect database: " . $conn->connect_error);
-}
+include("include/config.php");
+$errMsg = '';
 if (isset($_POST['submit'])) {
-
-    $email = isset($_POST['email']) ? $_POST['email'] : "";
-    if (!empty($_POST['password'])) {
-        $password = md5($_POST['password']);
-        //print_r($password);
+    if ($_POST['email'] == "") {
+        $err['email'] = "Email is Required";
     }
-    $errMsg = '';
-    $query = "SELECT * FROM `users` WHERE `email` = '$email' and `password` = '$password' ";
-    $result = mysqli_query($conn, $query);
-    $data = mysqli_fetch_assoc($result);
-    $row = mysqli_num_rows($result);
-    if ($row > 0) {
-        $_SESSION['user_image'] = $data['image'];
-        $_SESSION['user_email'] = $data['email'];
-        $_SESSION['user_name'] = $data['name'];
-        $_SESSION['id'] = $data['user_id'];
-        $_SESSION['logged_in'] = 1;
-        header("Location: dashboard.php");
-    } else {
-        $errMsg = "Invalid username and password";
+    if ($_POST['password'] == "") {
+        $err['password'] = "Password is Required";
+    }
+    if (!empty($err['email']) && ($err['Password'])) {
+        $errMsg = "Email and Password is Required";
+    }
+    if (empty($err)) {
+        $password = md5($_POST['password']);
+        echo $query = "SELECT * FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '$password' ";
+    
+        $result = mysqli_query($conn,$query);     
+        $data = mysqli_fetch_assoc($result);
+        $row = mysqli_num_rows($result);
+        if ($row > 0) {
+            $_SESSION['admin']=$data;
+            $_SESSION['user_image'] = $data['image'];
+            $_SESSION['user_email'] = $data['email'];
+            $_SESSION['user_name'] = $data['name'];
+            $_SESSION['id'] = $data['user_id'];
+            $_SESSION['logged_in'] = 1;
+            header("Location: dashboard.php");
+        } else {
+            $errMsg = "Invalid username and password";
+        }
     }
 } else {
     $errMsg = '';
 }
+$_POST=[];
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +49,7 @@ if (isset($_POST['submit'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Taskenhancer : Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,7 +73,7 @@ if (isset($_POST['submit'])) {
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                            <div class="col-lg-6 d-lg-block bg-login-image">
 
                             </div>
                             <div class="col-lg-6">
@@ -85,27 +87,31 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <form class="user" action="" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input required type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <?php if (!empty($err['email'])) {
+                                            ?>
+                                                <small class="text-danger" role="alert">
+                                                    <?= $err['email'] ?>
+                                                </small>
+                                            <?php } ?>
                                         </div>
+
+
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
+                                            <input required type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
+                                            <?php if (!empty($err['password'])) {
+                                            ?>
+                                                <small class="text-danger" role="alert">
+                                                    <?= $err['password'] ?>
+                                                </small>
+                                            <?php }
+                                            ?>
                                         </div>
+
                                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="login">
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,3 +137,4 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
+<?php $err='' ?>

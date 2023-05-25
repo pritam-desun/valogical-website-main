@@ -122,3 +122,7 @@ if (@$_GET['type'] == 'delete') {
 <?php
 include("include/footer.php") 
 ?>
+
+<script>
+    document.title= "Taskenhancer :: View Contact";
+</script>

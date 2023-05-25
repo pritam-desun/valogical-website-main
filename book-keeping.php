@@ -83,3 +83,6 @@ require_once("inc/header.php");
     <!--End Services Details-->
 
     <?php include("inc/footer.php"); ?>
+    <script>
+    document.title= "Taskenhancer :: Book-keeping";
+</script>
