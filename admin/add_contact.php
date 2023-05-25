@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 		$err['name'] = "Only letters, numeric and white space allowed";
 	}
   if ($email == "") {
-    $err["email"] = "Please Enter Email  ";
+    $err["email"] = "Please Enter Email ID";
   }
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$err['email'] = "Invalid email format";
