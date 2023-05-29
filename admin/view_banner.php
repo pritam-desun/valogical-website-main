@@ -50,7 +50,7 @@ if (@$_GET['type'] == 'delete') {
                         <th>btn 1 url</th>
                         <th>btn 2 text</th>
                         <th>btn 2 url</th>
-                        <th>Action</th>
+                        <th colspan="2" class="ac-btn">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,8 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo $rows['btn_1_url'] ?></td>
                           <td><?php echo $rows['btn_2_text'] ?></td>
                           <td><?php echo $rows['btn_2_url'] ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_banner.php?id=<?php echo $rows['banner_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure ?')" href=" view_banner.php?id=<?php echo $rows['banner_id'] ?>&type=delete">Delete</a>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_banner.php?id=<?php echo $rows['banner_id'] ?>">Edit </a> </td>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure ?')" href=" view_banner.php?id=<?php echo $rows['banner_id'] ?>&type=delete">Delete</a> </td>
                           </td>
                         <?php } ?>
                         </tr>
@@ -129,3 +130,9 @@ include("include/footer.php")
 <script>
     document.title= "Taskenhancer :: View Banner";
 </script>
+
+<style>
+  .ac-btn{
+    width: 155px;
+  }
+</style>

@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
   $err = [];
 
   if ($country == "") {
-    $err["country"] = "Please enter Question  ";
+    $err["country"] = "Please enter your country  ";
   }
   if ($price == "") {
-    $err["price"] = "Please enter Answer  ";
+    $err["price"] = "Please enter your country price  ";
   }
   if (empty($err)) {
     //die("here");
@@ -57,12 +57,12 @@ if (isset($_POST['submit'])) {
                       <form class="user" action="" method="post">
                         <div class="form-group ">
                           <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Country:</label>
-                          <input type="name" name="country" value="<?= isset($row['country']) ? $row['country'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="........">
+                          <input type="name" name="country" value="<?= isset($row['country']) ? $row['country'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Country">
                           <?php if (isset($err['country'])) { ?><div class="small alert-danger"><?= $err['country']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Price:</label>
-                          <input type="price" name="price" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="........">
+                          <input type="price" name="price" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Price">
                           <?php if (isset($err['price'])) { ?><div class="small alert-danger"><?= $err['price']; ?></div> <?php } ?>
                         </div>
                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">

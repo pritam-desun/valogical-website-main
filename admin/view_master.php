@@ -1,13 +1,17 @@
 <?php include("include/master.php");
 if (@$_GET['type'] == 'delete') {
+  echo '<script type ="text/JavaScript">';  
+echo 'alert(" Do you want to delete this ?? ")';  
+echo '</script>'; 
   $id = isset($_GET['id']) ? $_GET['id'] : '';
   $err = [];
   $result1 = mysqli_query($conn, "DELETE FROM `master` WHERE `master_id` = $id");
   $row = mysqli_affected_rows($conn);
-  //print_r($row);
   if ($row > 0) {
     $err['message'] = "Record Deleted Successfully";
-    //header('Location:view_contact.php?type=true');
+    header('Location:view_master.php');
+
+    
   }
 }
 ?>
@@ -65,7 +69,7 @@ if (@$_GET['type'] == 'delete') {
                           <td><?php echo $rows['currency_code']   ?></td>
                           <td><?php echo $rows['currency_symbol'] ?></td>
                           <td><?php echo $added_on ?></td>
-                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="view_master.php?id=<?php echo $rows['master_id'] ?>&type=delete">Delete</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_price.php?id=<?php echo $rows['master_id'] ?>&type=price">Pricing</a>
+                          <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="edit_master.php?id=<?php echo $rows['master_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="view_master.php?id=<?php echo $rows['master_id']; ?>&type=delete">Delete</a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="add_price.php?id=<?php echo $rows['master_id'] ?>&type=price">Pricing</a>
                           </td>
                         <?php  } ?>
                     </tbody>

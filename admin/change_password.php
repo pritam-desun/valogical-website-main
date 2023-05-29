@@ -1,19 +1,35 @@
 <?php include("include/master.php");
 if (isset($_POST["submit"])) {
   $email = $_SESSION['user_email'];
-  $currentPassword = md5($_POST['current_password']);
-  $newPassword = md5($_POST['new_password']);
-  $confirmpassword = md5($_POST['confirm_password']);
-  if ($newPassword != $confirmpassword) {
-    $message = "New and Confirm password does not match!";
-  }
+  $current_password = $_POST['current_password'];
+  $new_password = $_POST['new_password'];
+  $confirm_password = $_POST['confirm_password'];
 
-  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$currentPassword'";
+  if ($current_password == "") {
+    $err=["current_password" => "Please Enter your Current Password!"];
+  }
+  if ($new_password == "") {
+    $err["new_password"] = "Please Enter New Password!";
+  }
+  if ($confirm_password == "") {
+    $err["confirm_password"] = "Please Confirm your New Password!";
+  }
+  if ($new_password != $confirm_password) {
+    $err["confirm_password"] = "New Password and Confirm Password does not match!";
+  }
+  if ($new_password == $current_password) {
+    $err["new_password"] = "New and Current Password does not match!";
+  }
+  $current_password = md5($_POST['current_password']);
+
+  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$current_password'";
   $result = mysqli_query($conn, $sql);
   $rowCount = mysqli_num_rows($result);
   //print_r($rowCount);
   if ($rowCount > 0) {
-    $sql = "UPDATE `users` set password = '$newPassword' WHERE `email` = '$email'";
+    $new_password = md5($_POST['new_password']);
+    $confirm_password = md5($_POST['confirm_password']);
+    $sql = "UPDATE `users` set password = '$new_password' WHERE `email` = '$email'";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_affected_rows($conn);
     print_r($rowCount);
@@ -21,7 +37,7 @@ if (isset($_POST["submit"])) {
       header("Location:profile.php?message=Password change successfully!");
     }
   }else{
-    $message = "Current Password is wrong!";
+    //$message = "Please Enter the bellow fields..!";
   }
 }
 

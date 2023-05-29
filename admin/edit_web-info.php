@@ -1,34 +1,36 @@
 <?php include("include/master.php");
 include "../framework/main.php";
-// print_r($_SESSION['id']);
 $sql = "SELECT * FROM `site_info`";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
 if (isset($_POST['update'])) {
 
-  $country = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-  $currency_code = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
-  $currency_symbol = isset($_POST["skype"]) ? trim($_POST["skype"]) : "";
-  $currency_symbol = isset($_POST["whatsapp"]) ? trim($_POST["whatsapp"]) : "";
-  $currency_symbol = isset($_POST["youtube_link"]) ? trim($_POST["youtube_link"]) : "";
-  $currency_symbol = isset($_POST["twitter_link"]) ? trim($_POST["twitter_link"]) : "";
-  $currency_symbol = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
-  $currency_symbol = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
-
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $phone = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
+  $skype = isset($_POST["skype"]) ? trim($_POST["skype"]) : "";
+  $whatsapp = isset($_POST["whatsapp"]) ? trim($_POST["whatsapp"]) : "";
+  $youtube_link = isset($_POST["youtube_link"]) ? trim($_POST["youtube_link"]) : "";
+  $twitter_link = isset($_POST["twitter_link"]) ? trim($_POST["twitter_link"]) : "";
+  $instagram_link = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
+  $facebook_link = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
+  $number_of_happy_customer = isset($_POST["number_of_happy_customer"]) ? trim($_POST["number_of_happy_customer"]) : "";
+  $number_of_client = isset($_POST["number_of_client"]) ? trim($_POST["number_of_client"]) : "";
+  $number_of_jobs = isset($_POST["number_of_jobs"]) ? trim($_POST["number_of_jobs"]) : "";
+  $number_of_workers = isset($_POST["number_of_workers"]) ? trim($_POST["number_of_workers"]) : "";
+  $number_of_contributors = isset($_POST["number_of_contributors"]) ? trim($_POST["number_of_contributors"]) : "";
+ 
   if (empty($err)) {
-     $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
+
+    $query = "UPDATE `site_info` SET `email`='$email',`phone`='$phone',`skype`='$skype',`whatsapp`='$whatsapp',`youtube_link`='$youtube_link',`twitter_link`='$twitter_link',`instagram_link`='$instagram_link',`facebook_link`='$facebook_link ',`number_of_happy_customer`='$number_of_happy_customer',`number_of_client`='$number_of_client',`number_of_jobs`='$number_of_jobs',`number_of_workers`='$number_of_workers',`number_of_contributors`='$number_of_contributors' WHERE 1";
     $result = mysqli_query($conn, $query);
 
-    // die;
-    // if ($result) {
-    //   // $err['add'] = 'Form Submit Successfully';
-    //   // header("location:view_master.php?add=");
-    //   redirect('amdin/view_master.php');
-    //   $_GET['add']="Form Submit Successfully";
-    // } else {
-    //   $err['add'] = ' Not Worked please check Your code ';
-    // }
+    if ($result) {
+     reload(1);
+     $err['add'] = "record Edited successfully!! ";
+    } else {
+      $err['add'] = "Not Edited!! ";
+    }
   }
 }
 ?>
@@ -130,7 +132,7 @@ if (isset($_POST['update'])) {
             </div>
           </div>
       </div>
-      <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+      <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Update">
       </form>
       <hr>
 

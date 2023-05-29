@@ -6,34 +6,31 @@ if (isset($_POST['submit'])) {
   $currency_code = isset($_POST["currency_code"]) ? trim($_POST["currency_code"]) : "";
   $currency_symbol = isset($_POST["currency_symbol"]) ? trim($_POST["currency_symbol"]) : "";
   $create_on =  date('Y-m-d H:i:s');
-  // $create_on = date_format($date, "d/m/Y H:i:s");
 
-  //print_r($image);
   $err = [];
   if ($country == "") {
     $err["country"] = "Please enter title  ";
   }
-  if (!preg_match("/^[a-zA-Z-']*$/", $name)) {
-		$err['country'] = "Only letters and white space allowed";
+  if (!preg_match("/^[a-zA-Z-']*$/", $country)) {
+		$err['country'] = "Only letters allowed";
 	}
   if ($currency_code == "") {
     $err["currency_code"] = "Please enter currency code";
   }
-  if (!preg_match("/^[a-zA-Z-']*$/", $name)) {
+  if (!preg_match("/^[a-zA-Z-']*$/", $currency_code)) {
 		$err['currency_code'] = "Only letters and white space allowed";
-	}
-  if (! preg_match("^[0-9*#+]+$", $input)){
-		$err['currency_code'] = "Only letters, numeric and white space allowed";
 	}
   if ($currency_symbol == "") {
     $err["currency_symbol"] = "Please enter the currency symbol  ";
+  }
+  if (!preg_match("/[#$%^&*()+=\-\[\]\';,.\/{}|:<>?~\\\\]/", $currency_symbol)){
+    $err["currency_symbol"] = "Please enter the currency symbol properly  ";
   }
 
   if (empty($err)) {
     $query = "INSERT INTO `master`(`country`,`currency_code`, `currency_symbol`,`create_at`) VALUES ('" . $country . "','" . $currency_code . "','" . $currency_symbol  . "','" . $create_on  . "')";
     $result = mysqli_query($conn, $query);
 
-    // die;s
     if ($result) {
        $err['add'] = 'Form Submit Successfully';
       header("location:view_master.php?add=Form Submit Successfully");

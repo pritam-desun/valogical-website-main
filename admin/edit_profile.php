@@ -1,6 +1,6 @@
 <?php
 include("include/master.php");
-
+// include_once "./framework/main.php";
 if (isset($_POST['update'])) {
   $target_dir = "upload/";
   $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
@@ -40,6 +40,7 @@ if (isset($_POST['update'])) {
     // print_r($row);
     // die();
     if ($result) {
+      // file_upload($_FILES['image'],'admin/upload');
       move_uploaded_file($image_tep_name, $image);
       header("location: profile.php?update=Profile Update successfully");
     } else {
