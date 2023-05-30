@@ -11,9 +11,6 @@ $conn = new mysqli($hostname, $username, $password, $databasename);
 if ($conn->connect_error) {
   die("Unable to Connect database: " . $conn->connect_error);
 }
-else{
-  echo "no";
-}
 // if ($_SESSION['logged_in'] != 1) {
 //   header("location:login.php");
 // }
