@@ -19,7 +19,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap; // allow us to do the line break for collapsing content
-  align-items: center;
+  align-items: cEnter;
   justify-content: space-between; // space out brand from logo
   padding: $navbar-padding-y $navbar-padding-x;
 
@@ -28,7 +28,7 @@
   %container-flex-properties {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: cEnter;
     justify-content: space-between;
   }
 
@@ -111,7 +111,7 @@
   flex-grow: 1;
   // For always expanded or extra full navbars, ensure content aligns itself
   // properly vertically. Can be easily overridden with flex utilities.
-  align-items: center;
+  align-items: cEnter;
 }
 
 // Button for toggling the navbar when in its collapsed state

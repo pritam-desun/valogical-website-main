@@ -78,25 +78,25 @@ svg:not(:root).svg-inline--fa {
   display: inline-block;
   height: 1em;
   position: relative;
-  text-align: center;
+  text-align: cEnter;
   vertical-align: -.125em;
   width: 1em; }
   .fa-layers svg.svg-inline--fa {
-    -webkit-transform-origin: center center;
-            transform-origin: center center; }
+    -webkit-transform-origin: cEnter cEnter;
+            transform-origin: cEnter cEnter; }
 
 .fa-layers-text, .fa-layers-counter {
   display: inline-block;
   position: absolute;
-  text-align: center; }
+  text-align: cEnter; }
 
 .fa-layers-text {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  -webkit-transform-origin: center center;
-          transform-origin: center center; }
+  -webkit-transform-origin: cEnter cEnter;
+          transform-origin: cEnter cEnter; }
 
 .fa-layers-counter {
   background-color: #ff253a;
@@ -196,7 +196,7 @@ svg:not(:root).svg-inline--fa {
   font-size: 10em; }
 
 .fa-fw {
-  text-align: center;
+  text-align: cEnter;
   width: 1.25em; }
 
 .fa-ul {
@@ -209,7 +209,7 @@ svg:not(:root).svg-inline--fa {
 .fa-li {
   left: -2em;
   position: absolute;
-  text-align: center;
+  text-align: cEnter;
   width: 2em;
   line-height: inherit; }
 

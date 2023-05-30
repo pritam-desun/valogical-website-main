@@ -6,7 +6,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ENTER Key Configuration &mdash; CKEditor Sample</title>
+	<title>Enter Key Configuration &mdash; CKEditor Sample</title>
 	<script src="../../../ckeditor.js"></script>
 	<link href="../../../samples/old/sample.css" rel="stylesheet">
 	<meta name="ckeditor-sample-name" content="Using the &quot;Enter&quot; key in CKEditor">
@@ -24,8 +24,8 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 			// Create the editor again, with the appropriate settings.
 			editor = CKEDITOR.replace( 'editor1', {
-				extraPlugins: 'enterkey',
-				enterMode: Number( document.getElementById( 'xEnter' ).value ),
+				extraPlugins: 'Enterkey',
+				EnterMode: Number( document.getElementById( 'xEnter' ).value ),
 				shiftEnterMode: Number( document.getElementById( 'xShiftEnter' ).value )
 			});
 		}
@@ -36,31 +36,31 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 </head>
 <body>
 	<h1 class="samples">
-		<a href="../../../samples/old/index.html">CKEditor Samples</a> &raquo; ENTER Key Configuration
+		<a href="../../../samples/old/index.html">CKEditor Samples</a> &raquo; Enter Key Configuration
 	</h1>
 	<div class="warning deprecated">
-		This sample is not maintained anymore. Check out its <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/enterkey.html">brand new version in CKEditor Examples</a>.
+		This sample is not maintained anymore. Check out its <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/Enterkey.html">brand new version in CKEditor Examples</a>.
 	</div>
 	<div class="description">
 		<p>
 			This sample shows how to configure the <em>Enter</em> and <em>Shift+Enter</em> keys
 			to perform actions specified in the
-			<a class="samples" href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-enterMode"><code>enterMode</code></a>
+			<a class="samples" href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-EnterMode"><code>EnterMode</code></a>
 			and <a class="samples" href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-shiftEnterMode"><code>shiftEnterMode</code></a>
 			parameters, respectively.
 	 		You can choose from the following options:
 		</p>
 		<ul class="samples">
-			<li><strong><code>ENTER_P</code></strong> &ndash; new <code>&lt;p&gt;</code> paragraphs are created;</li>
-			<li><strong><code>ENTER_BR</code></strong> &ndash; lines are broken with <code>&lt;br&gt;</code> elements;</li>
-			<li><strong><code>ENTER_DIV</code></strong> &ndash; new <code>&lt;div&gt;</code> blocks are created.</li>
+			<li><strong><code>Enter_P</code></strong> &ndash; new <code>&lt;p&gt;</code> paragraphs are created;</li>
+			<li><strong><code>Enter_BR</code></strong> &ndash; lines are broken with <code>&lt;br&gt;</code> elements;</li>
+			<li><strong><code>Enter_DIV</code></strong> &ndash; new <code>&lt;div&gt;</code> blocks are created.</li>
 		</ul>
 		<p>
 			The sample code below shows how to configure CKEditor to create a <code>&lt;div&gt;</code> block when <em>Enter</em> key is pressed.
 		</p>
 <pre class="samples">
 CKEDITOR.replace( '<em>textarea_id</em>', {
-	<strong>enterMode: CKEDITOR.ENTER_DIV</strong>
+	<strong>EnterMode: CKEDITOR.Enter_DIV</strong>
 });</pre>
 		<p>
 			Note that <code><em>textarea_id</em></code> in the code above is the <code>id</code> attribute of

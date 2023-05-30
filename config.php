@@ -1,10 +1,10 @@
 <?php
- include_once "framework/main.php";
+include_once "framework/main.php";
 
 $hostname     = "localhost";
-$username     = "u695327974_taskenhancer_u";
-$password     = "#4CubXARG0v";
-$databasename = "u695327974_taskenhancer";
+$username     = "root";
+$password     = "";
+$databasename = "valogical_db";
 $conn = new mysqli($hostname, $username, $password, $databasename);
 // Check connection 
 if ($conn->connect_error) {

@@ -19,13 +19,13 @@ if (isset($_POST['submit'])) {
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
     $err = [];
     if ($name == "") {
-        $err["name"] = "Please enter name  ";
+        $err["name"] = "Please Enter name  ";
     }
     if ($email == "") {
         $err['email'] = "Email is Required";
     }
     if ($image == "") {
-        $err["image"] = "Please enter image  ";
+        $err["image"] = "Please Enter image  ";
     }
     if ($email != "") {
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         }
     }
     if ($password == "") {
-        $err["password"] = "Please enter password  ";
+        $err["password"] = "Please Enter password  ";
     }
 
     if (empty($err)) {
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         //print_r($row);
         if ($result) {
             move_uploaded_file($image_tep_name, $image);
-            $err['messsage'] = 'New Registration successfully';
+            $err['messsage'] = 'New Registration Successfully';
         } else {
             $err['messsage'] = 'Registration Not Worked please check Your code ';
         }
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
                             <?php if (isset($err['messsage'])) { ?>
                                 <div class="alert alert-success"><?= $err['messsage']; ?></div>
                             <?php } ?>
-                            <div class="text-center">
+                            <div class="text-cEnter">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <form class="user" action="" method="post" enctype="multipart/form-data">
@@ -122,10 +122,10 @@ if (isset($_POST['submit'])) {
                                 </a>
                             </form>
                             <hr>
-                            <div class="text-center">
+                            <div class="text-cEnter">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
-                            <div class="text-center">
+                            <div class="text-cEnter">
                                 <a class="small" href="login.php">Already have an account? Login!</a>
                             </div>
                         </div>
@@ -151,5 +151,5 @@ if (isset($_POST['submit'])) {
 </html>
 
 <script>
-    document.title= "Taskenhancer :: Register";
+    document.title = "Taskenhancer :: Register";
 </script>

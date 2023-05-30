@@ -238,7 +238,7 @@ textarea.form-control {
 
 .form-check-inline {
   display: inline-flex;
-  align-items: center;
+  align-items: cEnter;
   padding-left: 0; // Override base .form-check
   margin-right: $form-check-inline-margin-x;
 
@@ -275,7 +275,7 @@ textarea.form-control {
 .form-inline {
   display: flex;
   flex-flow: row wrap;
-  align-items: center; // Prevent shorter elements from growing to same height as others (e.g., small buttons growing to normal sized button height)
+  align-items: cEnter; // Prevent shorter elements from growing to same height as others (e.g., small buttons growing to normal sized button height)
 
   // Because we use flex, the initial sizing of checkboxes is collapsed and
   // doesn't occupy the full-width (which is what we want for xs grid tier),
@@ -288,8 +288,8 @@ textarea.form-control {
   @include media-breakpoint-up(sm) {
     label {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: cEnter;
+      justify-content: cEnter;
       margin-bottom: 0;
     }
 
@@ -298,7 +298,7 @@ textarea.form-control {
       display: flex;
       flex: 0 0 auto;
       flex-flow: row wrap;
-      align-items: center;
+      align-items: cEnter;
       margin-bottom: 0;
     }
 
@@ -323,8 +323,8 @@ textarea.form-control {
     // then undo the floating of radios and checkboxes to match.
     .form-check {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: cEnter;
+      justify-content: cEnter;
       width: auto;
       padding-left: 0;
     }
@@ -337,8 +337,8 @@ textarea.form-control {
     }
 
     .custom-control {
-      align-items: center;
-      justify-content: center;
+      align-items: cEnter;
+      justify-content: cEnter;
     }
     .custom-control-label {
       margin-bottom: 0;

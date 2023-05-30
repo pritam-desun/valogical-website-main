@@ -79,6 +79,6 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 .cke_tpl_empty, .cke_tpl_loading
 {
-	text-align: center;
+	text-align: cEnter;
 	padding: 5px;
 }

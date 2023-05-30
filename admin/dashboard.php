@@ -4,5 +4,5 @@ include("include/footer.php");
 ?>
 
 <script>
-    document.title= "Taskenhancer :: Dashboard";
+    document.title = "Taskenhancer :: Dashboard";
 </script>

@@ -1,37 +1,37 @@
 <?php
-$hostname     = "localhost";
-$username     = "u695327974_taskenhancer_u";
-$password     = "#4CubXARG0v";
-$databasename = "u695327974_taskenhancer";
-session_start();
-// Create connection 
-$conn = new mysqli($hostname, $username, $password, $databasename);
-// Check connection 
-if ($conn->connect_error) {
-    die("Unable to Connect database: " . $conn->connect_error);
+include("include/config.php");
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) {
+    header("Location: dashboard.php");
 }
 if (isset($_POST['submit'])) {
 
-    $email = isset($_POST['email']) ? $_POST['email'] : "";
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, trim($_POST['email'])) : "";
+    // print_r($email);
     if (!empty($_POST['password'])) {
-        $password = md5($_POST['password']);
-        //print_r($password);
+        $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+        // print_r($password);
+        // die();
     }
     $errMsg = '';
-    $query = "SELECT * FROM `users` WHERE `email` = '$email' and `password` = '$password' ";
-    $result = mysqli_query($conn, $query);
-    $data = mysqli_fetch_assoc($result);
-    $row = mysqli_num_rows($result);
-    if ($row > 0) {
-        $_SESSION['user_image'] = $data['image'];
-        $_SESSION['user_email'] = $data['email'];
-        $_SESSION['user_name'] = $data['name'];
-        $_SESSION['id'] = $data['user_id'];
+    $sql = $conn->prepare("SELECT * FROM users WHERE email=? AND password =?");
+    $sql->bind_param("ss", $email, $password);
+    $sql->execute();
+    $result = $sql->get_result()->fetch_array(MYSQLI_ASSOC);
+    // print_r($result);
+    // die();
+    if (!is_null($result)) {
+        $_SESSION['user_image'] = $result['image'];
+        $_SESSION['user_email'] = $result['email'];
+        $_SESSION['user_name'] = $result['name'];
+        $_SESSION['id'] = $result['user_id'];
         $_SESSION['logged_in'] = 1;
         header("Location: dashboard.php");
+        exit();
     } else {
         $errMsg = "Invalid username and password";
+        $conn->close();
     }
+    // header("Location: login.php");
 } else {
     $errMsg = '';
 }
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-cEnter">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -76,12 +76,13 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
+                                    <div class="text-cEnter">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome to Login</h1>
                                         <?php if (!empty($errMsg)) { ?>
-                                            <div class="alert alert-danger"><?= $errMsg; ?></div> <?php } ?>
+                                            <div class="alert alert-danger"><?= $errMsg;
+                                                                            ?></div> <?php } ?>
                                         <?php if (isset($_GET['log'])) { ?>
-                                            <div class="alert alert-danger"><?= $_GET['log'];; ?></div> <?php } ?>
+                                            <div class="alert alert-danger"><?= $_GET['log']; ?></div> <?php } ?>
                                     </div>
                                     <form class="user" action="" method="post">
                                         <div class="form-group">
@@ -91,15 +92,7 @@ if (isset($_POST['submit'])) {
                                             <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="login">
-                                        <hr>
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

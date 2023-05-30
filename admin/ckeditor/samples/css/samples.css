@@ -128,7 +128,7 @@ html {
 }
 @media (max-width: 900px) {
   .header-a .header-a-logo {
-    text-align: center;
+    text-align: cEnter;
   }
 }
 .header-a .header-a-logo img {
@@ -146,7 +146,7 @@ html {
 }
 @media (max-width: 900px) {
   .navigation-a {
-    text-align: center;
+    text-align: cEnter;
   }
 }
 .navigation-a ul {
@@ -217,7 +217,7 @@ html {
 }
 @media (max-width: 900px) {
   .navigation-b {
-    text-align: center;
+    text-align: cEnter;
     margin-top: 20px;
     padding: 0;
   }
@@ -292,7 +292,7 @@ html {
 .footer-a p {
   margin: 0;
   display: inline-block;
-  text-align: center;
+  text-align: cEnter;
 }
 .content {
   font-size: 14px;
@@ -621,7 +621,7 @@ body input.button-a.button-a-no-text {
   text-indent: -999px;
   overflow: hidden;
   position: relative;
-  text-align: center;
+  text-align: cEnter;
 }
 body a.button-a.button-a-no-text:before,
 body button.button-a.button-a-no-text:before,
@@ -646,7 +646,7 @@ body input.button-a.button-a-no-text:before {
     text-indent: -999px;
     overflow: hidden;
     position: relative;
-    text-align: center;
+    text-align: cEnter;
   }
   body a.button-a.button-a-mobile-collapsed:before,
   body button.button-a.button-a-mobile-collapsed:before,
@@ -990,7 +990,7 @@ body input.navigation-b ul li a:hover:hover {
   top: 10px;
   right: 10px;
   font-size: 17px;
-  text-align: center;
+  text-align: cEnter;
   line-height: 19px;
   background: #cccccc;
 }
@@ -1502,7 +1502,7 @@ div.toolbarModifier-hints dl .list-header {
   padding-bottom: 0.6em;
 }
 div.toolbarModifier-hints dl > p {
-  text-align: center;
+  text-align: cEnter;
 }
 div.toolbarModifier-hints dl dt {
   float: left;

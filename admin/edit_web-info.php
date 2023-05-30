@@ -55,85 +55,85 @@ if (isset($_POST['update'])) {
             </div>
             <div class="col-lg-4 col-md-4">
 
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Phone:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['phone']) ? $row['phone'] : ""; ?>" name="phone" placeholder="Enter the phone Number">
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Skype:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['skype']) ? $row['skype'] : ""; ?>" name="skype" placeholder="Enter the skype Name">
-            </div>
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Phone:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['phone']) ? $row['phone'] : ""; ?>" name="phone" placeholder="Enter the phone Number">
+              </div>
             </div>
             <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Whatsapp:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['whatsapp']) ? $row['whatsapp'] : ""; ?>" name="whatsapp" placeholder="Enter the whatsapp Number">
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Youtube Link:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['youtube_link']) ? $row['youtube_link'] : ""; ?>" name="youtube_link" placeholder="Enter the Youtube Link">
-            </div>
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Skype:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['skype']) ? $row['skype'] : ""; ?>" name="skype" placeholder="Enter the skype Name">
+              </div>
             </div>
             <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Twitter Link:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['twitter_link']) ? $row['twitter_link'] : ""; ?>" name="twitter_link" placeholder="Enter the Twitter Link">
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Instagram Link:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['instagram_link']) ? $row['instagram_link'] : ""; ?>" name="instagram_link" placeholder="Enter the Instagram Link">
-            </div>
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Whatsapp:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['whatsapp']) ? $row['whatsapp'] : ""; ?>" name="whatsapp" placeholder="Enter the whatsapp Number">
+              </div>
             </div>
             <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Facebook Link:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['facebook_link']) ? $row['facebook_link'] : ""; ?>" name="facebook_link" placeholder="Enter the Facebook Link">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Youtube Link:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['youtube_link']) ? $row['youtube_link'] : ""; ?>" name="youtube_link" placeholder="Enter the Youtube Link">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Twitter Link:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['twitter_link']) ? $row['twitter_link'] : ""; ?>" name="twitter_link" placeholder="Enter the Twitter Link">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Instagram Link:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['instagram_link']) ? $row['instagram_link'] : ""; ?>" name="instagram_link" placeholder="Enter the Instagram Link">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Facebook Link:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['facebook_link']) ? $row['facebook_link'] : ""; ?>" name="facebook_link" placeholder="Enter the Facebook Link">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Number of Happy Customer:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_happy_customer']) ? $row['number_of_happy_customer'] : ""; ?>" name="number_of_happy_customer" placeholder="Enter the Number of Happy Customer">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Number of Client:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_client']) ? $row['number_of_client'] : ""; ?>" name="number_of_client" placeholder="Enter the Number of Client">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Number of Jobs:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_jobs']) ? $row['number_of_jobs'] : ""; ?>" name="number_of_jobs" placeholder="Enter the Number of Jobs">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Number of Workers:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_workers']) ? $row['number_of_workers'] : ""; ?>" name="number_of_workers" placeholder="Enter the Number of Workers">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group ">
+                <label for="formFileLg" class="form-label">Number of Contributors:</label>
+                <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_contributors']) ? $row['number_of_contributors'] : ""; ?>" name="number_of_contributors" placeholder="Enter the Number of contributors">
+              </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Number of Happy Customer:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_happy_customer']) ? $row['number_of_happy_customer'] : ""; ?>" name="number_of_happy_customer" placeholder="Enter the Number of Happy Customer">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Number of Client:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_client']) ? $row['number_of_client'] : ""; ?>" name="number_of_client" placeholder="Enter the Number of Client">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Number of Jobs:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_jobs']) ? $row['number_of_jobs'] : ""; ?>" name="number_of_jobs" placeholder="Enter the Number of Jobs">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Number of Workers:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_workers']) ? $row['number_of_workers'] : ""; ?>" name="number_of_workers" placeholder="Enter the Number of Workers">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="form-group ">
-              <label for="formFileLg" class="form-label">Number of Contributors:</label>
-              <input type="text" class="form-control form-control-sm" value="<?= isset($row['number_of_contributors']) ? $row['number_of_contributors'] : ""; ?>" name="number_of_contributors" placeholder="Enter the Number of contributors">
-            </div>
-          </div>
-      </div>
-      <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
-      </form>
-      <hr>
+          <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+        </form>
+        <hr>
 
+      </div>
     </div>
   </div>
-</div>
 
 </div>
 
@@ -179,5 +179,5 @@ include("include/footer.php")
 ?>
 
 <script>
-    document.title= "Taskenhancer :: Edit Web Information";
+  document.title = "Taskenhancer :: Edit Web Information";
 </script>

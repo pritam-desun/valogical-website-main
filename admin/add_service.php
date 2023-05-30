@@ -14,16 +14,16 @@ if (isset($_POST['submit'])) {
   //print_r($s_desp);
   $err = [];
   if ($s_desp == "") {
-    $err["short_desp"] = "Please enter short_Desp  ";
+    $err["short_desp"] = "Please Enter Short Descp......  ";
   }
   if ($l_desp == "") {
-    $err["long_desp"] = "Please enter long_Desp  ";
+    $err["long_desp"] = "Please Enter Long Descp......  ";
   }
   if ($status == "") {
-    $err["status"] = "Please Maitain the Status   ";
+    $err["status"] = "Please Maintain The Status   ";
   }
   if ($image == "") {
-    $err["image"] = "image is required   ";
+    $err["image"] = "Image is Required   ";
   }
   if (empty($err)) {
     //die("here");
@@ -33,143 +33,143 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      $err['message'] = 'New Record Addded successfully';
+      $err['message'] = 'New Record Addded Successfully';
       //$msg = $err['message'];
-      header("location:view_service.php?add=New Record Addded successfully");
+      header("location:view_service.php?add=New Record Addded Successfully");
     } else {
-      $err['message'] = ' Not Worked please check Your code ';
+      $err['message'] = ' Not Worked Please Check Your Code ';
     }
   }
 }
 ?>
-        <!-- Begin Page Content -->
-        <div class="container-fluid ">
+<!-- Begin Page Content -->
+<div class="container-fluid ">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-3   text-gray-800" style="margin-left:  1.25rem !important;">Add Services</h1>
-          <?php if (isset($err['message'])) { ?>
-            <div class="alert alert-success"><?= $err['message']; ?></div>
-          <?php } ?>
-          <!-- DataTales Example -->
-          <div class="container">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-3   text-gray-800" style="margin-left:  1.25rem !important;">Add Services</h1>
+  <?php if (isset($err['message'])) { ?>
+    <div class="alert alert-success"><?= $err['message']; ?></div>
+  <?php } ?>
+  <!-- DataTales Example -->
+  <div class="container">
 
-            <div class="card o-hidden border-0 shadow-lg my-50">
-              <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                  <div class="col-lg-12 col-md-12">
-                    <div class="p-5">
-                      <div class="text-center">
-                      </div>
-                      <form class="user" action="" method="post" enctype="multipart/form-data">
-                        <div class="form-group  ">
-                          <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis w-100">Short Description:</label>
-                          <textarea type="name" name="short_desp" rows="8" class="form-control" id="short_desp" rows="3" placeholder="Short Description........"></textarea>
-                          <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
-                          <textarea type="name" name="long_desp" class="form-control" id="long_desp" rows="3" placeholder="Long Description........"></textarea>
-                          <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="formFileLg" class="form-label">Upload Icon:</label>
-                          <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
-                          <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['images']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="formFileLg" class="form-label">Status:</label>
-                          <select type="status" name="status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option value="1" selected>Active</option>
-                            <option value="2">Inactive</option>
-                          </select>
-                          <?php if (isset($err['status'])) { ?><div class="small alert-danger"><?= $err['status']; ?></div> <?php } ?>
-                        </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
-                      </form>
-                      <hr>
-                    </div>
-                  </div>
-                </div>
+    <div class="card o-hidden border-0 shadow-lg my-50">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="p-5">
+              <div class="text-cEnter">
               </div>
+              <form class="user" action="" method="post" enctype="multipart/form-data">
+                <div class="form-group  ">
+                  <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis w-100">Short Description:</label>
+                  <textarea type="name" name="short_desp" rows="8" class="form-control" id="short_desp" rows="3" placeholder="Short Description........"><?= isset($_POST['short_desp']) ? $_POST['short_desp'] : ''; ?></textarea>
+                  <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
+                  <textarea type="name" name="long_desp" class="form-control" id="long_desp" rows="3" placeholder="Long Description........"><?= isset($_POST['lnong_desp']) ? $_POST['long_desp'] : ''; ?></textarea>
+                  <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
+                </div>
+                <div class="form-group ">
+                  <label for="formFileLg" class="form-label">Upload Icon:</label>
+                  <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                  <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['images']; ?></div> <?php } ?>
+                </div>
+                <div class="form-group ">
+                  <label for="formFileLg" class="form-label">Status:</label>
+                  <select type="status" name="status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option value="1" selected>Active</option>
+                    <option value="2">Inactive</option>
+                  </select>
+                  <?php if (isset($err['status'])) { ?><div class="small alert-danger"><?= $err['status']; ?></div> <?php } ?>
+                </div>
+                <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
+              </form>
+              <hr>
             </div>
-
           </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logout.php">Logout</a>
         </div>
       </div>
     </div>
+
   </div>
 
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#short_desp'))
-      .then(short_desp => {
-        console.log(short_desp);
-        short_desp.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              short_desp.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#long_desp'))
-      .then(long_desp => {
-        console.log(long_desp);
-        long_desp.editing.view.change((writer) => {
-            writer.setStyle(
-              "height",
-              "200px",
-              long_desp.editing.view.document.getRoot()
-            );
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      });
-  </script>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="logout.php">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  ClassicEditor
+    .create(document.querySelector('#short_desp'))
+    .then(short_desp => {
+      console.log(short_desp);
+      short_desp.editing.view.change((writer) => {
+          writer.setStyle(
+            "height",
+            "200px",
+            short_desp.editing.view.document.getRoot()
+          );
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    });
+</script>
+<script>
+  ClassicEditor
+    .create(document.querySelector('#long_desp'))
+    .then(long_desp => {
+      console.log(long_desp);
+      long_desp.editing.view.change((writer) => {
+          writer.setStyle(
+            "height",
+            "200px",
+            long_desp.editing.view.document.getRoot()
+          );
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    });
+</script>
 
 <?php
-include("include/footer.php") 
+include("include/footer.php")
 ?>
 <script>
-    document.title= "Taskenhancer :: add Service";
+  document.title = "Taskenhancer :: add Service";
 </script>

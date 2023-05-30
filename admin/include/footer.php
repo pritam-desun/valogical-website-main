@@ -1,7 +1,7 @@
    <!-- Footer -->
    <footer class="sticky-footer bg-white">
      <div class="container my-auto">
-       <div class="copyright text-center my-auto">
+       <div class="copyright text-cEnter my-auto">
          <span>Copyright &copy; Your Website 2020</span>
        </div>
      </div>
@@ -59,7 +59,7 @@
 
    </html>
    <script>
-    $(document).ready(function () {
-    $('#dataTable').DataTable();
-});
+     $(document).ready(function() {
+       $('#dataTable').DataTable();
+     });
    </script>

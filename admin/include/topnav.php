@@ -13,9 +13,9 @@
            <i class="fa fa-bars"></i>
          </button>
        </form>
-      
-       
-         <!-- Topbar Search 
+
+
+       <!-- Topbar Search 
          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
            <div class="input-group">
              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -26,7 +26,7 @@
              </div>
            </div>
          </form>-->
-   
+
 
        <!-- Topbar Navbar -->
        <ul class="navbar-nav ml-auto">
@@ -41,7 +41,7 @@
            </a>
            <!-- Dropdown - User Information -->
            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-             <a class="dropdown-item" href="profile.php">
+             <a class="dropdown-item" href="edit_profile.php">
                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                Profile
              </a>

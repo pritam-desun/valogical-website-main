@@ -188,12 +188,12 @@ algolia:
     - brands
   unicode: f36c
   voted: false
-align-center:
+align-cEnter:
   changes:
     - '1'
     - 5.0.0
     - 5.9.0
-  label: align-center
+  label: align-cEnter
   search:
     terms:
       - format
@@ -3270,10 +3270,10 @@ cc-visa:
     - brands
   unicode: f1f0
   voted: false
-centercode:
+cEntercode:
   changes:
     - 5.0.0
-  label: Centercode
+  label: CEntercode
   search:
     terms: []
   styles:
@@ -5831,7 +5831,7 @@ door-closed:
   label: Door Closed
   search:
     terms:
-      - enter
+      - Enter
       - exit
       - locked
   styles:
@@ -5844,7 +5844,7 @@ door-open:
   label: Door Open
   search:
     terms:
-      - enter
+      - Enter
       - exit
       - welcome
   styles:
@@ -10243,7 +10243,7 @@ hospital:
       - building
       - covid-19
       - emergency room
-      - medical center
+      - medical cEnter
   styles:
     - solid
     - regular
@@ -10258,7 +10258,7 @@ hospital-alt:
       - building
       - covid-19
       - emergency room
-      - medical center
+      - medical cEnter
   styles:
     - solid
   unicode: f47d
@@ -16514,7 +16514,7 @@ sign-in-alt:
   search:
     terms:
       - arrow
-      - enter
+      - Enter
       - join
       - log in
       - login

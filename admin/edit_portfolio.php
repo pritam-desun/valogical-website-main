@@ -30,10 +30,10 @@ if (isset($_POST['update'])) {
   }
 
   if ($url_text == "") {
-    $err["url_text"] = "Please enter url_text  ";
+    $err["url_text"] = "Please Enter url_text  ";
   }
   if ($name == "") {
-    $err["name"] = "Please enter name  ";
+    $err["name"] = "Please Enter name  ";
   }
 
   // if ($date == "") {
@@ -58,94 +58,94 @@ if (isset($_POST['update'])) {
   }
 }
 ?>
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-left:  1.25rem !important;">Portfolio Elements</h1>
-          <?php if (isset($err['add'])) { ?>
-            <div class="alert alert-success"><?= $err['add']; ?></div>
-          <?php } ?>
-          <!-- DataTales Example -->
-          <div class="container">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800" style="margin-left:  1.25rem !important;">Portfolio Elements</h1>
+  <?php if (isset($err['add'])) { ?>
+    <div class="alert alert-success"><?= $err['add']; ?></div>
+  <?php } ?>
+  <!-- DataTales Example -->
+  <div class="container">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                  <div class="col-lg-12 col-md-12">
-                    <div class="p-5">
-                      <div class="text-center">
-                      </div>
-                      <form class="user" action="" method="post" enctype="multipart/form-data">
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Url text :</label>
-                          <input type="name" class="form-control form-control-user" id="name" name="name" value="<?= isset($row['name']) ? $row['name'] : ""; ?> " placeholder="name  ">
-                          <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
-                          <input type="text" class="form-control form-control-user" id="url_text" value="<?= isset($row['url_text']) ? $row['url_text'] : ""; ?> " name="url_text" placeholder="url text  ">
-                          <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
-                        </div>
-                        <div class="form-group">
-                          <label for="formFileLg" class="form-label">Upload Image:</label>
-                          <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
-                          <?php if (isset($row['image'])) { ?>
-                            <?php print_r($row['image']); ?>
-                          <?php } ?>
-                        </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
-                      </form>
-                      <hr>
-                    </div>
-                  </div>
-                </div>
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="p-5">
+              <div class="text-cEnter">
               </div>
+              <form class="user" action="" method="post" enctype="multipart/form-data">
+                <div class="form-group ">
+                  <label for="exampleFormControlTitle" class="form-label">Url text :</label>
+                  <input type="name" class="form-control form-control-user" id="name" name="name" value="<?= isset($row['name']) ? $row['name'] : ""; ?> " placeholder="name  ">
+                  <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
+                </div>
+                <div class="form-group ">
+                  <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
+                  <input type="text" class="form-control form-control-user" id="url_text" value="<?= isset($row['url_text']) ? $row['url_text'] : ""; ?> " name="url_text" placeholder="url text  ">
+                  <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
+                </div>
+                <div class="form-group">
+                  <label for="formFileLg" class="form-label">Upload Image:</label>
+                  <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                  <?php if (isset($row['image'])) { ?>
+                    <?php print_r($row['image']); ?>
+                  <?php } ?>
+                </div>
+                <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+              </form>
+              <hr>
             </div>
-
           </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logout.php">Logout</a>
         </div>
       </div>
     </div>
+
   </div>
 
-  <?php
-include("include/footer.php") 
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="logout.php">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php
+include("include/footer.php")
 ?>
 
 <script>
-    document.title= "Taskenhancer :: Edit Portfolio";
+  document.title = "Taskenhancer :: Edit Portfolio";
 </script>

@@ -93,11 +93,11 @@ c-panel:
     - cpanel
   label: cPanel
   url: 'http://cpanel.com'
-centercode:
+cEntercode:
   icons:
-    - centercode
-  label: Centercode
-  url: 'https://www.centercode.com'
+    - cEntercode
+  label: CEntercode
+  url: 'https://www.cEntercode.com'
 cibltd:
   icons:
     - drum-steelpan

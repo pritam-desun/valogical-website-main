@@ -29,7 +29,7 @@
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
-  text-align: center;
+  text-align: cEnter;
   /* opacity: .8; */
 
   /* For safety - reset parent styles, that can break glyph codes*/
@@ -39,7 +39,7 @@
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
 
-  /* Animation center compensation - margins should be symmetric */
+  /* Animation cEnter compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
 

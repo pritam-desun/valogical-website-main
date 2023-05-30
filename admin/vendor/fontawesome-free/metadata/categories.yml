@@ -692,7 +692,7 @@ design:
   label: Design
 editors:
   icons:
-    - align-center
+    - align-cEnter
     - align-justify
     - align-left
     - align-right

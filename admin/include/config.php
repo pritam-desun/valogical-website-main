@@ -1,17 +1,16 @@
 <?php
 $hostname     = "localhost";
-$username     = "u695327974_taskenhancer_u";
-$password     = "#4CubXARG0v";
-$databasename = "u695327974_taskenhancer";
-session_start();
+$username     = "root";
+$password     = "";
+$databasename = "valogical_db";
+if (!isset($_SESSION)) {
+  session_start();
+}
 // Create connection 
 $conn = new mysqli($hostname, $username, $password, $databasename);
 // Check connection 
 if ($conn->connect_error) {
   die("Unable to Connect database: " . $conn->connect_error);
-}
-if ($_SESSION['logged_in'] != 1) {
-  header("location:login.php?log=At First You Need To Login For Access other Pages");
 }
 
 function UploadFile($file)
