@@ -34,11 +34,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $database = "valogical_new";
 } else {
     // for server connection
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    // $password = "wpNnnOv5";
-    $database = "valogical_new";
+    $hostname     = "localhost";
+    $username     = "ehostsx4_crmvalogical";
+    $password     = "-oXKu@DWb^y%";
+    $databasename = "ehostsx4_valogical_website";
 }
 
 /*   you can use the connection anywhere in your project does not need to
