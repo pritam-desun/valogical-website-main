@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group ">
                           <label for="formFileLg" class="form-label">Upload Icon:</label>
-                          <input class="form-control form-control-sm" id="formFileLg" type="file" name="image">
+                          <input class="" id="formFileLg" type="file" name="image">
                           <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['images']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">

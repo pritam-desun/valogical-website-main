@@ -1,6 +1,5 @@
 <?php include("include/master.php");
 if (isset($_POST['submit'])) {
-
   // print_r($_POST);
   $people_name = isset($_POST["people_name"]) ? trim($_POST["people_name"]) : "";
   $people_designation = isset($_POST["people_designation"]) ? trim($_POST["people_designation"]) : "";

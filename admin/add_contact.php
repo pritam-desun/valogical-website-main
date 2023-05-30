@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 		$err["phone"] = "Invalid Phone Number";
 	}
   if ($message == "") {
-    $err["message"] = "Please Enter a messages  ";
+    $err["message"] = "Please Enter a Message ";
   }
   if (empty($err)) {
     $query = "INSERT INTO `contact`(`name`, `email`, `subject`,`phone`,`message`) VALUES ('" . $name . "','" . $email  . "','" . $subject  . "','" . $phone  . "','" . $message  . "')";
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       $err['add'] = 'Form Submit Successfully';
-      header("location:view_contact.php?add=Form Submit Successfully");
+      header("Refresh:view_contact.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -78,26 +78,26 @@ if (isset($_POST['submit'])) {
                       </div>
                       <form class="user" action="" method="post">
                         <div class="form-group ">
-                          <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName" placeholder="name">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['name']) ? $_POST['name']:"" ?>" name="name" id="exampleFirstName" placeholder="name">
                           <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control form-control-user" name="email" id="exampleInputEmail" placeholder="email">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['email']) ? $_POST['email']:"" ?>" name="email" id="exampleInputEmail" placeholder="email">
                           <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <input type="text" class="form-control form-control-user" id="exampleInputPassword" name="subject" placeholder="subject">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['subject']) ? $_POST['subject']:"" ?>" id="exampleInputPassword" name="subject" placeholder="subject">
                           <?php if (isset($err['subject'])) { ?><div class="small alert-danger"><?= $err['subject']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <input type="number" class="form-control form-control-user" id="exampleInputPassword" name="phone" placeholder="phone number">
+                          <input required type="number" class="form-control form-control-user" value="<?= isset($_POST['phone']) ? $_POST['phone']:"" ?>" id="exampleInputPassword" name="phone" placeholder="phone number">
                           <?php if (isset($err['phone'])) { ?><div class="small alert-danger"><?= $err['phone']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <textarea type="text" class="form-control form-control-user" id="message" name="message" placeholder="Enter the message..."></textarea>
+                          <textarea type="text" class="form-control form-control-user" value="<?= isset($_POST['message']) ? $_POST['message']:"" ?>"  id="message" name="message" placeholder="Enter the message..."></textarea>
                           <?php if (isset($err['message'])) { ?><div class="small alert-danger"><?= $err['message']; ?></div> <?php } ?>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
+                        <input  type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
                       <hr>
                     </div>

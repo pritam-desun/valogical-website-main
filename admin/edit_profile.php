@@ -80,7 +80,7 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlTextarea1" class="form-label">Profile Image Upload:</label>
-                          <input type="file" name="image" value="" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
+                          <input  type="file" name="image" value="" class="" id="exampleFormControlTextarea1" rows="3">
                           <?php if (isset($_SESSION['user_image'])) { ?>
                             
                           <?php } ?>

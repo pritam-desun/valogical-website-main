@@ -1,5 +1,8 @@
 <?php
 include("include/config.php");
+if(isset($_SESSION['admin'])){
+ header('Location:dashboard.php');
+}
 $errMsg = '';
 if (isset($_POST['submit'])) {
     if ($_POST['email'] == "") {
@@ -13,7 +16,7 @@ if (isset($_POST['submit'])) {
     }
     if (empty($err)) {
         $password = md5($_POST['password']);
-        $query = "SELECT * FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '$password' ";
+        echo $query = "SELECT * FROM `users` WHERE `email` = '".$_POST['email']."' and `password` = '$password' ";  
     
         $result = mysqli_query($conn,$query);     
         $data = mysqli_fetch_assoc($result);

@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       $err['add'] = 'Form Submit Successfully';
-      header("location:view_banner.php?add=Form Submit Successfully");
+      header("Refresh:view_banner.php?add=Form Submit Successfully");
     } else {
       $err['add'] = '!Oops something went wrong. Please try again.';
     }
@@ -84,36 +84,36 @@ if (isset($_POST['submit'])) {
                       <form class="user" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                          <input type="text" class="form-control form-control-user" name="title" id="title" placeholder="">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title']:"" ?>" name="title" id="title" placeholder="">
                           <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group">
                           <label for="formFileLg" class="form-label">Upload Image:</label>
-                          <input class="form-control form-control-lg" accept=".jpg,.png,.jpeg" id="formFileLg" type="file" name="image">
+                          <input required class="form-control form-control-lg" accept=".jpg,.png,.jpeg" value="<?= isset($_POST['image']) ? $_POST['image']:"" ?>" id="formFileLg" type="file" name="image">
                         </div>
                         <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_text " name="btn_1_text" placeholder=" ">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_text']) ? $_POST['btn_1_text']:"" ?>" id="btn_1_text " name="btn_1_text" placeholder=" ">
                           <?php if (isset($err['btn_1_text'])) { ?><div class="small alert-danger"><?= $err['btn_1_text']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
                           <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_url " name="btn_1_url" placeholder="  ">
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_url']) ? $_POST['btn_1_url']:"" ?>" id="btn_1_url " name="btn_1_url" placeholder="  ">
                           <?php if (isset($err['btn_1_url'])) { ?><div class="small alert-danger"><?= $err['btn_1_url']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_2_text  " name="btn_2_text" placeholder="  ">
+                          <label for="exampleFormControlTitle" class="form-label">Button 2 Text:</label>
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_text']) ? $_POST['btn_2_text']:"" ?>" id="btn_2_text  " name="btn_2_text" placeholder="  ">
                           <?php if (isset($err['btn_2_text'])) { ?><div class="small alert-danger"><?= $err['btn_2_text']; ?></div> <?php } ?>
                         </div>
                         <div class="form-group ">
-                          <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                          <input type="text" class="form-control form-control-user" id="btn_1_text " name="btn_2_url" placeholder="  ">
+                          <label for="exampleFormControlTitle" class="form-label">Button 2 Url:</label>
+                          <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_url']) ? $_POST['btn_2_url']:"" ?>" id="btn_1_text " name="btn_2_url" placeholder="  ">
                           <?php if (isset($err['btn_2_url'])) { ?><div class="small alert-danger"><?= $err['btn_2_url']; ?></div> <?php } ?>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
+                        <input  type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
                       </form>
                       <hr>
                     </div>

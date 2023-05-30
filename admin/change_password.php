@@ -8,6 +8,13 @@ if (isset($_POST["submit"])) {
   if ($current_password == "") {
     $err=["current_password" => "Please Enter your Current Password!"];
   }
+  if ($current_password != "") {
+        $sql = "SELECT * FROM `users` WHERE password = '".md5($current_password)."' && user_id = '".$_SESSION['id']."'";
+        $res = mysqli_query($conn, $sql);
+        if (!mysqli_num_rows($res) > 0) {
+            $err['current_password'] = "Please Enter Right Current Password!!";
+        }
+    }
   if ($new_password == "") {
     $err["new_password"] = "Please Enter New Password!";
   }
@@ -18,10 +25,9 @@ if (isset($_POST["submit"])) {
     $err["confirm_password"] = "New Password and Confirm Password does not match!";
   }
   if ($new_password == $current_password) {
-    $err["new_password"] = "New and Current Password does not match!";
+    $err["new_password"] = "New and Current Password is same!";
   }
   $current_password = md5($_POST['current_password']);
-
   $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$current_password'";
   $result = mysqli_query($conn, $sql);
   $rowCount = mysqli_num_rows($result);

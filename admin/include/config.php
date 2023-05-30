@@ -3,13 +3,16 @@
 $hostname     = "localhost";
 $username     = "root";
 $password     = "";
-$databasename = "valogical_db";
+$databasename = "valogical_new";
 session_start();
 // Create connection 
 $conn = new mysqli($hostname, $username, $password, $databasename);
 // Check connection 
 if ($conn->connect_error) {
   die("Unable to Connect database: " . $conn->connect_error);
+}
+else{
+  echo "no";
 }
 // if ($_SESSION['logged_in'] != 1) {
 //   header("location:login.php");

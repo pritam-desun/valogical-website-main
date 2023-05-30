@@ -4,7 +4,7 @@
 $hostname     = "localhost";
 $username     = "root";
 $password     = "";
-$databasename = "valogical_db";
+$databasename = "valogical_new";
 $conn = new mysqli($hostname, $username, $password, $databasename);
 // Check connection 
 if ($conn->connect_error) {

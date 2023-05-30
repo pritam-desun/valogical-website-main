@@ -31,14 +31,14 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $database = "valogical_db";
+    $database = "valogical_new";
 } else {
     // for server connection
     $hostname = "localhost";
     $username = "root";
     $password = "";
     // $password = "wpNnnOv5";
-    $database = "valogical_db";
+    $database = "valogical_new";
 }
 
 /*   you can use the connection anywhere in your project does not need to
