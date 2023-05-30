@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Upadte Profile </h1>
+  <h1 class="h3 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Update Profile </h1>
   <?php if (isset($err['message'])) { ?>
     <div class="alert alert-success"><?= $err['message']; ?></div>
   <?php } ?>

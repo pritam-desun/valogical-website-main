@@ -33,18 +33,16 @@ if (isset($_POST['update'])) {
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h2 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Master Elements</h1>
+  <h1 class="h2 mb-1 text-gray-800" style="margin-left:  3.8rem !important;">Master Elements</h1>
   <?php if (isset($err['add'])) { ?>
     <div class="alert alert-success"><?= $err['add']; ?></div>
   <?php } ?>
   <!-- DataTales Example -->
   <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
+    <div class="card o-hidden border-0 shadow-lg my-4">
+      <div class="card-body p-4">
         <!-- Nested Row within Card Body -->
-
-
         <form class="user" action="" method="post">
           <div class="row">
             <div class="col-lg-4 col-md-4">
@@ -129,7 +127,6 @@ if (isset($_POST['update'])) {
           </div>
           <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
         </form>
-        <hr>
 
       </div>
     </div>
