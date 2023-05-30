@@ -1,9 +1,9 @@
 <?php
 //error_reporting(-1);
 $hostname     = "localhost";
-$username     = "root";
-$password     = "";
-$databasename = "valogical_new";
+$username     = "ehostsx4_crmvalogical";
+$password     = "-oXKu@DWb^y%";
+$databasename = "ehostsx4_valogical_website";
 session_start();
 // Create connection 
 $conn = new mysqli($hostname, $username, $password, $databasename);
