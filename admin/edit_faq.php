@@ -14,21 +14,21 @@ if (isset($_POST['update'])) {
   $err = [];
 
   if ($ques == "") {
-    $err["question"] = "Please Enter Question  ";
+    $err["question"] = "Please enter question  ";
   }
   if ($answ == "") {
-    $err["answer"] = "Please Enter Answer  ";
+    $err["answer"] = "Please enter answer  ";
   }
   if (empty($err)) {
     //die("here");
-    $query = "UPDATE `faq`  SET `question`='$ques', `answer`='$answ' WHERE faq_id = $id";
+    $query = "UPDATE  `faq` SET `question`='$ques',`answer`='$answ'  WHERE faq_id=$id";
     $result = mysqli_query($conn, $query);
-    //Print_r($query);
-    // die;
+
     if ($result) {
       //header("location:edit_faq.php");
       //$err['message'] = ' Record Update Successfully';
-      header("location:faq.php?update=Record Update Successfully");
+      // header("location:faq.php?update=");
+      link_redirct("faq", "Record Update Successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }

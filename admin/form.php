@@ -16,11 +16,14 @@ if (isset($_POST['submit'])) {
   if ($people_name == "") {
     $err["people_name"] = "Please enter name  ";
   }
-  if (preg_match('/[^a-z_\-0-9]/i', $people_name)) {
-    $err['people_name'] = "Only letters, numeric and white space allowed";
+  // if (preg_match('/[^a-z_\-0-9]/i', $people_name)) {
+  //   $err['people_name'] = "Only letters, numeric and  space allowed";
+  // }
+  if (preg_match("/^[a-zA-Z ]*$/", $people_name)) {
+    $err['people_name'] = "Only letters, numeric and  space allowed";
   }
   if ($people_designation == "") {
-    $err["people_designation"] = "Please Enter Designation  ";
+    $err["people_designation"] = "Please enter designation  ";
   }
   if (preg_match('/[^a-z_\-0-9]/i', $people_designation)) {
     $err['people_designation'] = "Only letters, numeric and white space allowed";
@@ -67,17 +70,17 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name :</label>
-                  <input type="name" class="form-control form-control-user" name="people_name" id="exampleFirstName" placeholder="Enter a name.....">
+                  <input type="text" class="form-control form-control-user" name="people_name" value="<?= isset($_POST['people_name']) ? $_POST['people_name'] : "" ?>" id="exampleFirstName" placeholder="Enter a name.....">
                   <?php if (isset($err['people_name'])) { ?><div class="small alert-danger"><?= $err['people_name']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Designation :</label>
-                  <input type="name" class="form-control form-control-user" name="people_designation" id="exampleInputEmail" placeholder="Enter a designation.....">
+                  <input type="name" class="form-control form-control-user" name="people_designation" value="<?= isset($_POST['people_designation']) ? $_POST['people_designation'] : "" ?>" id="exampleInputEmail" placeholder="Enter a designation.....">
                   <?php if (isset($err['people_designation'])) { ?><div class="small alert-danger"><?= $err['people_designation']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Content :</label>
-                  <textarea type="text" class="form-control form-control-user" id="contentt" name="content" placeholder="Enter a content...."></textarea>
+                  <textarea type="text" class="form-control form-control-user" id="contentt" name="content" value="<?= isset($_POST['content']) ? $_POST['content'] : "" ?>" placeholder="Enter a content...."></textarea>
                   <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                 </div>
 

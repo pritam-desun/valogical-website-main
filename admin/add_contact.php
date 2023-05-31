@@ -12,12 +12,18 @@ if (isset($_POST['submit'])) {
   if ($name == "") {
     $err["name"] = "Please Enter Name  ";
   }
-  if (preg_match('/[^a-z_\-0-9]/i', $name)) {
-    $err['name'] = "Only letters, numeric and white space allowed";
+  if (is_numeric($name)) {
+    $err["name"] = "Please enter alphabates or alpha-number value only ";
   }
+  // if (preg_match('/[^a-z_\-0-9]/i', $name)) {
+  //   $err['name'] = "Only letters, numeric and  space allowed";
+  // }
   if ($email == "") {
     $err["email"] = "Please Enter Email ID";
   }
+  // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  //   $err['email'] = "Invalid email format";
+  // }
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $err['email'] = "Invalid email format";
   }
@@ -42,8 +48,9 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      $err['add'] = 'Form Submit Successfully';
-      header("Refresh:view_contact.php?add=Form Submit Successfully");
+      // $err['add'] = 'Form Submit Successfully';
+      // header("Refresh:view_contact.php?add=Form Submit Successfully");
+      add_redirct("view_contact", "Record added successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -78,23 +85,23 @@ if (isset($_POST['submit'])) {
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['name']) ? $_POST['name'] : "" ?>" name="name" id="exampleFirstName" placeholder="name">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['name']) ? $_POST['name'] : "" ?>" name="name" id="exampleFirstName" placeholder="name">
                   <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['email']) ? $_POST['email'] : "" ?>" name="email" id="exampleInputEmail" placeholder="email">
+                  <input type="email" class="form-control form-control-user" value="<?= isset($_POST['email']) ? $_POST['email'] : "" ?>" name="email" id="exampleInputEmail" placeholder="email">
                   <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['subject']) ? $_POST['subject'] : "" ?>" id="exampleInputPassword" name="subject" placeholder="subject">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['subject']) ? $_POST['subject'] : "" ?>" id="exampleInputPassword" name="subject" placeholder="subject">
                   <?php if (isset($err['subject'])) { ?><div class="small alert-danger"><?= $err['subject']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
-                  <input required type="number" class="form-control form-control-user" value="<?= isset($_POST['phone']) ? $_POST['phone'] : "" ?>" id="exampleInputPassword" name="phone" placeholder="phone number">
+                  <input type="number" class="form-control form-control-user" value="<?= isset($_POST['phone']) ? $_POST['phone'] : "" ?>" id="exampleInputPassword" name="phone" placeholder="phone number">
                   <?php if (isset($err['phone'])) { ?><div class="small alert-danger"><?= $err['phone']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
-                  <textarea type="text" class="form-control form-control-user" value="<?= isset($_POST['message']) ? $_POST['message'] : "" ?>" id="message" name="message" placeholder="Enter the message..."></textarea>
+                  <textarea type="text" class="form-control form-control-user" value="" id="message" name="message" placeholder="Enter the message..."><?= isset($_POST['message']) ? $_POST['message'] : "" ?></textarea>
                   <?php if (isset($err['message'])) { ?><div class="small alert-danger"><?= $err['message']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">

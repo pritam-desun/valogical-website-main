@@ -10,16 +10,16 @@ if (isset($_POST['submit'])) {
   //print_r($status);
   $err = [];
   if ($name == "") {
-    $err["name"] = "Please Enter Name  ";
+    $err["name"] = "Please enter name  ";
   }
   if (!file_exists($_FILES["image"]["tmp_name"])) {
-    $err["image"] = "Please Select the Image  ";
+    $err["image"] = "Please select the image  ";
   }
   if ($url_text == "") {
-    $err["url_text"] = "Please Enter a URL  ";
+    $err["url_text"] = "Please enter a url  ";
   }
-  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $url_text)) {
-    $err['url_text'] = "Invalid URL format";
+  if (preg_match('/^(?:https?:\/\/(?:www\.)?)?[a-z0-9]+(?:[-.][a-z0-9]+)*\.[a-z]{2,}(?::[0-9]{1,5})?(\/.*)?$/', $url_text)) {
+    $err['url_text'] = "Invalid url format";
   }
 
   if (empty($err)) {
@@ -29,8 +29,7 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      // $err['add'] = 'Form Submit Successfully';
-      header("location:view_portfolio.php?add=Form Submit Successfully");
+      add_redirct("view_portfolio", "Record added successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -60,12 +59,12 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
-                  <input type="name" class="form-control form-control-sm" id="name" name="name" placeholder="name">
+                  <input type="name" class="form-control form-control-sm" id="name" value="<?= isset($_POST['name']) ? $_POST['name'] : "" ?>" name="name" placeholder="name">
                   <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Url text :</label>
-                  <input type="text" class="form-control form-control-sm" id="url_text	 " name="url_text" placeholder="url text  ">
+                  <input type="url" class="form-control form-control-sm" id="url_text" value="<?= isset($_POST['url_text']) ? $_POST['url_text'] : "" ?>" name="url_text" placeholder="url text  ">
                   <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
                 </div>
 

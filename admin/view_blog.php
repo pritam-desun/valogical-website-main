@@ -120,6 +120,9 @@ if (@$_GET['type'] == 'delete') {
     return confirm('Are you sure?');
   }
 </script>
+<?php
+include("include/footer.php")
+?>
 </body>
 
 </html>

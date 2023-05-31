@@ -51,7 +51,8 @@ if (isset($_POST['update'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Update Successfully';
-      header("location:view_portfolio.php?update=Form Update Successfully");
+      // header("location:view_portfolio.php?update=Form Update Successfully");
+      link_redirct("view_portfolio", "Record Update Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

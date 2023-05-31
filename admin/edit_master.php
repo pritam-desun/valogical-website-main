@@ -32,7 +32,8 @@ if (isset($_POST['update'])) {
     // die;
     if ($result) {
       // $err['add'] = 'Form Submit Successfully';
-      header("location:view_master.php?add=Form Submit Successfully");
+      // header("location:view_master.php?add=Form Submit Successfully");
+      link_redirct("view_master", "Record Update Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

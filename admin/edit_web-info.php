@@ -46,7 +46,7 @@ if (isset($_POST['update'])) {
   <div class="container">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
+      <div class="card-body p-4">
         <!-- Nested Row within Card Body -->
         <form class="user" action="" method="post">
           <div class="row">

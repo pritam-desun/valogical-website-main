@@ -22,10 +22,10 @@ if (isset($_POST['submit'])) {
         $err["name"] = "Please Enter name  ";
     }
     if ($email == "") {
-        $err['email'] = "Email is Required";
+        $err['email'] = "Email is required";
     }
     if ($image == "") {
-        $err["image"] = "Please Enter image  ";
+        $err["image"] = "Please upload image  ";
     }
     if ($email != "") {
 

@@ -6,10 +6,16 @@ if (isset($_POST['submit'])) {
   $err = [];
 
   if ($ques == "") {
-    $err["question"] = "Please Write Your Question  ";
+    $err["question"] = "Please write your question  ";
+  }
+  if (is_numeric($ques)) {
+    $err["question"] = "Please enter letters and alpha-numeric ";
+  }
+  if (is_numeric($answ)) {
+    $err["answ"] = "Please enter letters and alpha-numeric  ";
   }
   if ($answ == "") {
-    $err["answer"] = "Please Write Your Answer  ";
+    $err["answer"] = "Please write your answer  ";
   }
   if (empty($err)) {
     //die("here");
@@ -18,8 +24,7 @@ if (isset($_POST['submit'])) {
     //Print_r($query);
     // die;
     if ($result) {
-      //$err['message'] = 'New Record Addded successfully';
-      header("location:faq.php?add=New Record Addded successfully");
+      add_redirct("faq", "Record added successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }
@@ -50,13 +55,13 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Question:</label>
-                  <input type="name" name="question" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
+                  <input type="name" name="question" value="<?= isset($_POST['question']) ? $_POST['question'] : "" ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
                   <?php if (isset($err['question'])) { ?><div class="small alert-danger"><?= $err['question']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
 
-                  <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"></textarea>
+                  <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"><?= isset($_POST['answer']) ? $_POST['answer'] : "" ?></textarea>
                   <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">

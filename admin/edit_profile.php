@@ -1,5 +1,8 @@
 <?php
 include("include/master.php");
+
+
+
 // include_once "./framework/main.php";
 if (isset($_POST['update'])) {
   $target_dir = "upload/";
@@ -41,7 +44,9 @@ if (isset($_POST['update'])) {
     // die();
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      header("location:profile.php?update=Profile Update Successfully");
+      // header("location:profile.php?update=Profile Update Successfully");
+      link_redirct("profile", "Record Update Successfully");
+
     } else {
       $err['messsage'] = 'Registration Not Worked please check Your code ';
     }
@@ -79,14 +84,14 @@ if (isset($_POST['update'])) {
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Profile Image Upload:</label>
-                  <input type="file" name="image" value="" class="" id="exampleFormControlTextarea1" rows="3">
+                  <input required class="form-control form-control-sm" value="" type="file" name="image" id="exampleFormControlTextarea1" rows="3">
                   <?php if (isset($_SESSION['user_image'])) { ?>
-
+                    <?php print_r($_SESSION['user_image']); ?>
                   <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
               </form>
-              <hr>
+
             </div>
           </div>
         </div>
@@ -96,15 +101,6 @@ if (isset($_POST['update'])) {
 </div>
 <!-- /.container-fluid -->
 
-</div>
-<!-- End of Main Content -->
-
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">

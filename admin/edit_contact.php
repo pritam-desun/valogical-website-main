@@ -38,8 +38,11 @@ if (isset($_POST['update'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      header("location:view_contact.php?update=Form Update Successfully");
+      // header("location:view_contact.php?update=Form Update Successfully");
       //$err['add'] = 'Form Update Successfully';
+      echo "<script>
+      location.replace('view_contact.php?update=Form Update Successfully');
+    </script>";
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

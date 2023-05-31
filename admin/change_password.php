@@ -6,47 +6,76 @@ if (isset($_POST["submit"])) {
   $confirm_password = $_POST['confirm_password'];
 
   if ($current_password == "") {
-    $err = ["current_password" => "Please Enter your Current Password!"];
-  }
-  if ($current_password != "") {
-    $sql = "SELECT * FROM `users` WHERE password = '" . md5($current_password) . "' && user_id = '" . $_SESSION['id'] . "'";
-    $res = mysqli_query($conn, $sql);
-    if (!mysqli_num_rows($res) > 0) {
-      $err['current_password'] = "Please Enter Right Current Password!!";
-    }
+    $err = ["current_password" => "Please enter your current password!"];
   }
   if ($new_password == "") {
-    $err["new_password"] = "Please Enter New Password!";
+    $err["new_password"] = "Please enter new password!";
   }
+
   if ($confirm_password == "") {
-    $err["confirm_password"] = "Please Confirm your New Password!";
+    $err["confirm_password"] = "Please confirm your new password!";
   }
-  if ($new_password != $confirm_password) {
-    $err["confirm_password"] = "New Password and Confirm Password does not match!";
-  }
-  if ($new_password == $current_password) {
-    $err["new_password"] = "New and Current Password is same!";
-  }
-  $current_password = md5($_POST['current_password']);
-  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$current_password'";
-  $result = mysqli_query($conn, $sql);
-  $rowCount = mysqli_num_rows($result);
-  //print_r($rowCount);
-  if ($rowCount > 0) {
-    $new_password = md5($_POST['new_password']);
-    $confirm_password = md5($_POST['confirm_password']);
-    $sql = "UPDATE `users` set password = '$new_password' WHERE `email` = '$email'";
-    $result = mysqli_query($conn, $sql);
-    $rowCount = mysqli_affected_rows($conn);
-    print_r($rowCount);
-    if ($rowCount > 0) {
-      header("Location:profile.php?message=Password change successfully!");
+  // if ($new_password != $confirm_password) {
+  //   $err["confirm_password"] = "New password and confirm password does not match!";
+  // }
+
+  if (!is_null($current_password)) {
+
+    $password =  md5($current_password);
+    $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$password'";
+    $res = mysqli_query($conn, $sql);
+    $rowCount = mysqli_num_rows($res);
+    if (!$rowCount) {
+      $err['current_password'] = "Current password doesn't match!";
+    } else {
+      if (($new_password != "" || $new_password != null) && ($current_password != "" || $current_password != null)) {
+        if ($new_password == $current_password) {
+          $err["new_password"] = "New and Current Password is same!";
+        }
+      }
+      if ($new_password != $confirm_password) {
+        $err["confirm_password"] = "New password and confirm password does not match!";
+      } else {
+
+        if (($confirm_password == "" || $confirm_password == null)) {
+          $err["confirm_password"] = "Please confirm your new password!";
+        }
+        if (($new_password == "" || $new_password == null)) {
+          $err["new_password"] = "Please enter new password!";
+        }
+        $new_password = md5($_POST['new_password']);
+        $confirm_password = md5($_POST['confirm_password']);
+        $sql = "UPDATE `users` set password = '$new_password' WHERE `email` = '$email'";
+        $result = mysqli_query($conn, $sql);
+        $rowCount = mysqli_affected_rows($conn);
+        if ($rowCount > 0) {
+          // header("Location:profile.php?message=Password change successfully!");
+          link_redirct("profile", "Password change successfully!");
+        }
+      }
     }
-  } else {
-    //$message = "Please Enter the bellow fields..!";
   }
 }
 
+
+
+
+
+// if ($new_password == $current_password) {
+//   $err["new_password"] = "New and Current Password is same!";
+// }
+// $current_password = md5($_POST['current_password']);
+// $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$current_password'";
+// $result = mysqli_query($conn, $sql);
+// $rowCount = mysqli_num_rows($result);
+//print_r($rowCount);
+
+
+// print_r($rowCount);
+// if ($rowCount > 0) {
+//   // header("Location:profile.php?message=Password change successfully!");
+//   link_redirct("profile", "Password change successfully!");
+// }
 ?>
 
 <!-- Begin Page Content -->
@@ -72,17 +101,17 @@ if (isset($_POST["submit"])) {
               <form class="user" action="" method="post">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Current Password:</label>
-                  <input type="password" class="form-control form-control-user" name="current_password" id="current_password" placeholder="Enter a Current Password">
+                  <input type="password" class="form-control form-control-user" required value="<?= isset($_POST['current_password']) ? $_POST['current_password'] : "" ?>" name="current_password" id="current_password" placeholder="Enter a Current Password">
                   <?php if (isset($err['current_password'])) { ?><div class="small alert-danger"><?= $err['current_password']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">New Password:</label>
-                  <input type="password" class="form-control form-control-user" name="new_password" id="new_password" placeholder="Enter a New Password">
+                  <input type="password" class="form-control form-control-user" required value="<?= isset($_POST['new_password']) ? $_POST['new_password'] : "" ?>" name="new_password" id="new_password" placeholder="Enter a New Password">
                   <?php if (isset($err['new_password'])) { ?><div class="small alert-danger"><?= $err['new_password']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Confirm Password:</label>
-                  <input type="password" class="form-control form-control-user" id="confirm_password" name="confirm_password" placeholder="Enter a Confirm Password">
+                  <input type="password" class="form-control form-control-user" required value="<?= isset($_POST['confirm_password']) ? $_POST['confirm_password'] : "" ?>" id="confirm_password" name="confirm_password" placeholder="Enter a Confirm Password">
                   <?php if (isset($err['confirm_password'])) { ?><div class="small alert-danger"><?= $err['confirm_password']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
@@ -152,6 +181,7 @@ if (isset($_POST["submit"])) {
 </script>
 <?php
 include("include/footer.php")
+
 ?>
 
 <script>

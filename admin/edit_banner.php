@@ -66,7 +66,10 @@ if (isset($_POST['update'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Update Successfully';
-      header("location:view_banner.php?update=Record Update successfully");
+      // header("location:view_banner.php?update=Record Update successfully");
+      echo "<script>
+      location.replace('view_banner.php?update=Record Update successfully');
+    </script>";
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }

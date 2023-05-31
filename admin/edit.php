@@ -22,10 +22,10 @@ if (isset($_POST['update'])) {
         $err['people_name'] = "Name is Required";
     }
     if ($people_designation == "") {
-        $err['people_designation'] = "Name is Required";
+        $err['people_designation'] = "Designation is Required";
     }
     if ($content == "") {
-        $err['content'] = "Name is Required";
+        $err['content'] = "Content is Required";
     }
     if (empty($err)) {
 
@@ -41,7 +41,8 @@ if (isset($_POST['update'])) {
         //die;
         if ($result) {
             //$err['register'] = 'Data Update successfully';
-            header("Location: testimonials.php?update=Data Update successfully");
+            // header("Location: testimonials.php?update=Data Update successfully");
+            link_redirct("testimonials", "Record Update Successfully");
         } else {
             $err['register'] = 'Edit Not Worked please check Your code ';
         }

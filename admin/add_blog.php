@@ -41,23 +41,26 @@ if (isset($_POST['submit'])) {
 
   $err = [];
   if ($title == "") {
-    $err['title'] = "Title is  Required";
+    $err['title'] = "Title is  required";
+  }
+  if (is_numeric($title)) {
+    $err["title"] = "Please enter letters or  aplhpa-numeric values only ";
   }
   if ($title != "") {
     $sql = "SELECT * FROM `blog` WHERE title='$title'";
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) {
-      $err['title'] = "Title is Already Exists";
+      $err['title'] = "Title is already exists";
     }
   }
   if ($image == "") {
-    $err["image"] = "Please Enter image  ";
+    $err["image"] = "Please upload image  ";
   }
   if ($short_desc == "") {
-    $err["short_desc"] = "Please Enter short description";
+    $err["short_desc"] = "Please enter short description";
   }
   if ($content == "") {
-    $err["content"] = "Please Enter the content  ";
+    $err["content"] = "Please enter the content  ";
   }
 
   if (empty($err)) {
@@ -70,7 +73,8 @@ if (isset($_POST['submit'])) {
       //die;
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Submit Successfully';
-      header("Refresh:view_blog.php?add=Form Submit Successfully");
+      // header("Refresh:view_blog.php?add=Form Submit Successfully");
+      add_redirct("view_blog", "Record added successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -100,23 +104,23 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
                   <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="formFileLg" class="form-label">Feature Image:</label>
-                  <input required class="form-control form-control-lg" value="<?= isset($_POST['image']) ? $_POST['image'] : "" ?>" id="feature_img" type="file" name="feature_img">
+                  <input class="form-control form-control-lg" value="<?= isset($_POST['image']) ? $_POST['image'] : "" ?>" id="feature_img" type="file" name="feature_img">
                 </div>
                 <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Short desp :</label>
-                  <textarea required type="name" name="short_desc" rows="8" class="form-control" value="<?= isset($_POST['short_desc']) ? $_POST['short_desc'] : "" ?>" id="short_desp" rows="5" placeholder=""></textarea>
+                  <textarea type="name" name="short_desc" rows="8" class="form-control" value="" id="short_desp" rows="5" placeholder=""><?= isset($_POST['short_desc']) ? $_POST['short_desc'] : "" ?></textarea>
                   <?php if (isset($err['short_desc'])) { ?><div class="small alert-danger"><?= $err['short_desc']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Content :</label>
-                  <textarea required type="name" name="content" rows="8" class="form-control" value="<?= isset($_POST['content']) ? $_POST['content'] : "" ?>" id="contentt" rows="5" placeholder=""></textarea>
+                  <textarea type="name" name="content" rows="8" class="form-control" value="" id="contentt" rows="5" placeholder=""><?= isset($_POST['content']) ? $_POST['content'] : "" ?></textarea>
                   <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">

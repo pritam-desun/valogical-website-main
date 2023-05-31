@@ -36,3 +36,16 @@ function UploadFile($file)
 
   return $data;
 }
+
+function link_redirct($page, $massage)
+{
+  echo  "<script>
+  location.replace('" . $page . ".php?update=" . $massage . "');
+</script>";
+}
+function add_redirct($page, $massage)
+{
+  echo  "<script>
+  location.replace('" . $page . ".php?add=" . $massage . "');
+</script>";
+}

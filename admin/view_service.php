@@ -117,6 +117,7 @@ if (@$_GET['type'] == 'delete') {
 <script>
   document.title = "Taskenhancer :: View Service";
 </script>
+<?php include("include/footer.php"); ?>
 <style>
   .ac-btn {
     width: 145px;

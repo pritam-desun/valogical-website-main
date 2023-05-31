@@ -54,9 +54,7 @@ if (isset($_POST['update'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       // header("Location: view_service.php?update=Data update successfully.");
-      echo "<script>
-      location.replace('view_service.php?update=Data update successfully');
-    </script>";
+      link_redirct("view_service", "Record Update Successfully");
     } else {
       $err['register'] = 'Edit not worked please check Your code ';
     }

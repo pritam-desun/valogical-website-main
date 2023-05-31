@@ -11,7 +11,16 @@ if (isset($_POST['submit'])) {
   //print_r($image);
   $err = [];
   if ($country == "") {
-    $err["country"] = "Please enter title  ";
+    $err["country"] = "Please enter country name  ";
+  }
+  if (is_numeric($country)) {
+    $err["country"] = "Please enter letters values only ";
+  }
+  if (is_numeric($currency_code)) {
+    $err["currency_code"] = "Please enter letters and alpha-numeric values only ";
+  }
+  if (is_numeric($currency_symbol)) {
+    $err["currency_symbol"] = "Please enter alpha-special characters  values only ";
   }
   if (!preg_match("/^[a-zA-Z-']*$/", $country)) {
     $err['country'] = "Only letters allowed";
@@ -20,13 +29,13 @@ if (isset($_POST['submit'])) {
     $err["currency_code"] = "Please enter currency code";
   }
   if (!preg_match("/^[a-zA-Z-']*$/", $currency_code)) {
-    $err['currency_code'] = "Only letters and white space allowed";
+    $err['currency_code'] = "Only letters allowed without space ";
   }
   if ($currency_symbol == "") {
     $err["currency_symbol"] = "Please enter the currency symbol  ";
   }
   if (!preg_match("/[#$%^&*()+=\-\[\]\';,.\/{}|:<>?~\\\\]/", $currency_symbol)) {
-    $err["currency_symbol"] = "Please enter the currency symbol properly  ";
+    $err["currency_symbol"] = "Please enter the currency symbol   ";
   }
 
   if (empty($err)) {
@@ -35,7 +44,8 @@ if (isset($_POST['submit'])) {
 
     if ($result) {
       $err['add'] = 'Form Submit Successfully';
-      header("location:view_master.php?add=Form Submit Successfully");
+      // header("location:view_master.php?add=Form Submit Successfully");
+      add_redirct("view_master", "Record added successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -65,17 +75,17 @@ if (isset($_POST['submit'])) {
 
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Country:</label>
-                  <input type="text" class="form-control" name="country" placeholder="Enter the Country Name">
+                  <input type="text" class="form-control" value="<?= isset($_POST['country']) ? $_POST['country'] : "" ?>" name="country" placeholder="Enter the country name">
                   <?php if (isset($err['country'])) { ?><div class="small alert-danger"><?= $err['country']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Currency Code:</label>
-                  <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Code">
+                  <input type="text" class="form-control" value="<?= isset($_POST['currency_code']) ? $_POST['currency_code'] : "" ?>" name="currency_code" placeholder="Enter the currency code">
                   <?php if (isset($err['currency_code'])) { ?><div class="small alert-danger"><?= $err['currency_code']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Currency Symbol:</label>
-                  <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Symbol">
+                  <input type="text" class="form-control" value="<?= isset($_POST['currency_symbol']) ? $_POST['currency_symbol'] : "" ?>" name="currency_symbol" placeholder="Enter the currency symbol">
                   <?php if (isset($err['currency_symbol'])) { ?><div class="small alert-danger"><?= $err['currency_symbol']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">

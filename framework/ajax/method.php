@@ -6,19 +6,19 @@
         // setting all input into the forData object
         var formdata = new FormData(form);
         // if (formValidate(form.elements, form)) {
-            var formElements_button = Array.from(form.elements).pop();
-            // getting the button of the form and passing into the preloader function
-            preloader(formElements_button);
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById(target_id).innerHTML = this.responseText;
-                    stopPreloader(formElements_button, "span");
-                }
-            };
-            xhttp.open(method, url_name, true);
-            xhttp.send(formdata);
-        }
+        var formElements_button = Array.from(form.elements).pop();
+        // getting the button of the form and passing into the preloader function
+        preloader(formElements_button);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(target_id).innerHTML = this.responseText;
+                stopPreloader(formElements_button, "span");
+            }
+        };
+        xhttp.open(method, url_name, true);
+        xhttp.send(formdata);
+    }
     // }
 
     function formValidate(el, form_id) {
@@ -39,7 +39,7 @@
         return flag;
     }
 
-    function setError(el,errr_message, form_id) {
+    function setError(el, errr_message, form_id) {
         createdd_element = createMenuItem("span", {
             name: el.name + errr_message,
             class: "text-danger",

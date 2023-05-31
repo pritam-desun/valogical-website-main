@@ -17,35 +17,38 @@ if (isset($_POST['submit'])) {
   if ($title == "") {
     $err["title"] = "Please enter title  ";
   }
+  if (is_numeric($title)) {
+    $err["title"] = "Please enter letters values only ";
+  }
   if (preg_match('/[^a-z_\-0-9]/i', $title)) {
-    $err['title'] = "Only letters, numeric and white space allowed";
+    $err['title'] = "Only letters, numeric and  space allowed";
   }
   if ($image == "") {
-    $err["image"] = "Please Enter Image  ";
+    $err["image"] = "Please enter image  ";
   }
   if ($btn_1_text == "") {
-    $err["btn_1_text"] = "Please Enter 1st Button Name  ";
+    $err["btn_1_text"] = "Please enter 1st button name  ";
   }
   if (preg_match('/[^a-z_\-0-9]/i', $btn_1_text)) {
     $err['btn_1_text'] = "Only letters, numeric and white space allowed";
   }
   if ($btn_1_url == "") {
-    $err["btn_1_url"] = "Please Enter 1st Button URL ";
+    $err["btn_1_url"] = "Please enter 1st button Url ";
   }
-  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $btn_1_url)) {
-    $err['btn_1_url'] = "Invalid URL format";
+  if (preg_match('/^(?:https?:\/\/(?:www\.)?)?[a-z0-9]+(?:[-.][a-z0-9]+)*\.[a-z]{2,}(?::[0-9]{1,5})?(\/.*)?$/', $btn_1_url)) {
+    $err['btn_1_url'] = "Invalid url format";
   }
   if ($btn_2_text == "") {
-    $err["btn_2_text"] = "Please Enter 2nd Button Name  ";
+    $err["btn_2_text"] = "Please enter 2nd button name  ";
   }
   if (preg_match('/[^a-z_\-0-9]/i', $btn_1_text)) {
     $err['btn_1_text'] = "Only letters, numeric and white space allowed";
   }
   if ($btn_2_url == "") {
-    $err["btn_2_url"] = "Please Enter 1st Button URL ";
+    $err["btn_2_url"] = "Please enter 2nd button url ";
   }
-  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $btn_2_url)) {
-    $err['btn_2_url'] = "Invalid URL format";
+  if (preg_match('/^(?:https?:\/\/(?:www\.)?)?[a-z0-9]+(?:[-.][a-z0-9]+)*\.[a-z]{2,}(?::[0-9]{1,5})?(\/.*)?$/', $btn_2_url)) {
+    $err['btn_2_url'] = "Invalid url format";
   }
   if (empty($err)) {
     $query = "INSERT INTO `banner`(`title`, `image`, `btn_1_text`,`btn_1_url`,`btn_2_text`,`btn_2_url`) VALUES ('" . $title . "','" . $image  . "','" . $btn_1_text  . "','" . $btn_1_url  . "','" . $btn_2_text  . "','" . $btn_2_url  . "')";
@@ -55,7 +58,8 @@ if (isset($_POST['submit'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       $err['add'] = 'Form Submit Successfully';
-      header("Refresh:view_banner.php?add=Form Submit Successfully");
+      // header("Refresh:view_banner.php?add=Form Submit Successfully");
+      add_redirct("view_banner", "Record added successfully");
     } else {
       $err['add'] = '!Oops Something Went Wrong. Please Try Again.';
     }
@@ -84,33 +88,33 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
                   <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="formFileLg" class="form-label">Upload Image:</label>
-                  <input required class="form-control form-control-lg" accept=".jpg,.png,.jpeg" value="<?= isset($_POST['image']) ? $_POST['image'] : "" ?>" id="formFileLg" type="file" name="image">
+                  <input class="form-control form-control-lg" accept=".jpg,.png,.jpeg" value="<?= isset($_POST['image']) ? $_POST['image'] : "" ?>" id="formFileLg" type="file" name="image">
                 </div>
                 <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_text']) ? $_POST['btn_1_text'] : "" ?>" id="btn_1_text " name="btn_1_text" placeholder=" ">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_text']) ? $_POST['btn_1_text'] : "" ?>" id="btn_1_text " name="btn_1_text" placeholder=" ">
                   <?php if (isset($err['btn_1_text'])) { ?><div class="small alert-danger"><?= $err['btn_1_text']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_url']) ? $_POST['btn_1_url'] : "" ?>" id="btn_1_url " name="btn_1_url" placeholder="  ">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_url']) ? $_POST['btn_1_url'] : "" ?>" id="btn_1_url " name="btn_1_url" placeholder="  ">
                   <?php if (isset($err['btn_1_url'])) { ?><div class="small alert-danger"><?= $err['btn_1_url']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 2 Text:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_text']) ? $_POST['btn_2_text'] : "" ?>" id="btn_2_text  " name="btn_2_text" placeholder="  ">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_text']) ? $_POST['btn_2_text'] : "" ?>" id="btn_2_text  " name="btn_2_text" placeholder="  ">
                   <?php if (isset($err['btn_2_text'])) { ?><div class="small alert-danger"><?= $err['btn_2_text']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 2 Url:</label>
-                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_url']) ? $_POST['btn_2_url'] : "" ?>" id="btn_1_text " name="btn_2_url" placeholder="  ">
+                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_url']) ? $_POST['btn_2_url'] : "" ?>" id="btn_1_text " name="btn_2_url" placeholder="  ">
                   <?php if (isset($err['btn_2_url'])) { ?><div class="small alert-danger"><?= $err['btn_2_url']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
