@@ -30,10 +30,10 @@ if (isset($_POST['update'])) {
   }
 
   if ($url_text == "") {
-    $err["url_text"] = "Please Enter url_text  ";
+    $err["url_text"] = "Please Enter Url Text  ";
   }
   if ($name == "") {
-    $err["name"] = "Please Enter name  ";
+    $err["name"] = "Please Enter Name  ";
   }
 
   // if ($date == "") {
@@ -75,7 +75,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">

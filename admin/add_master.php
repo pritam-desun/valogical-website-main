@@ -11,22 +11,30 @@ if (isset($_POST['submit'])) {
   //print_r($image);
   $err = [];
   if ($country == "") {
-    $err["country"] = "Please Enter title  ";
+    $err["country"] = "Please enter title  ";
+  }
+  if (!preg_match("/^[a-zA-Z-']*$/", $country)) {
+    $err['country'] = "Only letters allowed";
   }
   if ($currency_code == "") {
-    $err["currency_code"] = "Please Enter currency code";
+    $err["currency_code"] = "Please enter currency code";
+  }
+  if (!preg_match("/^[a-zA-Z-']*$/", $currency_code)) {
+    $err['currency_code'] = "Only letters and white space allowed";
   }
   if ($currency_symbol == "") {
-    $err["currency_symbol"] = "Please Enter the currency symbol  ";
+    $err["currency_symbol"] = "Please enter the currency symbol  ";
+  }
+  if (!preg_match("/[#$%^&*()+=\-\[\]\';,.\/{}|:<>?~\\\\]/", $currency_symbol)) {
+    $err["currency_symbol"] = "Please enter the currency symbol properly  ";
   }
 
   if (empty($err)) {
     $query = "INSERT INTO `master`(`country`,`currency_code`, `currency_symbol`,`create_at`) VALUES ('" . $country . "','" . $currency_code . "','" . $currency_symbol  . "','" . $create_on  . "')";
     $result = mysqli_query($conn, $query);
 
-    // die;s
     if ($result) {
-      // $err['add'] = 'Form Submit Successfully';
+      $err['add'] = 'Form Submit Successfully';
       header("location:view_master.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
@@ -51,21 +59,24 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post">
 
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Country:</label>
                   <input type="text" class="form-control" name="country" placeholder="Enter the Country Name">
+                  <?php if (isset($err['country'])) { ?><div class="small alert-danger"><?= $err['country']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Currency Code:</label>
-                  <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Name">
+                  <input type="text" class="form-control" name="currency_code" placeholder="Enter the Country Code">
+                  <?php if (isset($err['currency_code'])) { ?><div class="small alert-danger"><?= $err['currency_code']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Currency Symbol:</label>
-                  <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Name">
+                  <input type="text" class="form-control" name="currency_symbol" placeholder="Enter the Country Symbol">
+                  <?php if (isset($err['currency_symbol'])) { ?><div class="small alert-danger"><?= $err['currency_symbol']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
               </form>
@@ -117,6 +128,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
   document.title = "Taskenhancer :: Add Master";
 </script>

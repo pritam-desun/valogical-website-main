@@ -54,7 +54,7 @@ $answ = [];
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">

@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
       //die;
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Submit Successfully';
-      header("location:view_blog.php?add=Form Submit Successfully");
+      header("Refresh:view_blog.php?add=Form Submit Successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -94,33 +94,33 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Add New Blog</h1>
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : ''; ?>" name="title" id="title" placeholder="">
+                  <input required type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
                   <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="formFileLg" class="form-label">Feature Image:</label>
-                  <input class="form-control form-control-lg" id="feature_img" type="file" name="feature_img">
+                  <input required class="form-control form-control-lg" value="<?= isset($_POST['image']) ? $_POST['image'] : "" ?>" id="feature_img" type="file" name="feature_img">
                 </div>
                 <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
 
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Short desp :</label>
-                  <textarea type="name" value="" name="short_desc" rows="8" class="form-control" id="short_desp" rows="5" placeholder=""> <?= isset($_POST['short_desc']) ? $_POST['short_desc'] : ''; ?></textarea>
+                  <textarea required type="name" name="short_desc" rows="8" class="form-control" value="<?= isset($_POST['short_desc']) ? $_POST['short_desc'] : "" ?>" id="short_desp" rows="5" placeholder=""></textarea>
                   <?php if (isset($err['short_desc'])) { ?><div class="small alert-danger"><?= $err['short_desc']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Content :</label>
-                  <textarea type="name" value=" " name="content" rows="8" class="form-control" id="contentt" rows="5" placeholder=""><?= isset($_POST['content']) ? $_POST['content'] : ''; ?></textarea>
+                  <textarea required type="name" name="content" rows="8" class="form-control" value="<?= isset($_POST['content']) ? $_POST['content'] : "" ?>" id="contentt" rows="5" placeholder=""></textarea>
                   <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
-                  <label for="formFileLg" class="form-label">Published Status:</label>
+                  <label for="formFileLg" value="<?= isset($_POST['published_status']) ? $_POST['published_status'] : "" ?>" class="form-label">Published Status:</label>
                   <select type="status" name="published_status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     <option value="Draft" selected>Draft</option>
                     <option value="Published">Published</option>

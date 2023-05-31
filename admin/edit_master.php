@@ -16,13 +16,13 @@ if (isset($_POST['update'])) {
   //print_r($image);
   $err = [];
   if ($country == "") {
-    $err["country"] = "Please Enter title  ";
+    $err["country"] = "Please Enter Title  ";
   }
   if ($currency_code == "") {
-    $err["currency_code"] = "Please Enter currency code";
+    $err["currency_code"] = "Please Enter Currency Code";
   }
   if ($currency_symbol == "") {
-    $err["currency_symbol"] = "Please Enter the currency symbol  ";
+    $err["currency_symbol"] = "Please Enter the Currency Symbol  ";
   }
 
   if (empty($err)) {
@@ -56,7 +56,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post">
 
@@ -125,5 +125,5 @@ include("include/footer.php")
 ?>
 
 <script>
-  document.title = "Taskenhancer :: Edit Mastser";
+  document.title = "Taskenhancer :: Edit Master";
 </script>

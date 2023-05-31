@@ -40,8 +40,8 @@ if (isset($_POST['update'])) {
         //Print_r ($_POST);
         //die;
         if ($result) {
-            //$err['register'] = 'Data Update Successfully';
-            header("Location: testimonials.php?update=Data Update Successfully");
+            //$err['register'] = 'Data Update successfully';
+            header("Location: testimonials.php?update=Data Update successfully");
         } else {
             $err['register'] = 'Edit Not Worked please check Your code ';
         }
@@ -65,7 +65,7 @@ if (isset($_POST['update'])) {
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="p-5">
-                            <div class="text-cEnter">
+                            <div class="text-center">
                             </div>
                             <form class="user" action="" method="post">
                                 <div class="form-group ">
@@ -179,5 +179,5 @@ if (isset($_POST['update'])) {
 include("include/footer.php")
 ?>
 <script>
-    document.title = "Taskenhancer :: Edit";
+    document.title = "Taskenhancer :: Edit Testimonials";
 </script>

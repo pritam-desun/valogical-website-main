@@ -3,38 +3,56 @@ include("include/config.php");
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) {
     header("Location: dashboard.php");
 }
+$errMsg = '';
 if (isset($_POST['submit'])) {
+    if ($_POST['email'] == "") {
+        $err['email'] = "Email is Required";
+    }
+    if ($_POST['password'] == "") {
+        $err['password'] = "Password is Required";
+    }
+    if (!empty($err['email']) && !empty($err['Password'])) {
+        $errMsg = "Email and Password is Required";
+    }
+    if (empty($err)) {
+        $password = md5($_POST['password']);
+        //$query = "INSERT INTO `users`(`name`, `email`, `subject`,`phone`,`message`) VALUES ('" . $name . "','" . $email  . "','" . $subject  . "','" . $phone  . "','" . $message  . "')";
+        $query = "SELECT * FROM `users` WHERE `email` = '" . $_POST['email'] . "' and `password` = '$password' ";
 
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, trim($_POST['email'])) : "";
-    // print_r($email);
-    if (!empty($_POST['password'])) {
-        $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-        // print_r($password);
+        $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, trim($_POST['email'])) : "";
+        // print_r($email);
+        if (!empty($_POST['password'])) {
+            $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+            // print_r($password);
+            // die();
+        }
+        $errMsg = '';
+        $sql = $conn->prepare("SELECT * FROM users WHERE email=? AND password =?");
+        $sql->bind_param("ss", $email, $password);
+        $sql->execute();
+        $result = $sql->get_result()->fetch_array(MYSQLI_ASSOC);
+        // print_r($result);
         // die();
+        if (!is_null($result)) {
+            $_SESSION['user_image'] = $result['image'];
+            $_SESSION['user_email'] = $result['email'];
+            $_SESSION['user_name'] = $result['name'];
+            $_SESSION['id'] = $result['user_id'];
+            $_SESSION['logged_in'] = 1;
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            $errMsg = "Invalid username and password";
+            $conn->close();
+        }
     }
-    $errMsg = '';
-    $sql = $conn->prepare("SELECT * FROM users WHERE email=? AND password =?");
-    $sql->bind_param("ss", $email, $password);
-    $sql->execute();
-    $result = $sql->get_result()->fetch_array(MYSQLI_ASSOC);
-    // print_r($result);
-    // die();
-    if (!is_null($result)) {
-        $_SESSION['user_image'] = $result['image'];
-        $_SESSION['user_email'] = $result['email'];
-        $_SESSION['user_name'] = $result['name'];
-        $_SESSION['id'] = $result['user_id'];
-        $_SESSION['logged_in'] = 1;
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        $errMsg = "Invalid username and password";
-        $conn->close();
-    }
-    // header("Location: login.php");
 } else {
     $errMsg = '';
 }
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +65,7 @@ if (isset($_POST['submit'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Taskenhancer : Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,7 +81,7 @@ if (isset($_POST['submit'])) {
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-cEnter">
+        <div class="row justify-content-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -71,28 +89,43 @@ if (isset($_POST['submit'])) {
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                            <div class="col-lg-6 d-lg-block bg-login-image">
 
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-cEnter">
+                                    <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome to Login</h1>
                                         <?php if (!empty($errMsg)) { ?>
-                                            <div class="alert alert-danger"><?= $errMsg;
-                                                                            ?></div> <?php } ?>
+                                            <div class="alert alert-danger"><?= $errMsg; ?></div> <?php } ?>
                                         <?php if (isset($_GET['log'])) { ?>
-                                            <div class="alert alert-danger"><?= $_GET['log']; ?></div> <?php } ?>
+                                            <div class="alert alert-danger"><?= $_GET['log'];; ?></div> <?php } ?>
                                     </div>
+                                    <? print_r($_POST['email']);
+                                    die; ?>
                                     <form class="user" action="" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" value="<?= isset($_POST['email']) ? $_POST['email'] : "" ?>" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <?php if (!empty($err['email'])) {
+                                            ?>
+                                                <small class="text-danger" role="alert">
+                                                    <?= $err['email'] ?>
+                                                </small>
+                                            <?php } ?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" value="<?= isset($_POST['password']) ? $_POST['password'] : "" ?>" name="password" placeholder="Password">
+                                            <?php if (!empty($err['password'])) {
+                                            ?>
+                                                <small class="text-danger" role="alert">
+                                                    <?= $err['password'] ?>
+                                                </small>
+                                            <?php }
+                                            ?>
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="login">
                                     </form>
+
                                 </div>
                             </div>
                         </div>

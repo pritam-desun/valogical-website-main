@@ -14,13 +14,13 @@ if (isset($_POST['submit'])) {
   //print_r($s_desp);
   $err = [];
   if ($s_desp == "") {
-    $err["short_desp"] = "Please Enter Short Descp......  ";
+    $err["short_desp"] = "Please enter Short Description  ";
   }
   if ($l_desp == "") {
-    $err["long_desp"] = "Please Enter Long Descp......  ";
+    $err["long_desp"] = "Please enter Long Description  ";
   }
   if ($status == "") {
-    $err["status"] = "Please Maintain The Status   ";
+    $err["status"] = "Please Maitain the Status   ";
   }
   if ($image == "") {
     $err["image"] = "Image is Required   ";
@@ -33,11 +33,11 @@ if (isset($_POST['submit'])) {
     // die;
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      $err['message'] = 'New Record Addded Successfully';
+      $err['message'] = 'New Record Addded successfully';
       //$msg = $err['message'];
-      header("location:view_service.php?add=New Record Addded Successfully");
+      header("location:view_service.php?add=New Record Added successfully");
     } else {
-      $err['message'] = ' Not Worked Please Check Your Code ';
+      $err['message'] = ' Not Worked please check Your code ';
     }
   }
 }
@@ -59,27 +59,27 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group  ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis w-100">Short Description:</label>
-                  <textarea type="name" name="short_desp" rows="8" class="form-control" id="short_desp" rows="3" placeholder="Short Description........"><?= isset($_POST['short_desp']) ? $_POST['short_desp'] : ''; ?></textarea>
+                  <textarea type="name" name="short_desp" rows="8" class="form-control form-control-sm" id="short_desp" rows="3" placeholder="Short Description........"></textarea>
                   <?php if (isset($err['short_desp'])) { ?><div class="small alert-danger"><?= $err['short_desp']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Long Description:</label>
-                  <textarea type="name" name="long_desp" class="form-control" id="long_desp" rows="3" placeholder="Long Description........"><?= isset($_POST['lnong_desp']) ? $_POST['long_desp'] : ''; ?></textarea>
+                  <textarea type="name" name="long_desp" class="form-control form-control-sm" id="long_desp" rows="3" placeholder="Long Description........"></textarea>
                   <?php if (isset($err['long_desp'])) { ?><div class="small alert-danger"><?= $err['long_desp']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Upload Icon:</label>
-                  <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                  <input class="" id="formFileLg" type="file" name="image">
                   <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['images']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="formFileLg" class="form-label">Status:</label>
-                  <select type="status" name="status" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                  <select type="status" name="status" class="form-control form-control-sm form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     <option value="1" selected>Active</option>
                     <option value="2">Inactive</option>
                   </select>
@@ -170,6 +170,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
-  document.title = "Taskenhancer :: add Service";
+  document.title = "Taskenhancer :: Add Services";
 </script>

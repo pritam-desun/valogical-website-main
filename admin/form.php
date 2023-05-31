@@ -9,17 +9,27 @@ if (isset($_POST['submit'])) {
   $status = isset($_POST["status"]) ? trim($_POST["status"]) : "";
   //print_r($status);
   $err = [];
+  $errMsg = [];
+  if (empty($_POST)) {
+    $errMsg['valid'] = "Please enter data in the from..";
+  }
   if ($people_name == "") {
-    $err["people_name"] = "Please Enter people_name  ";
+    $err["people_name"] = "Please enter name  ";
+  }
+  if (preg_match('/[^a-z_\-0-9]/i', $people_name)) {
+    $err['people_name'] = "Only letters, numeric and white space allowed";
   }
   if ($people_designation == "") {
-    $err["people_designation"] = "Please Enter people_designation  ";
+    $err["people_designation"] = "Please Enter Designation  ";
+  }
+  if (preg_match('/[^a-z_\-0-9]/i', $people_designation)) {
+    $err['people_designation'] = "Only letters, numeric and white space allowed";
   }
   if ($content == "") {
-    $err["content"] = "Please Enter content  ";
+    $err["content"] = "Please enter content  ";
   }
   if ($status == "") {
-    $err["status"] = "Please Enter status  ";
+    $err["status"] = "Please enter status  ";
   }
   if (empty($err)) {
     $query = "INSERT INTO `testimonials`(`people_name`, `people_designation`, `content`,`rating`,`status`) VALUES ('" . $people_name . "','" . $people_designation . "','" . $content . "','" . $rating . "','" . $status . "')";
@@ -27,8 +37,8 @@ if (isset($_POST['submit'])) {
     // Print_r($query);
     // die;
     if ($result) {
-      //$err['register'] = 'New Data Added Successfully';
-      header("location:testimonials.php?add=New Data Added Successfully");
+      $err['register'] = 'New Data Added successfully';
+      header("location:testimonials.php?add=New data added successfully");
     } else {
       $err['register'] = 'Not Worked please check Your code ';
     }
@@ -52,7 +62,7 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">
@@ -160,5 +170,5 @@ include("include/footer.php")
 ?>
 
 <script>
-  document.title = "Taskenhancer :: Form";
+  document.title = "Taskenhancer :: Add Testimonials";
 </script>

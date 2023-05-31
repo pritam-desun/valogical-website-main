@@ -1,30 +1,35 @@
 <?php include("include/master.php");
-// print_r($_SESSION['id']);
+include "../framework/main.php";
 $sql = "SELECT * FROM `site_info`";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
 if (isset($_POST['update'])) {
 
-  $country = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-  $currency_code = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
-  $currency_symbol = isset($_POST["skype"]) ? trim($_POST["skype"]) : "";
-  $currency_symbol = isset($_POST["whatsapp"]) ? trim($_POST["whatsapp"]) : "";
-  $currency_symbol = isset($_POST["youtube_link"]) ? trim($_POST["youtube_link"]) : "";
-  $currency_symbol = isset($_POST["twitter_link"]) ? trim($_POST["twitter_link"]) : "";
-  $currency_symbol = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
-  $currency_symbol = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
+  $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+  $phone = isset($_POST["phone"]) ? trim($_POST["phone"]) : "";
+  $skype = isset($_POST["skype"]) ? trim($_POST["skype"]) : "";
+  $whatsapp = isset($_POST["whatsapp"]) ? trim($_POST["whatsapp"]) : "";
+  $youtube_link = isset($_POST["youtube_link"]) ? trim($_POST["youtube_link"]) : "";
+  $twitter_link = isset($_POST["twitter_link"]) ? trim($_POST["twitter_link"]) : "";
+  $instagram_link = isset($_POST["instagram_link"]) ? trim($_POST["instagram_link"]) : "";
+  $facebook_link = isset($_POST["facebook_link"]) ? trim($_POST["facebook_link"]) : "";
+  $number_of_happy_customer = isset($_POST["number_of_happy_customer"]) ? trim($_POST["number_of_happy_customer"]) : "";
+  $number_of_client = isset($_POST["number_of_client"]) ? trim($_POST["number_of_client"]) : "";
+  $number_of_jobs = isset($_POST["number_of_jobs"]) ? trim($_POST["number_of_jobs"]) : "";
+  $number_of_workers = isset($_POST["number_of_workers"]) ? trim($_POST["number_of_workers"]) : "";
+  $number_of_contributors = isset($_POST["number_of_contributors"]) ? trim($_POST["number_of_contributors"]) : "";
 
   if (empty($err)) {
-    $query = "UPDATE `master`  SET `country`='$country', `currency_code`='$currency_code',`currency_symbol`='$currency_symbol' WHERE master_id = $id";
+
+    $query = "UPDATE `site_info` SET `email`='$email',`phone`='$phone',`skype`='$skype',`whatsapp`='$whatsapp',`youtube_link`='$youtube_link',`twitter_link`='$twitter_link',`instagram_link`='$instagram_link',`facebook_link`='$facebook_link ',`number_of_happy_customer`='$number_of_happy_customer',`number_of_client`='$number_of_client',`number_of_jobs`='$number_of_jobs',`number_of_workers`='$number_of_workers',`number_of_contributors`='$number_of_contributors' WHERE 1";
     $result = mysqli_query($conn, $query);
 
-    // die;
     if ($result) {
-      // $err['add'] = 'Form Submit Successfully';
-      header("location:view_master.php?add=Form Submit Successfully");
+      reload(1);
+      $err['add'] = "Record edited successfully!! ";
     } else {
-      $err['add'] = ' Not Worked please check Your code ';
+      $err['add'] = 'Not worked please check Your code ';
     }
   }
 }
@@ -33,15 +38,15 @@ if (isset($_POST['update'])) {
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h2 mb-1 text-gray-800" style="margin-left:  3.8rem !important;">Master Elements</h1>
+  <h1 class="h2 mb-1 text-gray-800" style="margin-left:  1.25rem !important;">Master Elements</h1>
   <?php if (isset($err['add'])) { ?>
     <div class="alert alert-success"><?= $err['add']; ?></div>
   <?php } ?>
   <!-- DataTales Example -->
   <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-4">
-      <div class="card-body p-4">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <form class="user" action="" method="post">
           <div class="row">
@@ -125,56 +130,43 @@ if (isset($_POST['update'])) {
               </div>
             </div>
           </div>
-          <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">
+          <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Update">
         </form>
+        <hr>
 
       </div>
     </div>
   </div>
 
-</div>
 
-</div>
-<!-- /.container-fluid -->
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-</div>
-<!-- End of Main Content -->
-
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="logout.php">Logout</a>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="logout.php">Logout</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<?php
-include("include/footer.php")
-?>
+  <?php
+  include("include/footer.php")
+  ?>
 
-<script>
-  document.title = "Taskenhancer :: Edit Web Information";
-</script>
+  <script>
+    document.title = "Taskenhancer :: Edit Web Information";
+  </script>

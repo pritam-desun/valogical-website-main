@@ -10,13 +10,16 @@ if (isset($_POST['submit'])) {
   //print_r($status);
   $err = [];
   if ($name == "") {
-    $err["name"] = "Please Enter name  ";
+    $err["name"] = "Please Enter Name  ";
   }
   if (!file_exists($_FILES["image"]["tmp_name"])) {
     $err["image"] = "Please Select the Image  ";
   }
   if ($url_text == "") {
-    $err["url_text"] = "Please Enter url_text  ";
+    $err["url_text"] = "Please Enter a URL  ";
+  }
+  if (preg_match("/(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $url_text)) {
+    $err['url_text'] = "Invalid URL format";
   }
 
   if (empty($err)) {
@@ -52,25 +55,26 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Portfolio Name:</label>
-                  <input type="name" class="form-control form-control-user" id="name" value=" <?= isset($_POST['name']) ? $_POST['name'] : ''; ?>" name="name" placeholder="name">
+                  <input type="name" class="form-control form-control-sm" id="name" name="name" placeholder="name">
                   <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Url text :</label>
-                  <input type="text" class="form-control form-control-user" id="url_text" value="<?= isset($_POST['url_text']) ? $_POST['url_text'] : ''; ?>" name="url_text" placeholder="url text  ">
+                  <input type="text" class="form-control form-control-sm" id="url_text	 " name="url_text" placeholder="url text  ">
                   <?php if (isset($err['url_text'])) { ?><div class="small alert-danger"><?= $err['url_text']; ?></div> <?php } ?>
                 </div>
 
                 <div class="form-group">
                   <label for="formFileLg" class="form-label">Upload Image:</label>
-                  <input class="form-control form-control-lg" id="formFileLg" type="file" name="image">
+                  <input class="form-control form-control-sm" id="formFileLg" type="file" name="image">
+                  <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
                 </div>
-                <?php if (isset($err['image'])) { ?><div class="small alert-danger"><?= $err['image']; ?></div> <?php } ?>
+
 
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
               </form>
@@ -122,6 +126,12 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
-  document.title = "Taskenhancer :: add Portfolio";
+  document.title = "Taskenhancer :: Add Portfolio";
 </script>
+<style>
+  #formFileLg {
+    padding-bottom: 32px;
+  }
+</style>

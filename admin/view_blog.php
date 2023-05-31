@@ -50,7 +50,7 @@ if (@$_GET['type'] == 'delete') {
                 <th>Short desp</th>
                 <th>Published On</th>
                 <th>Published Status</th>
-                <th>Action</th>
+                <th class="ac-btn">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -125,5 +125,11 @@ if (@$_GET['type'] == 'delete') {
 </html>
 
 <script>
-  document.title = "Taskenhancer :: view Blog";
+  document.title = "Taskenhancer :: View Blog";
 </script>
+
+<style>
+  .ac-btn {
+    width: 155px;
+  }
+</style>

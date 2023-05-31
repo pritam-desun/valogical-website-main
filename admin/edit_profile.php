@@ -1,6 +1,6 @@
 <?php
 include("include/master.php");
-
+// include_once "./framework/main.php";
 if (isset($_POST['update'])) {
   $target_dir = "upload/";
   $name = isset($_POST["name"]) ? trim($_POST["name"]) : "";
@@ -18,7 +18,7 @@ if (isset($_POST['update'])) {
     }
   }
   if ($name == "") {
-    $err["name"] = "Please Enter name  ";
+    $err["name"] = "Please Enter Name  ";
   }
   if ($email == "") {
     $err['email'] = "Email is Required";
@@ -64,24 +64,24 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name:</label>
-                  <input type="name" name="name" value="<?= isset($_SESSION['user_name']) ? $_SESSION['user_name'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                  <input type="name" name="name" value="<?= isset($_SESSION['user_name']) ? $_SESSION['user_name'] : ""; ?>" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
                   <?php if (isset($err['name'])) { ?><div class="small alert-danger"><?= $err['name']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Email:</label>
-                  <input type="email" name="email" value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                  <input type="email" name="email" value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : ""; ?>" class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3">
                   <?php if (isset($err['email'])) { ?><div class="small alert-danger"><?= $err['email']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Profile Image Upload:</label>
-                  <input type="file" name="image" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">
+                  <input type="file" name="image" value="" class="" id="exampleFormControlTextarea1" rows="3">
                   <?php if (isset($_SESSION['user_image'])) { ?>
-                    <img src="<?php echo $_SESSION['user_image'] ?>" height="50px">
+
                   <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="update" value="Submit ">

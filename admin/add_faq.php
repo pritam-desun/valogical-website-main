@@ -6,10 +6,10 @@ if (isset($_POST['submit'])) {
   $err = [];
 
   if ($ques == "") {
-    $err["question"] = "Please Enter Question  ";
+    $err["question"] = "Please Write Your Question  ";
   }
   if ($answ == "") {
-    $err["answer"] = "Please Enter Answer  ";
+    $err["answer"] = "Please Write Your Answer  ";
   }
   if (empty($err)) {
     //die("here");
@@ -18,8 +18,8 @@ if (isset($_POST['submit'])) {
     //Print_r($query);
     // die;
     if ($result) {
-      //$err['message'] = 'New Record Addded Successfully';
-      header("location:faq.php?add=New Record Addded Successfully");
+      //$err['message'] = 'New Record Addded successfully';
+      header("location:faq.php?add=New Record Addded successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }
@@ -44,21 +44,21 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4 ">Frequently Asked Questions</h1>
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Question:</label>
-                  <input type="name" name="question" value="<?= isset($_POST['question']) ? $_POST['question'] : ''; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
+                  <input type="name" name="question" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write........">
                   <?php if (isset($err['question'])) { ?><div class="small alert-danger"><?= $err['question']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Answer:</label>
 
-                  <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"><?= isset($_POST['answer']) ? $_POST['answer'] : ''; ?></textarea>
+                  <textarea type="name" name="answer" value="" class="form-control" id="answer" rows="3" placeholder="" cols="30" rows="10"></textarea>
                   <?php if (isset($err['answer'])) { ?><div class="small alert-danger"><?= $err['answer']; ?></div> <?php } ?>
-                </div>s
+                </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
               </form>
               <hr>
@@ -127,6 +127,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
   document.title = "Taskenhancer :: Add FAQ";
 </script>

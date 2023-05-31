@@ -1,25 +1,49 @@
 <?php include("include/master.php");
 if (isset($_POST["submit"])) {
   $email = $_SESSION['user_email'];
-  $currentPassword = md5($_POST['current_password']);
-  $newPassword = md5($_POST['new_password']);
-  $confirmpassword = md5($_POST['confirm_password']);
-  if ($newPassword != $confirmpassword) {
-    $message = "New and Confirm password does not match!";
-  }
+  $current_password = $_POST['current_password'];
+  $new_password = $_POST['new_password'];
+  $confirm_password = $_POST['confirm_password'];
 
-  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$currentPassword'";
+  if ($current_password == "") {
+    $err = ["current_password" => "Please Enter your Current Password!"];
+  }
+  if ($current_password != "") {
+    $sql = "SELECT * FROM `users` WHERE password = '" . md5($current_password) . "' && user_id = '" . $_SESSION['id'] . "'";
+    $res = mysqli_query($conn, $sql);
+    if (!mysqli_num_rows($res) > 0) {
+      $err['current_password'] = "Please Enter Right Current Password!!";
+    }
+  }
+  if ($new_password == "") {
+    $err["new_password"] = "Please Enter New Password!";
+  }
+  if ($confirm_password == "") {
+    $err["confirm_password"] = "Please Confirm your New Password!";
+  }
+  if ($new_password != $confirm_password) {
+    $err["confirm_password"] = "New Password and Confirm Password does not match!";
+  }
+  if ($new_password == $current_password) {
+    $err["new_password"] = "New and Current Password is same!";
+  }
+  $current_password = md5($_POST['current_password']);
+  $sql = "SELECT * FROM `users` WHERE email = '$email' AND password = '$current_password'";
   $result = mysqli_query($conn, $sql);
   $rowCount = mysqli_num_rows($result);
   //print_r($rowCount);
   if ($rowCount > 0) {
-    $sql = "UPDATE `users` set password = '$newPassword' WHERE `email` = '$email'";
+    $new_password = md5($_POST['new_password']);
+    $confirm_password = md5($_POST['confirm_password']);
+    $sql = "UPDATE `users` set password = '$new_password' WHERE `email` = '$email'";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_affected_rows($conn);
     print_r($rowCount);
     if ($rowCount > 0) {
-      header("Location:profile.php?message=Password change Successfully!");
+      header("Location:profile.php?message=Password change successfully!");
     }
+  } else {
+    //$message = "Please Enter the bellow fields..!";
   }
 }
 
@@ -42,7 +66,7 @@ if (isset($_POST["submit"])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4"></h1>
               </div>
               <form class="user" action="" method="post">

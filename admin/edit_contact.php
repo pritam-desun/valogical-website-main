@@ -18,19 +18,19 @@ if (isset($_POST['update'])) {
   //print_r($status);
   $err = [];
   if ($name == "") {
-    $err["name"] = "Please Enter people_name  ";
+    $err["name"] = "Please Enter Name  ";
   }
   if ($email == "") {
-    $err["email"] = "Please Enter email  ";
+    $err["email"] = "Please Enter Email  ";
   }
   if ($subject == "") {
-    $err["subject"] = "Please Enter subject  ";
+    $err["subject"] = "Please Enter Subject  ";
   }
   if ($phone == "") {
-    $err["phone"] = "Please Enter phone  ";
+    $err["phone"] = "Please Enter Phone Number  ";
   }
   if ($message == "") {
-    $err["message"] = "Please Enter messages  ";
+    $err["message"] = "Please Enter Messages  ";
   }
   if (empty($err)) {
     $query = "UPDATE  `contact` SET `name`='$name', `email`='$email', `subject`='$subject',`phone`='$phone',`message`='$message'  WHERE contact_id=$id";
@@ -64,7 +64,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">

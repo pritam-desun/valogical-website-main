@@ -124,5 +124,5 @@ include("include/footer.php")
 ?>
 
 <script>
-  document.title = "Taskenhancer :: View contact";
+  document.title = "Taskenhancer :: View Contact";
 </script>

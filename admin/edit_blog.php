@@ -56,13 +56,13 @@ if (isset($_POST['update'])) {
     }
   }
   if ($title == "") {
-    $err["title"] = "Please Enter title  ";
+    $err["title"] = "Please Enter Title  ";
   }
   if ($short_desc == "") {
-    $err["short_desc"] = "Please Enter short description";
+    $err["short_desc"] = "Please Enter Short Description";
   }
   if ($content == "") {
-    $err["content"] = "Please Enter the content  ";
+    $err["content"] = "Please Enter the Content  ";
   }
 
   if (empty($err)) {
@@ -104,7 +104,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-7">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">

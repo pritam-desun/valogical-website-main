@@ -53,13 +53,18 @@ if (isset($_POST['update'])) {
     // die();
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
-      header("Location: view_service.php?update=Data Update Successfully.");
+      // header("Location: view_service.php?update=Data update successfully.");
+      echo "<script>
+      location.replace('view_service.php?update=Data update successfully');
+    </script>";
     } else {
-      $err['register'] = 'Edit Not Worked please check Your code ';
+      $err['register'] = 'Edit not worked please check Your code ';
     }
   }
 }
 ?>
+
+
 <!-- Begin Page Content -->
 <div class="container-fluid mb-0 ">
   <!-- Page Heading -->
@@ -77,7 +82,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-7">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
@@ -161,6 +166,7 @@ if (isset($_POST['update'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
   document.title = "Taskenhancer :: Edit Service";
 </script>

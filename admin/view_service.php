@@ -47,7 +47,7 @@ if (@$_GET['type'] == 'delete') {
                 <th>long desp</th>
                 <th>Icon</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th class="ac-btn">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@ if (@$_GET['type'] == 'delete') {
                   <td><?php echo $rows['long_desp'] ?></td>
                   <td><img src="<?php echo $rows['icon'] ?>" height="50px"></td>
                   <td><?php echo $rows['status'] ?></td>
-                  <td><a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit_service.php?id=<?php echo $rows['service_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_service.php?id=<?php echo $rows['service_id'] ?>&type=delete">Delete</a>
+                  <td><a class=" btn btn-sm btn-primary" href="edit_service.php?id=<?php echo $rows['service_id'] ?>">Edit </a> || <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="return confirm('Are you sure?')" href="view_service.php?id=<?php echo $rows['service_id'] ?>&type=delete">Delete</a>
                   </td>
                 <?php } ?>
                 </tr>
@@ -117,3 +117,8 @@ if (@$_GET['type'] == 'delete') {
 <script>
   document.title = "Taskenhancer :: View Service";
 </script>
+<style>
+  .ac-btn {
+    width: 145px;
+  }
+</style>

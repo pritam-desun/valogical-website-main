@@ -38,13 +38,16 @@ if (isset($_POST['update'])) {
     $err["image"] = "Please upload image  ";
   }
   if ($btn_1_text == "") {
-    $err["btn_1_text"] = "Please Enter btn_1_text  ";
+    $err["btn_1_text"] = "Please Enter Button 1 Url  ";
   }
   if ($btn_1_url == "") {
-    $err["btn_1_url"] = "Please Enter btn_1_url  ";
+    $err["btn_1_url"] = "Please Enter Button  1 Url ";
   }
   if ($btn_2_text == "") {
-    $err["btn_2_text"] = "Please Enter btn_2_text  ";
+    $err["btn_2_text"] = "Please Enter Button  2 Text ";
+  }
+  if ($btn_2_text == "") {
+    $err["btn_2_url"] = "Please Enter Button  2 Url ";
   }
 
   if (empty($err)) {
@@ -63,7 +66,7 @@ if (isset($_POST['update'])) {
     if ($result) {
       move_uploaded_file($image_tep_name, $image);
       // $err['add'] = 'Form Update Successfully';
-      header("location:view_banner.php?update=Record Update Successfully");
+      header("location:view_banner.php?update=Record Update successfully");
     } else {
       $err['add'] = ' Not Worked please check Your code ';
     }
@@ -88,7 +91,7 @@ if (isset($_POST['update'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
               </div>
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">

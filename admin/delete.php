@@ -10,5 +10,5 @@ if ($results) {
     header('Location: testimonialse.php');
 } else {
     $err = mysqli_error($conn);
-    echo "Not Delete Successfully due to this error -----> $err";
+    echo "Not Delete successfully due to this error -----> $err";
 }

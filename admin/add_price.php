@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
   $err = [];
 
   if ($country == "") {
-    $err["country"] = "Please Enter Question  ";
+    $err["country"] = "Please enter your Country  ";
   }
   if ($price == "") {
-    $err["price"] = "Please Enter Answer  ";
+    $err["price"] = "Please enter your  Price  ";
   }
   if (empty($err)) {
     //die("here");
@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
     //Print_r($query);
     // die;
     if ($result) {
-      $err['message'] = 'New Record Addded Successfully';
-      // header("location:add_price.php?add=New Record Addded Successfully");
+      $err['message'] = 'New Record Addded successfully';
+      // header("location:add_price.php?add=New Record Addded successfully");
     } else {
       $err['message'] = ' Not Worked please check Your code ';
     }
@@ -51,18 +51,18 @@ if (isset($_POST['submit'])) {
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="p-5">
-              <div class="text-cEnter">
+              <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4 "></h1>
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group ">
                   <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Country:</label>
-                  <input type="name" name="country" value="<?= isset($row['country']) ? $row['country'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="........">
+                  <input type="name" name="country" value="<?= isset($row['country']) ? $row['country'] : ""; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Country">
                   <?php if (isset($err['country'])) { ?><div class="small alert-danger"><?= $err['country']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Price:</label>
-                  <input type="price" name="price" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="........">
+                  <input type="price" name="price" value="" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Price">
                   <?php if (isset($err['price'])) { ?><div class="small alert-danger"><?= $err['price']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
@@ -115,6 +115,7 @@ if (isset($_POST['submit'])) {
 <?php
 include("include/footer.php")
 ?>
+
 <script>
-  document.title = "Taskenhancer :: add Price";
+  document.title = "Taskenhancer :: Add price";
 </script>
