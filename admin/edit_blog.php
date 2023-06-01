@@ -112,7 +112,7 @@ if (isset($_POST['update'])) {
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($row['title']) ? $row['title'] : ""; ?>" name="title" id="title" placeholder="">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($row['title']) ? $row['title'] : ""; ?>" name="title" id="title" placeholder="">
                   <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">

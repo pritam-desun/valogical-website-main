@@ -71,17 +71,17 @@ if (isset($_POST['update'])) {
                             <form class="user" action="" method="post">
                                 <div class="form-group ">
                                     <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Name :</label>
-                                    <input type="name" class="form-control form-control-user" name="people_name" value="<?= isset($row["people_name"]) ? $row["people_name"] : ""; ?>" id="exampleFirstName" placeholder="Enetr a name">
+                                    <input type="name" class="form-control form-control-lg" name="people_name" value="<?= isset($row["people_name"]) ? $row["people_name"] : ""; ?>" id="exampleFirstName" placeholder="Enetr a name">
                                     <?php if (isset($err['people_name'])) { ?><div class="small alert-danger"><?= $err['people_name']; ?></div> <?php } ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Designation :</label>
-                                    <input type="name" class="form-control form-control-user" name="people_designation" value="<?= isset($row["people_designation"]) ? $row["people_designation"] : ""; ?>" id="exampleInputEmail" placeholder="Enter a designation">
+                                    <input type="name" class="form-control form-control-lg" name="people_designation" value="<?= isset($row["people_designation"]) ? $row["people_designation"] : ""; ?>" id="exampleInputEmail" placeholder="Enter a designation">
                                     <?php if (isset($err['people_designation'])) { ?><div class="small alert-danger"><?= $err['people_designation']; ?></div> <?php } ?>
                                 </div>
                                 <div class="form-group ">
                                     <label for="exampleFormControlTextarea1" class="form-label text-secondary-emphasis">Content :</label>
-                                    <textarea type="text" class="form-control form-control-user" id="contentt" value="<?= isset($row["content"]) ? $row["content"] : ""; ?>" name="content" placeholder="Enetr a content"><?= isset($row["content"]) ? $row["content"] : ""; ?></textarea>
+                                    <textarea type="text" class="form-control form-control-lg" id="contentt" value="<?= isset($row["content"]) ? $row["content"] : ""; ?>" name="content" placeholder="Enetr a content"><?= isset($row["content"]) ? $row["content"] : ""; ?></textarea>
                                     <?php if (isset($err['content'])) { ?><div class="small alert-danger"><?= $err['content']; ?></div> <?php } ?>
                                 </div>
 

@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
               <form class="user" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Title:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($_POST['title']) ? $_POST['title'] : "" ?>" name="title" id="title" placeholder="">
                   <?php if (isset($err['title'])) { ?><div class="small alert-danger"><?= $err['title']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group">
@@ -99,22 +99,22 @@ if (isset($_POST['submit'])) {
 
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 1 Text:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_text']) ? $_POST['btn_1_text'] : "" ?>" id="btn_1_text " name="btn_1_text" placeholder=" ">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($_POST['btn_1_text']) ? $_POST['btn_1_text'] : "" ?>" id="btn_1_text " name="btn_1_text" placeholder=" ">
                   <?php if (isset($err['btn_1_text'])) { ?><div class="small alert-danger"><?= $err['btn_1_text']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 1 Url:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_1_url']) ? $_POST['btn_1_url'] : "" ?>" id="btn_1_url " name="btn_1_url" placeholder="  ">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($_POST['btn_1_url']) ? $_POST['btn_1_url'] : "" ?>" id="btn_1_url " name="btn_1_url" placeholder="  ">
                   <?php if (isset($err['btn_1_url'])) { ?><div class="small alert-danger"><?= $err['btn_1_url']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 2 Text:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_text']) ? $_POST['btn_2_text'] : "" ?>" id="btn_2_text  " name="btn_2_text" placeholder="  ">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($_POST['btn_2_text']) ? $_POST['btn_2_text'] : "" ?>" id="btn_2_text  " name="btn_2_text" placeholder="  ">
                   <?php if (isset($err['btn_2_text'])) { ?><div class="small alert-danger"><?= $err['btn_2_text']; ?></div> <?php } ?>
                 </div>
                 <div class="form-group ">
                   <label for="exampleFormControlTitle" class="form-label">Button 2 Url:</label>
-                  <input type="text" class="form-control form-control-user" value="<?= isset($_POST['btn_2_url']) ? $_POST['btn_2_url'] : "" ?>" id="btn_1_text " name="btn_2_url" placeholder="  ">
+                  <input type="text" class="form-control form-control-lg" value="<?= isset($_POST['btn_2_url']) ? $_POST['btn_2_url'] : "" ?>" id="btn_1_text " name="btn_2_url" placeholder="  ">
                   <?php if (isset($err['btn_2_url'])) { ?><div class="small alert-danger"><?= $err['btn_2_url']; ?></div> <?php } ?>
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" name="submit" value="Submit ">
